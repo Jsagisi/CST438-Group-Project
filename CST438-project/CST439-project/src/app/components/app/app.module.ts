@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
+import { AgmCoreModule } from '@agm/core';
+
 import { AppComponent } from './app.component';
 import { AppBarComponent } from '../app-bar/app-bar.component';
 import { HomeComponent } from '../home/home.component';
@@ -20,7 +22,10 @@ import { MenuComponent } from '../menu/menu.component';
     HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AgmCoreModule.forRoot({
+    	apiKey: 'AIzaSyD5ABYjjcQFhwI65w8dtzhdBMIO-Zz2p7k'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
