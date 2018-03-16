@@ -1,0 +1,16 @@
+#map {
+	width: 60%;
+	height:75%;
+	background-color: grey;
+	position: absolute;
+	right: 0px;
+	top: 70px;
+}
+
+#text {
+	position: absolute;
+	margin-top:25px;
+	position: absolute;
+	left: 0px;
+	font-size: 40px;
+}
