@@ -2,16 +2,23 @@
 
 	<div id="menu">
 		
-		<input id="locationInput" placeholder="Enter location" type="text" name="locationSearch">
-		<button>Search</button>
+		<div id="searchContainer">
+		Search: <input id="locationInput" 
+			   placeholder="Enter location" 
+			   type="text" 
+			   name="locationSearch"
+			   class="form-control"
+			   #search [formControl]="searchControl"
+			   >
+		</div>
 		
 	</div>
 
 	<div id="map">
 		<agm-map  
 				  [mapTypeId]="map.mapTypeId" 
-				  [latitude]="map.center.lat" 
-				  [longitude]="map.center.lng" 
+				  [latitude]="lat" 
+				  [longitude]="lng" 
 				  [zoom]="map.zoom"
 				  (mapClick)="click($event)"
 				  [styles]="map.styles" >

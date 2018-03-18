@@ -8,6 +8,19 @@
 	
 }
 
+#searchContainer {
+	margin-top: 10px;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	
+}
+
+#locationInput {
+	width: 75%
+	
+}
+
 #menu {
 	width: 40%;
 	height: 100%;
