@@ -1,6 +1,17 @@
-<div id="map">
-	<agm-map [latitude]="lat" [longitude]="lng">
-  		<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-	</agm-map>	
+<div id="mapContainer">
+
+	<div id="menu">
+		
+		<input id="locationInput" placeholder="Enter location" type="text" name="locationSearch">
+		<button>Search</button>
+		
+	</div>
+
+	<div id="map">
+		<agm-map [latitude]="lat" [longitude]="lng">
+  			<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+		</agm-map>
+	</div>
+		
 	
 </div>
