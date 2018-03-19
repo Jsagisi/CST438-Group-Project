@@ -22,7 +22,9 @@
 				  [zoom]="zoom"
 				  (mapClick)="click($event)"
 				  [styles]="map.styles" >
-  			<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  			<agm-marker [latitude]="lat" [longitude]="lng">
+  				<agm-info-window [isOpen]="true">Your Location</agm-info-window>
+  			</agm-marker>
 		</agm-map>
 	</div>
 		

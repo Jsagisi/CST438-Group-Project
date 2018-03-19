@@ -1,3 +1,12 @@
 <div id="appBar">
-	<span id="title">PUG Finder</span>
+	<span (click)="navigateTo('')" id="title">PUG Finder</span>
+	
+	<div id="loginButtons">
+		<button class="lbuttons" 
+				id="login"
+				(click)="navigateTo('login')">Login</button>
+		<button class="lbuttons" 
+				id="register"
+				(click)="navigateTo('register')">Register</button>
+	</div>
 </div>
