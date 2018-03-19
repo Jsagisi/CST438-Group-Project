@@ -15,7 +15,8 @@ export class MapComponent implements OnInit {
   title: string = 'My first AGM project';
   lat: number;
   lng: number;
-  mapType: string = 'roadmap'
+  zoom: number;
+  mapType: string = 'roadmap';
   map: {};
   searchControl: FormControl;
   
@@ -28,6 +29,7 @@ export class MapComponent implements OnInit {
   	private mapsAPILoader: MapsAPILoader,
   	private ngZone: NgZone) {
   	
+  	this.zoom = 10;
   	this.lat = 39.8282;
     this.lng = -98.5795;
   
@@ -37,7 +39,7 @@ export class MapComponent implements OnInit {
   			lat: this.lat,
   			lng: this.lng
   		},
-  		zoom: 10,
+  		zoom: this.zoom,
   		mapTypeId: this.mapType,
   		styles: [
   			
@@ -95,7 +97,7 @@ export class MapComponent implements OnInit {
   	//map to the selected area when clicked
   	this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"] | ["establishment"] | ["geocode"]
+        
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
@@ -110,7 +112,7 @@ export class MapComponent implements OnInit {
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-          this.zoom = 12;
+          this.zoom = 16;
         });
       });
     });
@@ -127,7 +129,7 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        this.zoom = 12;
+  		this.zoom = 10;
       });
     }
   }
