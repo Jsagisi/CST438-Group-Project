@@ -32,5 +32,16 @@ export class AppBarComponent implements OnInit {
   navigateTo(path: string) : void {
   	this.router.navigateByUrl('/' + path);
   }
+  
+  logout() {
+  	this.userService.logoutUser((err, res) => {
+  		if (err != null ) {
+  			console.log(err.message);
+  		}
+  		else {
+  			this.router.navigateByUrl('/');
+  		}
+  	});
+  }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 
+
 @Injectable()
 export class UserService {
 
@@ -35,10 +36,18 @@ export class UserService {
   		uid: " "
   	};
   	
+  	this.downloadUser();
+  	
+  	
   }
   
-  public getUser() {
-  	return this.user;
+  
+  
+  getUser() {
+  
+  	if (firebase.auth().currentUser != null) {
+  		return this.user;
+  	}
   }
   
   public setUser(user) {
@@ -46,10 +55,28 @@ export class UserService {
   }
   
   
+  downloadUser() {
+  	firebase.auth().onAuthStateChanged((user) => {
+  		if (user != null) {
+  			this.user = {
+  				displayName: user.displayName,
+  				email: user.email,
+  				phoneNumber: user.phoneNumber,
+  				photoURL: user.photoURL,
+  				uid: user.uid
+  			};
+  		}
+  		else {
+  			
+  		}
+  	});
+  }
+  
+  
   public isLoggedIn() : boolean {
   	var user = firebase.auth().currentUser;
   	
-  	if (user) {
+  	if (user != null) {
   		return true;
   	}
   	else {
@@ -75,6 +102,62 @@ export class UserService {
   
 	});
   }
+  
+  
+  registerUser(email, password, username, callback) {
+  	
+  	firebase.auth().createUserWithEmailAndPassword(email, password)
+  	.then((user) => {
+  		var currUser = firebase.auth().currentUser;
+  		
+  		if (currUser != null) {
+  		    
+			this.user = {
+  				displayName: user.displayName,
+  				email: user.email,
+  				phoneNumber: user.phoneNumber,
+  				photoURL: user.photoURL,
+  				uid: user.uid
+  			};  		
+  		
+  			currUser.updateProfile({
+  				displayName: username,
+  				photoURL: ""
+  			}).then( () => {
+  			    console.log('updated user profile');
+  				callback(null, this.user); 
+  			
+  			}).catch((error) => {
+  			    console.log('error updating profile');
+  				callback(error, null);
+  			});
+  		}
+  	})
+  	.catch((error) => {
+  	    console.log('error registering user');
+  		callback(error,null);
+ 
+	});
+  }
+  
+  
+  logoutUser(callback) {
+ 	firebase.auth().signOut()
+ 	.then( () => {
+ 		this.user = {
+
+  		displayName: " ",
+  		email: " ",
+  		phoneNumber: " ",
+  		photoURL: " ",
+  		uid: " "
+  	};
+ 		callback(null, true); 
+ 	})
+ 	.catch((error) => {
+ 		callback(error, null);
+ 	});
+  } 
   
   
 

@@ -6,3 +6,28 @@
 	left: 0px;
 	top: 70px;
 }
+
+#fieldContainer {
+	width: 70%;
+	height: 50%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.error {
+	color: red;
+	visibility: hidden;
+}
+
+label {
+	float: left;
+}
+
+
+
+
+
