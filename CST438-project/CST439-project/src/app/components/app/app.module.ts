@@ -13,6 +13,8 @@ import { MapComponent } from '../map/map.component';
 import { MenuComponent } from '../menu/menu.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { UserService } from '../../services/user-service/user.service';
+
 
 //routes
 const appRoutes: Routes = [
@@ -44,7 +46,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

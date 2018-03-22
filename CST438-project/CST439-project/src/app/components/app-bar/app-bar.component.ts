@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service/user.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-app-bar',
@@ -8,10 +10,23 @@ import { Router } from '@angular/router';
 })
 export class AppBarComponent implements OnInit {
 
-  constructor(private router: Router) { 
+  isLoggedIn: string;
+
+  constructor(private router: Router,
+  			  private userService: UserService) { 
+  	
+  	this.isLoggedIn = 'Login';
   }
 
   ngOnInit() {
+  
+  	if (this.userService.isLoggedIn() == true) {
+  		this.isLoggedIn = 'Logout';
+  	}
+  	else {
+  		this.isLoggedIn = 'Login';
+  	}	
+  
   }
   
   navigateTo(path: string) : void {

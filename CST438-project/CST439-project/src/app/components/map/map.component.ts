@@ -21,6 +21,7 @@ export class MapComponent implements OnInit {
   searchControl: FormControl;
   
   
+  
   @ViewChild("search")
   public searchElementRef: ElementRef;
   

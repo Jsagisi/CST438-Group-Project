@@ -1,21 +1,26 @@
 <div id="container">
-
+	
 	<h1> Login</h1>
 
 	<div id="fieldContainer">
-		Username: <input id="username" type="text" />
+		Username: <input [(ngModel)]="username" id="username" type="text" />
 		<br/>
 		<span id="usernameErr" class="error">error</span>
 		<br/>
 		<br/>
-		Password: <input id="password" type="text" />
+		Password: <input [(ngModel)]="password" id="password" type="text" />
 		<br/>
 		<span id="passwordErr" class="error">error</span>
 		<br><br>
+		<span  id="loginErr" class="error">{{errorMessage}}</span>
+		<br />
 		<button (click)="submit()">Submit</button>
 		<br/><br/>
 		<a href="/register">Register</a>
 	</div>
+	
+	
+	
 	
 	
 </div>
