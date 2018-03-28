@@ -1,6 +1,15 @@
 <div id="mapContainer">
 
 	<div id="menu">
+	
+		<ul>
+			<li>
+				<a (click)="navigate('map')" >Search</a>
+			</li>
+			<li>
+				<a (click)="navigate('map/locations')"> +</a>
+			</li>
+		</ul>
 		
 		<div id="searchContainer">
 		Search: <input id="locationInput" 
@@ -10,26 +19,56 @@
 			   class="form-control"
 			   #search [formControl]="searchControl"
 			   >
-		<nav>
-			<a href="">test1</a>
-		</nav>
+		<router-outlet ></router-outlet>
 		</div>
 		
 	</div>
 
 	<div id="map">
-		<agm-map  
+		<agm-map  id="mapObj"
 				  [mapTypeId]="map.mapTypeId" 
 				  [latitude]="lat" 
 				  [longitude]="lng" 
 				  [zoom]="zoom"
 				  (mapClick)="click($event)"
-				  [styles]="map.styles" >
-  			<agm-marker [latitude]="lat" [longitude]="lng">
+				  [styles]="map.styles"
+				  (centerChange)="centerChanged($event)"
+				  (mapReady)="mapReady($event)" >
+				  
+			<agm-marker [latitude]="homeCoords.lat" 
+						[longitude]="homeCoords.lng"
+						[markerDraggable]="false">
   				<agm-info-window [isOpen]="true">Your Location</agm-info-window>
+			</agm-marker>
+			
+  			<agm-marker *ngFor="let marker of markers" 
+  				[latitude]="marker.coords.lat"
+  				[longitude]="marker.coords.lng"
+  				[markerDraggable]="marker.isDraggable"
+  				[title]="marker.title"
+  				[visible]="marker.visible" >
+  				<agm-info-window [isOpen]="marker.infoWindow.isOpen"
+  								
+  			    >
+  			    {{marker.infoWindow.content}}
+  			    </agm-info-window>
+  			</agm-marker>
+  			<agm-marker
+  				[latitude]="searchMarker.lat"
+  				[longitude]="searchMarker.lng"
+  				[markerDraggable]="true"
+  				[title]="searchMarker.text"
+  				[visible]="searchMarker.isOpen"
+  				(dragEnd)="searchWasDragged($event)" >
+  				
+  				<agm-info-window  [isOpen]="searchMarker.isOpen">
+  					{{searchMarker.text}}
+  				</agm-info-window>
   			</agm-marker>
 		</agm-map>
 	</div>
+	
+	
 		
 	
 </div>

@@ -7,18 +7,22 @@ import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { AppBarComponent } from '../app-bar/app-bar.component';
-import { HomeComponent } from '../home/home.component';
 import { ChatComponent } from '../chat/chat.component';
 import { MapComponent } from '../map/map.component';
-import { MenuComponent } from '../menu/menu.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { UserService } from '../../services/user-service/user.service';
-
+import { LocationComponent } from '../locations/location/location.component';
+import { MapService } from '../../services/map/map.service';
 
 //routes
 const appRoutes: Routes = [
 	{ path: '', component: MapComponent },
+	{ path: 'map', component: MapComponent, children: [
+		{ path: 'search', component: LoginComponent},
+		{ path: 'locations' , component: LocationComponent}
+		]
+	},
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent }
 ];
@@ -28,13 +32,11 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AppBarComponent,
-    HomeComponent,
     ChatComponent,
     MapComponent,
-    MenuComponent,
-    HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LocationComponent
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

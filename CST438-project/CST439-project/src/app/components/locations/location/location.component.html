@@ -1,0 +1,30 @@
+<div id="container">
+	<h1>Create a PUG</h1>
+	
+	<div id="form">
+	<span> To get started search for a location or drag marker</span>
+	<br />
+	Location: <input [(ngModel)]="locationName" />
+	<br />
+	<br />
+	Address: <input [(ngModel)]="locationAddress"/>
+	<br />
+	<br />
+	Activity: <select>
+	
+			  	<option value="basketball">Basketball</option>
+			  	<option value="soccer">Soccer</option>
+			  	<option value="football">Football</option>
+			  	<option value="baseball">Baseball</option>
+			  	
+	
+			  </select>
+	
+	<br />
+	<br />
+	Start Date: <input type="datetime-local" />
+	<br />
+	</div>
+	<br />
+	<button (click)=add()>Add</button>
+</div>
