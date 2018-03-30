@@ -64,7 +64,7 @@
   					<br />
   					<span>Time: {{marker.date}}</span>
   					<br />
-  					<button>Join</button>
+  					<button (click)="mapService.addUserToEvent(marker.id)">Join</button>
   			    </agm-info-window>
   			</agm-marker>
   			</div>

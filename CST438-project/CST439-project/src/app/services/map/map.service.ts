@@ -32,6 +32,36 @@ export class MapService {
   };
   
   
+  addUserToEvent(eventId) : boolean{
+  	//get originall players array
+  	var players = new Array();
+  	for (var i = 0; i < this.eventMarkers.length;i++) {
+  		if (this.eventMarkers[i].id == eventId) {
+  			players = this.eventMarkers[i].players;
+  			console.log('found players + ' players);
+  		}
+  	}
+  	
+  	//get user
+  	var currUser = this.userService.getUser();
+  	for (var i = 0; i < players.length; i++) {
+  		if (currUser.uid == players[i].uid) {
+  			console.log('user not added');
+  			return false;
+  		}
+  	}
+  	
+  	players.push(currUser);
+  	console.log('user added');
+  	
+  	//update database
+  	this.database.ref('/locations/' + eventId)
+  	.update({players: players});
+  	
+  	return true;
+  }
+  
+  
   getLocations(cb) {
   	
   	var results = new Array();

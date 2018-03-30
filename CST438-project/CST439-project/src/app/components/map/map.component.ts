@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MapService } from '../../services/map/map.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-map',
@@ -51,7 +52,8 @@ export class MapComponent implements OnInit {
   	private mapsAPILoader: MapsAPILoader,
   	private ngZone: NgZone,
   	private router: Router,
-  	private mapService: MapService) {
+  	private mapService: MapService,
+  	private userService: UserService) {
   	
   	this.placeService = null;
   	
