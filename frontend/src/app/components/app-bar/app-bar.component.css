@@ -1,0 +1,39 @@
+#appBar {
+	background-color: grey;
+	width: 100%;
+	height: 75px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#title {
+	margin-left: 50px;
+	margin-top:25px;
+	position: absolute;
+	left: 0px;
+	font-size: 4vw;
+}
+
+#title:hover {
+	cursor: pointer;
+}
+
+#loginButtons {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.lbuttons {
+	width: 70px;
+	margin-right: 5px;
+	height: 30px;
+	background-color: lightblue;
+}
+
+.lbuttons:hover {
+	cursor: pointer;
+	background-color: #ffc14f;
+}
+

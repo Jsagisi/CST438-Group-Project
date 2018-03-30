@@ -2,69 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3fc6ae5-00b9-4b60-80e2-6bb2fad2ac30" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/frontend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/.angular-cli.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/e2e/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/e2e/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/e2e/tsconfig.e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/protractor.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app-bar/app-bar.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app-bar/app-bar.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app-bar/app-bar.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app-bar/app-bar.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app/app.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/chat/chat.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/chat/chat.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/chat/chat.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/chat/chat.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/locations/location/location.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/locations/location/location.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/locations/location/location.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/locations/location/location.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/login/login.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/login/login.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/login/login.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/login/login.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/map/map.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/map/map.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/map/map.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/map/map.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/register/register.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/register/register.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/register/register.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/components/register/register.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/services/map/map.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/services/map/map.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/services/user-service/user.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/app/services/user-service/user.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/assets/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/environments/environment.prod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/environments/environment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/polyfills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/tsconfig.spec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/src/typings.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CST438-project/CST439-project/tslint.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/typescript-compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/tsconfig.spec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/typings.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/typings.d.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,8 +24,54 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="map.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/app/services/map/map.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-51">
+              <caret line="186" column="36" selection-start-line="186" selection-start-column="36" selection-end-line="186" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#81#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/frontend/src/app/services/map/map.service.ts" />
+        <option value="$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts" />
+        <option value="$PROJECT_DIR$/frontend/package.json" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -86,8 +83,8 @@
     <handled-path value="$PROJECT_DIR$/frontend/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="353" />
-    <option name="y" value="-21" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="993" />
   </component>
@@ -103,6 +100,47 @@
             <path>
               <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -123,6 +161,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.55517244" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -208,15 +247,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522433164968</updated>
-      <workItem from="1522433168333" duration="520000" />
+      <workItem from="1522433168333" duration="1232000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520000" />
+    <option name="totallyTimeSpent" value="1232000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -227,10 +267,11 @@
       <window_info anchor="bottom" id="Application Servers" />
       <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32912722" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
+      <window_info anchor="bottom" id="TypeScript" />
       <window_info id="Designer" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.46302083" />
       <window_info anchor="right" id="Database" />
@@ -254,6 +295,35 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/services/map/map.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="186" column="36" selection-start-line="186" selection-start-column="36" selection-end-line="186" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

@@ -1,0 +1,19 @@
+<div id="appBar">
+	<span (click)="navigateTo('')" id="title">PUG Finder</span>
+	
+	<div id="loginButtons" *ngIf="userService.isLoggedIn() == false">
+		<button class="lbuttons" 
+				id="login"
+				(click)="navigateTo('login')">Login</button>
+		<button class="lbuttons" 
+				id="register"
+				(click)="navigateTo('register')">Register</button>
+	</div>
+	<div id="loginButtons" *ngIf="userService.isLoggedIn() == true">
+		<button class="lbuttons" 
+				id="logout"
+				(click)="logout()">Logout</button>
+		<span>{{userService.getUser().displayName}}</span>
+		
+	</div>
+</div>
