@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-
+import { Observable } from 'rxjs';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class UserService {
@@ -21,11 +22,13 @@ export class UserService {
     messagingSenderId: "351856084400"
    };
    app;
+   database;
    
    
   constructor() {
   	//initialize firebase reference
   	this.app = firebase.initializeApp(this.config);
+  	this.database = firebase.database();
   	
   	this.user = {
 
@@ -40,6 +43,17 @@ export class UserService {
   	
   	
   }
+  
+  
+  insertLocation(data) {
+  	var newLocationRef = this.database.ref('/locations').push();
+  	var id = newLocationRef.key;
+  	data.id = id;
+  	newLocationRef.set(data);
+  };
+  
+  
+ 
   
   
   

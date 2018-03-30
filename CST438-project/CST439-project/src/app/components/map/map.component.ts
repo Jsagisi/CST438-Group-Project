@@ -5,6 +5,7 @@ import { MapsAPILoader } from '@agm/core';
 import { Router } from '@angular/router';
 import { MapService } from '../../services/map/map.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -36,6 +37,7 @@ export class MapComponent implements OnInit {
   		lng: number
   };
   poiList;
+  dataLoaded: boolean;
 
   
   clickSubscription: Subscription;
@@ -52,6 +54,8 @@ export class MapComponent implements OnInit {
   	private mapService: MapService) {
   	
   	this.placeService = null;
+  	
+  	this.dataLoaded = false;
   	
   	this.poiList = new Array();
   	
@@ -133,6 +137,8 @@ export class MapComponent implements OnInit {
   		]
   	};
   	
+  	
+  	
   	this.markerSubscription = this.mapService.getSearchMarkerEvent().subscribe(res => {
 	
 		this.searchMarker.isOpen = res.marker.isOpen;
@@ -149,6 +155,24 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
   
+    this.mapService.getLocations( (data) => {
+    	this.markers = data;
+  		
+  		for (var i = 0; i < this.markers.length;i++) {
+  			console.log(this.markers[i]);
+  			var latStr = this.markers[i].coords.lat;
+  			var latNum = parseFloat(latStr);
+  			var lngStr = this.markers[i].coords.lng;
+  			var lngNum = parseFloat(lngStr);
+  			this.markers[i].coords = {
+  				lat: latNum,
+  				lng: lngNum
+  			};
+  		}
+  		this.dataLoaded = true;
+  	});
+  	
+    
   	this.searchControl = new FormControl();
   	
   	
@@ -182,9 +206,10 @@ export class MapComponent implements OnInit {
           
           this.currentSearchLocation.lat = place.geometry.location.lat();
           this.currentSearchLocation.lng = place.geometry.location.lng();
-          console.log(this.currentSearchLocation);
+         
+         console.log('lat = ' + place.geometry.location.lat());
           
-          this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (errpr, data) => {
+          this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (error, data) => {
           
           	this.searchMarker.text = place.name;
           });

@@ -4,13 +4,13 @@
 	<div id="form">
 	<span> To get started search for a location or drag marker</span>
 	<br />
-	Location: <input [(ngModel)]="locationName" />
+	Location: <input id="name" [(ngModel)]="locationName" type="text"/>
 	<br />
 	<br />
-	Address: <input [(ngModel)]="locationAddress"/>
+	Address: <input id="address" [(ngModel)]="locationAddress" type="text"/>
 	<br />
 	<br />
-	Activity: <select>
+	Activity: <select id="activity" [(ngModel)]="activity">
 	
 			  	<option value="basketball">Basketball</option>
 			  	<option value="soccer">Soccer</option>
@@ -22,9 +22,11 @@
 	
 	<br />
 	<br />
-	Start Date: <input type="datetime-local" />
+	Start Date: <input id="date" [(ngModel)]="date" type="datetime-local" />
 	<br />
 	</div>
 	<br />
-	<button (click)=add()>Add</button>
+	<button type="button" (click)=addEvent()>Add</button>
+	<input id="lat" [(ngModel)]="locationCoords.lat" type="number" style="display: none"/>
+	<input id="lng" [(ngModel)]="locationCoords.lng" type="number" style="display: none"/>
 </div>

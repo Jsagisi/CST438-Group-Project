@@ -23,6 +23,12 @@
 		</div>
 		
 	</div>
+	
+	<div *ngIf="dataLoaded == true">
+		<div *ngFor="let marker of markers">
+			{{marker.name}}
+		</div>
+	</div>
 
 	<div id="map">
 		<agm-map  id="mapObj"
@@ -41,18 +47,27 @@
   				<agm-info-window [isOpen]="true">Your Location</agm-info-window>
 			</agm-marker>
 			
-  			<agm-marker *ngFor="let marker of markers" 
-  				[latitude]="marker.coords.lat"
+			<div *ngIf="dataLoaded == true">
+  			<agm-marker  *ngFor="let marker of mapService.eventMarkers"
+  				
+  				[latitude]= "marker.coords.lat"
   				[longitude]="marker.coords.lng"
-  				[markerDraggable]="marker.isDraggable"
-  				[title]="marker.title"
-  				[visible]="marker.visible" >
-  				<agm-info-window [isOpen]="marker.infoWindow.isOpen"
-  								
+  				[visible]="true"
+  				 >
+  				<agm-info-window [isOpen]="true"
   			    >
-  			    {{marker.infoWindow.content}}
+  			    	<span>Location: {{marker.name}}</span>
+  					<br />
+  					<span>Address: {{marker.address}}</span>
+  					<br />
+  					<span>Activity: {{marker.activity}}</span>
+  					<br />
+  					<span>Time: {{marker.date}}</span>
+  					<br />
+  					<button>Join</button>
   			    </agm-info-window>
   			</agm-marker>
+  			</div>
   			<agm-marker
   				[latitude]="searchMarker.lat"
   				[longitude]="searchMarker.lng"
