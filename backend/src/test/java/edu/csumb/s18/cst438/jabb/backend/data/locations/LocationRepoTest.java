@@ -1,5 +1,7 @@
 package edu.csumb.s18.cst438.jabb.backend.data.locations;
 
+import com.firebase.geofire.GeoLocation;
+import io.reactivex.disposables.Disposable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,10 @@ public class LocationRepoTest {
     private LocationRepo repo;
 
     @Test
-    public void getAllLocations() throws ExecutionException, InterruptedException {
-        List<Location> locations=repo.getAllLocations();
-        for (Location l:
-             locations) {
-            System.out.println(l.getName());
-        }
+    public void getLocationsNear() throws ExecutionException, InterruptedException {
+        repo.getLocationsNear(86, 0, 3).blockingForEach(l -> System.out.println(l.getName()));
+
 
     }
+
 }

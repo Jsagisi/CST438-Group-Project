@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" line="82" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f3fc6ae5-00b9-4b60-80e2-6bb2fad2ac30" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_firebase_geofire_java_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava2_rxjava_2_1_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/backend/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,20 +26,42 @@
       <file leaf-file-name="LocationRepo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state relative-caret-position="-257">
+              <caret line="104" column="52" selection-start-line="104" selection-start-column="52" selection-end-line="104" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5285#5286#0" expanded="true" />
+                <element signature="e#5324#5325#0" expanded="true" />
+                <element signature="e#5432#5433#0" expanded="true" />
+                <element signature="e#5482#5483#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationRepoTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GeoFire.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/firebase/geofire-java/2.2.0/geofire-java-2.2.0.jar!/com/firebase/geofire/GeoFire.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="889">
+              <caret line="146" selection-start-line="146" selection-end-line="146" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocationRepoTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="204">
+              <caret line="23" column="84" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Consumer.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/reactivex/rxjava2/rxjava/2.1.12/rxjava-2.1.12.jar!/io/reactivex/functions/Consumer.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -47,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Location.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Location.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="e#137#138#0" expanded="true" />
                 <element signature="e#164#165#0" expanded="true" />
@@ -82,29 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" selection-start-column="7" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebMvcAutoConfiguration.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.0.0.RELEASE/spring-boot-autoconfigure-2.0.0.RELEASE.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2363">
-              <caret line="139" column="52" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
+            <state relative-caret-position="386">
+              <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -142,12 +152,12 @@
         <option value="$PROJECT_DIR$/frontend/src/app/services/map/map.service.ts" />
         <option value="$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts" />
         <option value="$PROJECT_DIR$/frontend/package.json" />
-        <option value="$PROJECT_DIR$/backend/pom.xml" />
         <option value="$PROJECT_DIR$/backend/.gitignore" />
         <option value="$PROJECT_DIR$/backend/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java" />
+        <option value="$PROJECT_DIR$/backend/pom.xml" />
         <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" />
         <option value="$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java" />
-        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java" />
       </list>
     </option>
   </component>
@@ -365,7 +375,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.55517244" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
@@ -397,7 +407,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LocationRepoTest.getAllLocations">
+  <component name="RunManager" selected="JUnit.LocationRepoTest.getLocationsNear">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -458,6 +468,29 @@
       <option name="PACKAGE_NAME" value="edu.csumb.s18.cst438.jabb.backend.data.locations" />
       <option name="MAIN_CLASS_NAME" value="edu.csumb.s18.cst438.jabb.backend.data.locations.LocationRepoTest" />
       <option name="METHOD_NAME" value="getAllLocations" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="LocationRepoTest.getLocationsNear" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.csumb.s18.cst438.jabb.backend.data.locations.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="edu.csumb.s18.cst438.jabb.backend.data.locations" />
+      <option name="MAIN_CLASS_NAME" value="edu.csumb.s18.cst438.jabb.backend.data.locations.LocationRepoTest" />
+      <option name="METHOD_NAME" value="getLocationsNear" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -537,11 +570,13 @@
       <item itemvalue="JUnit.LocationRepoTest" />
       <item itemvalue="JUnit.All in backend" />
       <item itemvalue="JUnit.LocationRepoTest.getAllLocations" />
+      <item itemvalue="JUnit.LocationRepoTest.getLocationsNear" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LocationRepoTest.getAllLocations" />
+        <item itemvalue="JUnit.LocationRepoTest.getLocationsNear" />
         <item itemvalue="JUnit.LocationRepoTest" />
+        <item itemvalue="JUnit.LocationRepoTest.getAllLocations" />
         <item itemvalue="JUnit.All in backend" />
       </list>
     </recent_temporary>
@@ -560,32 +595,44 @@
       <workItem from="1522450660373" duration="4695000" />
       <workItem from="1522455710504" duration="1353000" />
       <workItem from="1522457184905" duration="4313000" />
-      <workItem from="1522524035066" duration="1972000" />
+      <workItem from="1522524035066" duration="10250000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="LocationRepoTest - 2018.03.31 at 12h 43m 38s.xml">
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 14h 48m 35s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 14h 52m 26s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 14h 53m 15s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 14h 53m 32s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LocationRepoTest - 2018.03.31 at 14h 54m 22s.xml">
       <configuration name="LocationRepoTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_backend - 2018.03.31 at 12h 43m 54s.xml">
-      <configuration name="All in backend" configurationId="JUnit" />
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 14h 55m 27s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_backend - 2018.03.31 at 12h 44m 20s.xml">
-      <configuration name="All in backend" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LocationRepoTest - 2018.03.31 at 12h 49m 37s.xml">
+    <history-entry file="LocationRepoTest - 2018.03.31 at 15h 06m 50s.xml">
       <configuration name="LocationRepoTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LocationRepoTest_getAllLocations - 2018.03.31 at 12h 51m 19s.xml">
-      <configuration name="LocationRepoTest.getAllLocations" configurationId="JUnit" />
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 15h 08m 24s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LocationRepoTest_getAllLocations - 2018.03.31 at 12h 51m 48s.xml">
-      <configuration name="LocationRepoTest.getAllLocations" configurationId="JUnit" />
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 15h 08m 29s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LocationRepoTest_getLocationsNear - 2018.03.31 at 15h 08m 37s.xml">
+      <configuration name="LocationRepoTest.getLocationsNear" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14389000" />
+    <option name="totallyTimeSpent" value="22667000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -611,10 +658,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32912722" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32912722" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32912722" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29270834" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29322916" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Learn" order="2" />
@@ -636,15 +683,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java</url>
-          <line>50</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="17" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -654,6 +693,10 @@
           <caret line="57" column="61" lean-forward="true" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5285#5286#0" expanded="true" />
+            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5432#5433#0" expanded="true" />
+            <element signature="e#5482#5483#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -732,6 +775,10 @@
           <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5285#5286#0" expanded="true" />
+            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5432#5433#0" expanded="true" />
+            <element signature="e#5482#5483#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -850,6 +897,10 @@
           <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5285#5286#0" expanded="true" />
+            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5432#5433#0" expanded="true" />
+            <element signature="e#5482#5483#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2688,20 +2739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/users/UsersRepo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/BackendApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -2716,13 +2753,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java">
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#137#138#0" expanded="true" />
+            <element signature="e#164#165#0" expanded="true" />
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#206#207#0" expanded="true" />
+            <element signature="e#199#200#0" expanded="true" />
+            <element signature="e#231#232#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/reactivex/rxjava2/rxjava/2.1.12/rxjava-2.1.12.jar!/io/reactivex/functions/Consumer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/firebase/geofire-java/2.2.0/geofire-java-2.2.0.jar!/com/firebase/geofire/GeoFire.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="889">
+          <caret line="146" selection-start-line="146" selection-end-line="146" />
         </state>
       </provider>
     </entry>
@@ -2733,25 +2796,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java">
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/users/UsersRepo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java">
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="-257">
+          <caret line="104" column="52" selection-start-line="104" selection-start-column="52" selection-end-line="104" selection-end-column="52" />
           <folding>
-            <element signature="e#137#138#0" expanded="true" />
-            <element signature="e#164#165#0" expanded="true" />
-            <element signature="e#187#188#0" expanded="true" />
-            <element signature="e#206#207#0" expanded="true" />
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#5285#5286#0" expanded="true" />
+            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5432#5433#0" expanded="true" />
+            <element signature="e#5482#5483#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" column="84" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="84" />
         </state>
       </provider>
     </entry>
@@ -2764,7 +2833,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.55517244" />
               </list>
             </option>
           </splitter-proportions>
@@ -2772,11 +2841,11 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring</last-edited>
+          <last-edited>Spring (backend)|Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.55517244" />
               </list>
             </option>
           </splitter-proportions>
@@ -2787,7 +2856,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.55517244" />
               </list>
             </option>
           </splitter-proportions>
@@ -2799,7 +2868,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.55517244" />
               </list>
             </option>
           </splitter-proportions>
@@ -2807,7 +2876,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>frontend</last-edited>
+          <last-edited>backend</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2820,7 +2889,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: ch.qos.logback:logback-classic:1.2.3</last-edited>
+          <last-edited>Maven: com.firebase:geofire:2.3.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
