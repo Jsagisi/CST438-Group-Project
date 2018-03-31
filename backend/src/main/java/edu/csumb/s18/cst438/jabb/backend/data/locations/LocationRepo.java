@@ -3,7 +3,9 @@ package edu.csumb.s18.cst438.jabb.backend.data.locations;
 
 
 
+import com.google.api.gax.rpc.ApiStreamObserver;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -15,6 +17,10 @@ import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Stream;
 
 @Repository
 public class LocationRepo {
@@ -51,16 +57,19 @@ public class LocationRepo {
     }
     public LocationRepo(@Autowired Environment env) throws IOException {
 
-        this.env=env;
+        this.env = env;
 
-        GoogleCredentials googleCredential= getCredentials();
+        GoogleCredentials googleCredential = getCredentials();
 
-        FirebaseOptions options=new FirebaseOptions.Builder()
+        FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(googleCredential)
                 .build();
         FirebaseApp.initializeApp(options);
-        db=FirestoreClient.getFirestore();
-
+        db = FirestoreClient.getFirestore();
+    }
+    public List<Location> getAllLocations() throws ExecutionException, InterruptedException {
+       return db.collection("locations").get().get().toObjects(Location.class);
 
     }
+
 }
