@@ -32,6 +32,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 @Repository
@@ -85,17 +87,40 @@ public class LocationRepo {
     }
 
     //Creates a new location in the database.
-    public UUID createLocation(String name,GeoLocation location){
+    public UUID createLocation(final String name,final String address,final String currentChampionKey,GeoLocation location){
         UUID newId=UUID.randomUUID();
+
+        //If we succeed in creating the new location, we can feel sure that we can set all the
+        //rest of the parameters. otherwise we don't want to bother, because there won't be any location to
+        //add to.
+
+        //I'm not sure if theres an easier way to add stuff to the database. I think I've seen
+        //an example with a Map<String,Object> thing, but I'm not sure. 
         gf.setLocation(newId.toString(),location,(key,error)->{
+
             if(error!=null){
                 System.err.println(error);
             }else{
-                db.child(newId.toString()).child("name").setValue(name,(error2,x)->{
+                final DatabaseReference newLocation=db.child(newId.toString());
+
+                //Make some helper functions so we don't have to do a bunch of repeated typing...
+
+                DatabaseReference.CompletionListener cl=(error2,x)->{
                     if(error2!=null){
                         throw error2.toException();
                     }
-                });
+                };
+                BiConsumer<String,String> createKvp=(k, v)->{
+                    newLocation.child(k).setValue(v,cl);
+                };
+
+
+                //Add the values here
+                createKvp.accept("name",name);
+                createKvp.accept("address",address);
+                createKvp.accept("currentChampionKey",currentChampionKey);
+
+
             }
         });
         return newId;
@@ -105,11 +130,11 @@ public class LocationRepo {
     Get locations in a range around the given point.
      */
     public Observable<Location> getLocationsNear(final double lat, final double lon, double range) throws ExecutionException, InterruptedException {
-        final GeoQuery query = gf.queryAtLocation(new GeoLocation(lat, lon), 3);
+        final GeoQuery query = gf.queryAtLocation(new GeoLocation(lat, lon), range);
         return Observable.create(observer->query.addGeoQueryDataEventListener(new GeoQueryDataEventListener() {
             @Override
             public void onDataEntered(DataSnapshot dataSnapshot, GeoLocation geoLocation) {
-                 observer.onNext(new Location(dataSnapshot.child("name").getValue(String.class)));
+                 observer.onNext(new Location(dataSnapshot));
             }
 
             @Override

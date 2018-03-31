@@ -22,7 +22,8 @@ public class LocationRepoTest {
 
     @Test
     public void getLocationsNear() throws ExecutionException, InterruptedException {
-        repo.getLocationsNear(86, 0, 3).blockingForEach(l -> System.out.println(l.getName()));
+
+        repo.getLocationsNear(86, 0, 10000000).blockingForEach(l -> System.out.println(l));
 
 
     }
