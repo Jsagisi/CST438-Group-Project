@@ -1,0 +1,22 @@
+#container {
+	margin-top: 0px;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+}
+
+#form {
+	text-align: left;
+}
+
+#form input {
+	position: absolute;
+	right: 50px;
+	width: 50%;
+}
+
+#form select {
+	position: absolute;
+	right: 50px;
+	width: 50%;
+}
