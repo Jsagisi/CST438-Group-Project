@@ -16,25 +16,20 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import edu.csumb.s18.cst438.jabb.backend.data.services.FirebaseService;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subjects.Subject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
+
 
 @Repository
 public class LocationRepo {
@@ -62,27 +57,12 @@ public class LocationRepo {
 
      This should give us a pretty good compromise of security and usability, at least for now.
      */
-    private GoogleCredentials getCredentials() throws IOException {
-        if (env.getProperty("backend.credentialSource").equals("File")) {
-            System.out.println(env.getProperty("backend.credential.path"));
-            return GoogleCredentials.fromStream(new FileInputStream(env.getProperty("backend.credential.path")));
-        } else {
-            throw new NotImplementedException();
-        }
-    }
 
-    public LocationRepo(@Autowired Environment env) throws IOException {
 
-        this.env = env;
+    public LocationRepo(@Autowired FirebaseService firebase) throws IOException {
 
-        GoogleCredentials googleCredential = getCredentials();
 
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(googleCredential)
-                .setDatabaseUrl("https://cst438-project-80304.firebaseio.com/")
-                .build();
-        FirebaseApp.initializeApp(options);
-        db = FirebaseDatabase.getInstance().getReference("locations");
+        db = firebase.getLocationsReference();
         gf = new GeoFire(db);
     }
 
@@ -95,7 +75,7 @@ public class LocationRepo {
         //add to.
 
         //I'm not sure if theres an easier way to add stuff to the database. I think I've seen
-        //an example with a Map<String,Object> thing, but I'm not sure. 
+        //an example with a Map<String,Object> thing, but I'm not sure.
         gf.setLocation(newId.toString(),location,(key,error)->{
 
             if(error!=null){
