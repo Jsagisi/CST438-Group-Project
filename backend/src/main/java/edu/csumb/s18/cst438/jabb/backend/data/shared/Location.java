@@ -1,4 +1,5 @@
-package edu.csumb.s18.cst438.jabb.backend.data.locations;
+package edu.csumb.s18.cst438.jabb.backend.data.shared;
+
 
 import com.firebase.geofire.GeoLocation;
 import com.google.firebase.database.DataSnapshot;
