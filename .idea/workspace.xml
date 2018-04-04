@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" line="64" />
+    <bookmark url="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" line="65" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3fc6ae5-00b9-4b60-80e2-6bb2fad2ac30" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/backend/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +23,8 @@
       <file leaf-file-name="LocationRepo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+            <state relative-caret-position="757">
+              <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -29,11 +32,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FirebaseService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LocationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirebaseService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            <state relative-caret-position="488">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1791#1792#0" expanded="true" />
@@ -57,8 +72,11 @@
       <file leaf-file-name="LocationRepoTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+            <state relative-caret-position="507">
+              <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,23 +99,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Location.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java">
+      <file leaf-file-name="Location.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/shared/Location.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state>
+              <caret column="51" lean-forward="true" selection-start-column="51" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -150,9 +159,10 @@
         <option value="$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/RealtimeService.java" />
-        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java" />
-        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java" />
+        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java" />
+        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationService.java" />
+        <option value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java" />
       </list>
     </option>
   </component>
@@ -274,6 +284,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CST438-Group-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -374,6 +392,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -599,7 +618,7 @@
       <workItem from="1522455710504" duration="1353000" />
       <workItem from="1522457184905" duration="4313000" />
       <workItem from="1522524035066" duration="12184000" />
-      <workItem from="1522870781189" duration="636000" />
+      <workItem from="1522870781189" duration="1117000" />
     </task>
     <servers />
   </component>
@@ -636,7 +655,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25237000" />
+    <option name="totallyTimeSpent" value="25718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -656,6 +675,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39957938" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.32912722" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
@@ -663,8 +683,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32912722" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32912722" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29322916" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32912722" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29322916" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Learn" order="2" />
@@ -672,7 +692,6 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -691,13 +710,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/BackendApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -2758,13 +2770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -2772,36 +2777,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java">
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/shared/Location.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        <state>
+          <caret column="51" lean-forward="true" selection-start-column="51" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1791#1792#0" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1897#1898#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/test/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationRepo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+        <state relative-caret-position="757">
+          <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/Location.java">
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/locations/LocationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="408">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/edu/csumb/s18/cst438/jabb/backend/data/services/FirebaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1791#1792#0" expanded="true" />
+            <element signature="e#1841#1842#0" expanded="true" />
+            <element signature="e#1873#1874#0" expanded="true" />
+            <element signature="e#1897#1898#0" expanded="true" />
           </folding>
         </state>
       </provider>

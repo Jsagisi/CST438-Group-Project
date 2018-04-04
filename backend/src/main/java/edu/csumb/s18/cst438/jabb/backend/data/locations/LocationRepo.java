@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import edu.csumb.s18.cst438.jabb.backend.data.services.FirebaseService;
+import edu.csumb.s18.cst438.jabb.backend.data.shared.Location;
 import io.reactivex.Observable;
 
 import org.springframework.beans.factory.annotation.Autowired;

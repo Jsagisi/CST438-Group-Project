@@ -39,9 +39,9 @@ public class FirebaseService {
         fireStore=FirestoreClient.getFirestore();
     }
     public DatabaseReference getLocationsReference(){
-        fireBase.getReference("locations");
+        return fireBase.getReference("locations");
     }
     public CollectionReference getUsersReference(){
-        fireStore.collection("users");
+        return fireStore.collection("users");
     }
 }
