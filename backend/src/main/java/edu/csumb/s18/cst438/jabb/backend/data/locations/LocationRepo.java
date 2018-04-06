@@ -1,13 +1,24 @@
 package edu.csumb.s18.cst438.jabb.backend.data.locations;
 
 
-
-
+import com.firebase.geofire.*;
+import com.google.api.gax.rpc.ApiStreamObserver;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.FieldPath;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.GeoPoint;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import edu.csumb.s18.cst438.jabb.backend.data.services.FirebaseService;
+import edu.csumb.s18.cst438.jabb.backend.data.shared.Location;
+import io.reactivex.Observable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -16,11 +27,17 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
 
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+import java.util.function.BiConsumer;
+
+
 @Repository
 public class LocationRepo {
-    private final Firestore db;
-
+    private final DatabaseReference db;
+    private final GeoFire gf;
     private Environment env;
+
     /*
     Google want's us to use a file to access firebase, while heroku won't let us upload files.
     Further, the file is to big to put in an environment variable on windows, so making this debuggable AND deployable
@@ -41,26 +58,96 @@ public class LocationRepo {
 
      This should give us a pretty good compromise of security and usability, at least for now.
      */
-    private  GoogleCredentials getCredentials() throws IOException {
-        if(env.getProperty("backend.credentialSource").equals("File")){
-            System.out.println(env.getProperty("backend.credential.path"));
-            return GoogleCredentials.fromStream(new FileInputStream(env.getProperty("backend.credential.path")));
-        }else{
-            throw new NotImplementedException();
-        }
+
+
+    public LocationRepo(@Autowired FirebaseService firebase) throws IOException {
+
+
+        db = firebase.getLocationsReference();
+        gf = new GeoFire(db);
     }
-    public LocationRepo(@Autowired Environment env) throws IOException {
 
-        this.env=env;
+    //Creates a new location in the database.
+    public UUID createLocation(final String name,final String address,final String currentChampionKey,GeoLocation location){
+        UUID newId=UUID.randomUUID();
 
-        GoogleCredentials googleCredential= getCredentials();
+        //If we succeed in creating the new location, we can feel sure that we can set all the
+        //rest of the parameters. otherwise we don't want to bother, because there won't be any location to
+        //add to.
 
-        FirebaseOptions options=new FirebaseOptions.Builder()
-                .setCredentials(googleCredential)
-                .build();
-        FirebaseApp.initializeApp(options);
-        db=FirestoreClient.getFirestore();
+        //I'm not sure if theres an easier way to add stuff to the database. I think I've seen
+        //an example with a Map<String,Object> thing, but I'm not sure.
+        gf.setLocation(newId.toString(),location,(key,error)->{
+
+            if(error!=null){
+                System.err.println(error);
+            }else{
+                final DatabaseReference newLocation=db.child(newId.toString());
+
+                //Make some helper functions so we don't have to do a bunch of repeated typing...
+
+                DatabaseReference.CompletionListener cl=(error2,x)->{
+                    if(error2!=null){
+                        throw error2.toException();
+                    }
+                };
+                BiConsumer<String,String> createKvp=(k, v)->{
+                    newLocation.child(k).setValue(v,cl);
+                };
+
+
+                //Add the values here
+                createKvp.accept("name",name);
+                createKvp.accept("address",address);
+                createKvp.accept("currentChampionKey",currentChampionKey);
+
+
+            }
+        });
+        return newId;
+
+    }
+    /*
+    Get locations in a range around the given point.
+     */
+    public Observable<Location> getLocationsNear(final double lat, final double lon, double range) throws ExecutionException, InterruptedException {
+        final GeoQuery query = gf.queryAtLocation(new GeoLocation(lat, lon), range);
+        return Observable.create(observer->query.addGeoQueryDataEventListener(new GeoQueryDataEventListener() {
+            @Override
+            public void onDataEntered(DataSnapshot dataSnapshot, GeoLocation geoLocation) {
+                 observer.onNext(new Location(dataSnapshot));
+            }
+
+            @Override
+            public void onDataExited(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onDataMoved(DataSnapshot dataSnapshot, GeoLocation geoLocation) {
+
+            }
+
+            @Override
+            public void onDataChanged(DataSnapshot dataSnapshot, GeoLocation geoLocation) {
+
+            }
+
+            @Override
+            public void onGeoQueryReady() {
+                observer.onComplete();
+            }
+
+            @Override
+            public void onGeoQueryError(DatabaseError databaseError) {
+                observer.onError(databaseError.toException());
+            }
+        }));
+
+
+
 
 
     }
+
 }
