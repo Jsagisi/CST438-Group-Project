@@ -84,6 +84,25 @@ export class MapService {
   			var eventDate = new Date(location.date);
   			
   			
+  			
+  			
+  			//get icon for event marker
+  			switch (location.activity) {
+  				case 'basketball':
+  					data[key].icon = require('../../../images/basketball.png');
+  					break;
+  				case 'baseball':
+  					data[key].icon = require('../../../images/baseball.png');
+  					break;
+  				case 'football':
+  					data[key].icon = require('../../../images/football.png');
+  					break;
+  				default:
+  					data[key].icon = require('../../../images/soccerball.png');
+  					
+  				
+  			}
+  			
   			//event already over so dont add it
   			if (eventDate < date) {
   				continue;
