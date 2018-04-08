@@ -19,16 +19,22 @@
 			   class="form-control"
 			   #search [formControl]="searchControl"
 			   >
+			   
+			 <div *ngIf="showFilter == true">
+			 	Filter by sport:
+			 	<form action="" >
+			 		<input type="radio" name="activity" value="all" [(ngModel)]="filter" (change)="filterLocations()">All
+			    	<input type="radio" name="activity" value="basketball" [(ngModel)]="filter"  (change)="filterLocations()">Basketball
+			    	<input type="radio" name="activity" value="soccer" [(ngModel)]="filter"  (change)="filterLocations()">Soccer
+			    	<input type="radio" name="activity" value="football"  [(ngModel)]="filter"  (change)="filterLocations()">Football
+			    	<input type="radio" name="activity" value="baseball" [(ngModel)]="filter"  (change)="filterLocations()">Baseball
+			 	</form>
+			 </div>
 		<router-outlet ></router-outlet>
 		</div>
 		
 	</div>
 	
-	<div *ngIf="dataLoaded == true">
-		<div *ngFor="let marker of markers">
-			{{marker.name}}
-		</div>
-	</div>
 
 	<div id="map">
 		<agm-map  id="mapObj"
@@ -48,7 +54,7 @@
 			</agm-marker>
 			
 			<div *ngIf="dataLoaded == true">
-  			<agm-marker  *ngFor="let marker of mapService.eventMarkers"
+  			<agm-marker  *ngFor="let marker of mapService.getLocations()"
   				
   				[latitude]= "marker.coords.lat"
   				[longitude]="marker.coords.lng"
@@ -64,7 +70,10 @@
   					<br />
   					<span>Time: {{marker.date}}</span>
   					<br />
-  					<button (click)="mapService.addUserToEvent(marker.id)">Join</button>
+  					<div *ngIf="userService.isLoggedIn() == true">
+  						<button  (click)="mapService.addUserToEvent(marker.id)">Join</button>
+  					</div>
+  					
   			    </agm-info-window>
   			</agm-marker>
   			</div>

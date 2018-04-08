@@ -13,17 +13,23 @@ export class MapService {
   database;
 
   eventMarkers;
+  isFiltering;
+  filter;
+  filteredEvents;
   
   constructor(private userService: UserService) {
   	this.eventMarkers = new Array();
   	this.database = firebase.database()
   	
-  	
+  	this.isFiltering = false;
+  	this.filteredEvents = new Array();
   
   }
   
   ngOnInit() {
-  	
+  	this.downloadLocations((data) => {
+  		this.eventMarkers = data;
+  	});
   }
   
   
@@ -38,7 +44,7 @@ export class MapService {
   	for (var i = 0; i < this.eventMarkers.length;i++) {
   		if (this.eventMarkers[i].id == eventId) {
   			players = this.eventMarkers[i].players;
-  			console.log('found players + ' players);
+  			
   		}
   	}
   	
@@ -46,7 +52,7 @@ export class MapService {
   	var currUser = this.userService.getUser();
   	for (var i = 0; i < players.length; i++) {
   		if (currUser.uid == players[i].uid) {
-  			console.log('user not added');
+  			
   			return false;
   		}
   	}
@@ -62,7 +68,7 @@ export class MapService {
   }
   
   
-  getLocations(cb) {
+  downloadLocations(cb) {
   	
   	var results = new Array();
   	var ref =this.database.ref('/locations');
@@ -96,6 +102,38 @@ export class MapService {
   
   getSearchMarkerEvent() : Observable<any> {
   	return this.searchMarkerChangedEvent.asObservable();
+  }
+  
+  
+  getLocations() {
+  	
+  	if (this.isFiltering == true) {
+  		return this.filteredEvents;
+  	}
+  	else {
+  		return this.eventMarkers;
+  	}
+  }
+  
+  
+  filterLocations(type) {
+  	
+  	this.filter = type;
+  	
+  	if (type == 'all') {
+  		this.isFiltering = false;
+  	}
+  	else {
+  	this.isFiltering = true;
+  		this.filteredEvents = new Array();
+  	
+  		for (var i = 0; i < this.eventMarkers.length;i++) {
+  			if (this.eventMarkers[i].activity == type) {
+  				this.filteredEvents.push(this.eventMarkers[i]);
+  			}
+  		}
+  	}
+  	
   }
 
  
