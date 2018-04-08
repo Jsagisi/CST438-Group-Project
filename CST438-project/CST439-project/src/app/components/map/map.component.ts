@@ -468,5 +468,15 @@ export class MapComponent implements OnInit {
   filterLocations() {
   	this.mapService.filterLocations(this.filter);
   }
+  
+  markerClicked(id) {
+  	var clickedMarker = this.mapService.getMarkerById(id);
+  	
+  	var newOpen = !clickedMarker.isOpen;
+  	this.mapService.setMarkerOpen(id, newOpen);
+  	
+  	//navigate to location details component
+  	this.router.navigate(['map/locations',id]);
+  }
 
 }

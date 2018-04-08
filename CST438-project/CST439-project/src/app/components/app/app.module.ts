@@ -14,13 +14,15 @@ import { RegisterComponent } from '../register/register.component';
 import { UserService } from '../../services/user-service/user.service';
 import { LocationComponent } from '../locations/location/location.component';
 import { MapService } from '../../services/map/map.service';
+import { LocationDetailsComponent } from '../location-details/location-details.component';
 
 //routes
 const appRoutes: Routes = [
 	{ path: '', component: MapComponent },
 	{ path: 'map', component: MapComponent, children: [
 		{ path: 'search', component: LoginComponent},
-		{ path: 'locations' , component: LocationComponent}
+		{ path: 'locations' , component: LocationComponent},
+		{ path: 'locations/:id', component: LocationDetailsComponent }
 		]
 	},
 	{ path: 'login', component: LoginComponent },
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     MapComponent,
     LoginComponent,
     RegisterComponent,
-    LocationComponent
+    LocationComponent,
+    LocationDetailsComponent
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),

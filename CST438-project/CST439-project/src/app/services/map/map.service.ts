@@ -13,7 +13,7 @@ export class MapService {
   database;
 
   eventMarkers;
-  isFiltering;
+  isFiltering = false;
   filter;
   filteredEvents;
   
@@ -34,7 +34,9 @@ export class MapService {
   
   
   addLocation(obj) {
+  	obj.isOpen = false;
   	this.eventMarkers.push(obj);
+  	
   };
   
   
@@ -63,6 +65,8 @@ export class MapService {
   	//update database
   	this.database.ref('/locations/' + eventId)
   	.update({players: players});
+  	
+  	
   	
   	return true;
   }
@@ -102,6 +106,8 @@ export class MapService {
   					
   				
   			}
+  			
+  			data[key].isOpen = false;
   			
   			//event already over so dont add it
   			if (eventDate < date) {
@@ -170,6 +176,60 @@ export class MapService {
   		}
   	}
   	
+  }
+  
+  
+  getMarkerById(id) {
+  	
+  	for (var i = 0; i < this.eventMarkers.length;i++) {
+  		if (this.eventMarkers[i].id == id) {
+  			console.log('found marker');
+  			console.log(this.eventMarkers[i]);
+  			var loc = {
+  				id: this.eventMarkers[i].id,
+  				name: this.eventMarkers[i].name,
+  				activity: this.eventMarkers[i].activity,
+  				address: this.eventMarkers[i].address,
+  				coords: {
+  					lat: this.eventMarkers[i].coords.lat,
+  					lng: this.eventMarkers[i].coords.lng
+  				},
+  				date: this.eventMarkers[i].date,
+  				players: [],
+  				isOpen: this.eventMarkers[i].isOpen,
+  				icon: this.eventMarkers[i].icon
+  			};
+  			for (var j = 0; j < this.eventMarkers[i].players.length;j++) {
+  			   console.log('in players');
+  				var player = {
+  					uid: this.eventMarkers[i].players[j].uid,
+  					displayName: this.eventMarkers[i].players[j].displayName,
+  					email: this.eventMarkers[i].players[j].email
+  				};
+  				loc.players.push(player);
+  			}
+  			return loc;
+  		}
+  	}
+  	
+  }
+  
+  
+  updateMarkerById(newMarker) {
+  	for (var i = 0; i < this.eventMarkers.length;i++) {
+  		if (this.eventMarkers[i].id == newMarker.id) {
+  			this.eventMarkers[i] = newMarker;
+  		}
+  	}
+  }
+  
+  
+  setMarkerOpen(id, open) {
+  	for (var i = 0; i < this.eventMarkers.length;i++) {
+  		if (this.eventMarkers[i].id == id) {
+  			this.eventMarkers[i].isOpen = open;
+  		}
+  	}
   }
 
  

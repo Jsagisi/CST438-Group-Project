@@ -1,0 +1,20 @@
+<div>
+	<h1>Game Details</h1>
+	<label>Location: {{this.location.name}}</label>
+	<br />
+	<label>Address: {{this.location.address}}</label>
+	<br />
+	<label>Activity: {{this.location.activity}}</label>
+	<br />
+	<label>Time: {{this.location.date}}</label>
+	
+	<div *ngIf="dataLoaded == true">
+	<h2>Players:</h2>
+	<label>{{this.location.players.length}} current players enrolled</label>
+	<ol>
+		<li *ngFor=" let player of location.players">
+			{{player.displayName}}
+		</li>
+	</ol>
+	</div>
+</div>

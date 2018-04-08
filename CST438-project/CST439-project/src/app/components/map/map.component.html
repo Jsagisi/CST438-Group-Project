@@ -60,8 +60,9 @@
   				[longitude]="marker.coords.lng"
   				[visible]="true"
   				[iconUrl]="marker.icon"
+  				(markerClick)="markerClicked(marker.id)"
   				 >
-  				<agm-info-window [isOpen]="true"
+  				<agm-info-window [isOpen]="marker.isOpen"
   			    >
   			    	<span>Location: {{marker.name}}</span>
   					<br />
