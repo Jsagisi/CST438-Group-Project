@@ -75,8 +75,25 @@ export class MapService {
   	ref.on('value', (snap) => {
   		var data = snap.val();
   		
+  		var date = new Date();
+  		
   		for( var key in data) {
-  			results.push(data[key]);
+  			var location = data[key];
+  			
+  			//only add locations where the current date is newer than the event date
+  			var eventDate = new Date(location.date);
+  			
+  			
+  			//event already over so dont add it
+  			if (eventDate < date) {
+  				continue;
+  			}
+  			//event not started so add
+  			else {
+  				results.push(data[key]);
+  			}
+  			
+  			
   			
   		}
   		this.eventMarkers = results;
