@@ -17,8 +17,8 @@ export class UserService {
     apiKey: "AIzaSyD6QcSARwORPKz_E8ys-yyWtCkyeZCYdsA",
     authDomain: "cst438-project-80304.firebaseapp.com",
     databaseURL: "https://cst438-project-80304.firebaseio.com",
-    projectId: "cst438-project-80304",
-    storageBucket: "",
+    projectId: "gs://cst438-project-80304.appspot.com/",
+    storageBucket: "gs://cst438-project-80304.appspot.com/",
     messagingSenderId: "351856084400"
    };
    app;

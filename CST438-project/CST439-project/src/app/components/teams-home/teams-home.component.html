@@ -5,11 +5,16 @@
 			<a (click)="navigate('map')" >Map</a>
 		</li>
 		<li>
-			<a (click)="navigate('map/locations')">Teams Home</a>
+			<a (click)="navigate('teams')">Teams Home</a>
 		</li>
 		<li>
 			<a> Your Teams</a>
 		</li>
+		<li>
+			<a (click)="navigate('teams/create')">+</a>
+		</li>
+		
+		<router-outlet></router-outlet>
 	</ul>
 	
 </div>

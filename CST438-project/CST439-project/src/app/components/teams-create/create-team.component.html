@@ -1,0 +1,24 @@
+<div id="container">
+  <h1>Create A Team</h1>
+  
+  <div>
+  	Team Name: <input [(ngModel)]="teamName" type="text" />
+  	<br />
+  	Sport: <select [(ngModel)]="sport" id="activity" [(ngModel)]="activity">
+	
+			  	<option value="basketball">Basketball</option>
+			  	<option value="soccer">Soccer</option>
+			  	<option value="football">Football</option>
+			  	<option value="baseball">Baseball</option>
+			  	
+	
+			  </select>
+	<br />
+	Team Logo: <input type="file" (change)="onSelectFile($event)"  />
+	<img id="logo" src="{{url}}" alt="Your Image" width="200" height="200"/>
+	<br />
+	<span id="response" class="error">{{response}}</span>
+	<br />
+	<button  (click)="submit()">Submit</button>
+  </div>
+</div>
