@@ -17,6 +17,8 @@ import { MapService } from '../../services/map/map.service';
 import { LocationDetailsComponent } from '../location-details/location-details.component';
 import { TeamsHomeComponent } from '../teams-home/teams-home.component';
 import { CreateTeamComponent } from '../teams-create/create-team.component';
+import { TeamListComponent } from '../team-list/team-list.component';
+import { UserTeamsComponent } from '../user-teams/user-teams.component';
 
 //routes
 const appRoutes: Routes = [
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
 	{ path: 'register', component: RegisterComponent },
 	
 	{ path: 'teams', component: TeamsHomeComponent, children: [
-		{ path: 'create', component: CreateTeamComponent }
+		{ path: 'create', component: CreateTeamComponent },
+		{ path: 'your-teams', component: UserTeamsComponent }
 	] }
 ];
 
@@ -47,7 +50,9 @@ const appRoutes: Routes = [
     LocationComponent,
     LocationDetailsComponent,
     TeamsHomeComponent,
-    CreateTeamComponent
+    CreateTeamComponent,
+    TeamListComponent,
+    UserTeamsComponent
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
