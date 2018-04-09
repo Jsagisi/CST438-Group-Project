@@ -5,6 +5,8 @@ import { UserService } from '../user-service/user.service';
 import * as firebase from 'firebase';
 import { of } from 'rxjs/observable/of';
 
+declare var require: any
+
 @Injectable()
 export class MapService {
 
