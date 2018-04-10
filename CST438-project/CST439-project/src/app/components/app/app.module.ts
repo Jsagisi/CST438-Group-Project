@@ -14,11 +14,13 @@ import { RegisterComponent } from '../register/register.component';
 import { UserService } from '../../services/user-service/user.service';
 import { LocationComponent } from '../locations/location/location.component';
 import { MapService } from '../../services/map/map.service';
+import { TeamService } from '../../services/team-service/team.service';
 import { LocationDetailsComponent } from '../location-details/location-details.component';
 import { TeamsHomeComponent } from '../teams-home/teams-home.component';
 import { CreateTeamComponent } from '../teams-create/create-team.component';
 import { TeamListComponent } from '../team-list/team-list.component';
 import { UserTeamsComponent } from '../user-teams/user-teams.component';
+import { JoinTeamComponent } from '../teams-join/join-team.component';
 
 //routes
 const appRoutes: Routes = [
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
 	
 	{ path: 'teams', component: TeamsHomeComponent, children: [
 		{ path: 'create', component: CreateTeamComponent },
-		{ path: 'your-teams', component: UserTeamsComponent }
+		{ path: 'your-teams', component: UserTeamsComponent },
+		{ path: 'join', component: JoinTeamComponent }
 	] }
 ];
 
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
     TeamsHomeComponent,
     CreateTeamComponent,
     TeamListComponent,
-    UserTeamsComponent
+    UserTeamsComponent,
+    JoinTeamComponent
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
@@ -64,7 +68,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, MapService],
+  providers: [UserService, MapService, TeamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

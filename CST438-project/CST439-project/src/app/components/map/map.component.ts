@@ -215,7 +215,7 @@ export class MapComponent implements OnInit {
           this.currentSearchLocation.lat = place.geometry.location.lat();
           this.currentSearchLocation.lng = place.geometry.location.lng();
          
-         console.log('lat = ' + place.geometry.location.lat());
+          
           
           this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (error, data) => {
           
@@ -244,6 +244,8 @@ export class MapComponent implements OnInit {
   		
   		this.homeCoords.lat = position.coords.latitude;
   		this.homeCoords.lng = position.coords.longitude;
+  		
+  		this.userService.setUserCoords(this.homeCoords);
   
       });
     }

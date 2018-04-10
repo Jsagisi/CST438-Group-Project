@@ -23,6 +23,7 @@ export class UserService {
    };
    app;
    database;
+   userCoords;
    
    
   constructor() {
@@ -41,6 +42,11 @@ export class UserService {
   	
   	this.downloadUser();
   	
+  	this.userCoords = {
+  		lat: 0,
+  		lng: 0
+  	};
+  	
   	
   }
   
@@ -54,7 +60,9 @@ export class UserService {
   
   
  
-  
+  setUserCoords(coords) {
+  	this.userCoords = coords;
+  }
   
   
   getUser() {

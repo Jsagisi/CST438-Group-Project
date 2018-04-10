@@ -31,6 +31,7 @@ export class CreateTeamComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.userService.userCoords);
   }
   
   /* Gets image from HTML file input */
@@ -39,7 +40,7 @@ export class CreateTeamComponent implements OnInit {
       this.teamLogo = event.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e) => {
+      reader.onload = (e:any) => {
         this.url = e.target.result;
       }
     }
@@ -104,6 +105,7 @@ export class CreateTeamComponent implements OnInit {
         var team = {
           name: this.teamName,
           owner: user,
+          location: this.userService.userCoords,
           members: [user],
           sport: this.sport,
           id: "",
