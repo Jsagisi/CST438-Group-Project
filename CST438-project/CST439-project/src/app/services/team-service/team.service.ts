@@ -305,5 +305,20 @@ export class TeamService {
   }
   
   
+  
+  removeUserFromTeam(teamId:string, userId:string) {
+    var self = this;
+    var ref = this.database.ref('/teams/' + teamId);
+    ref.once('value', (snapshot) => {
+        var team = snapshot.val();
+        for (var i = 0; i < team.members.length;i++) {
+          if (team.members[i].uid == userId) {
+            ref.child('members/' + i).remove();
+          }
+        }
+    });
+  }
+  
+  
 
 }
