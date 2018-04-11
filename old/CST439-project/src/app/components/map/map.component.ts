@@ -39,6 +39,8 @@ export class MapComponent implements OnInit {
   };
   poiList;
   dataLoaded: boolean;
+  filter: string;
+  showFilter;
 
   
   clickSubscription: Subscription;
@@ -54,6 +56,9 @@ export class MapComponent implements OnInit {
   	private router: Router,
   	private mapService: MapService,
   	private userService: UserService) {
+  	
+  	this.filter = 'all';
+  	this.showFilter = true;
   	
   	this.placeService = null;
   	
@@ -156,8 +161,8 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-  
-    this.mapService.getLocations( (data) => {
+  	
+    this.mapService.downloadLocations( (data) => {
     	this.markers = data;
   		
   		for (var i = 0; i < this.markers.length;i++) {
@@ -175,6 +180,7 @@ export class MapComponent implements OnInit {
   	});
   	
     
+
   	this.searchControl = new FormControl();
   	
   	
@@ -209,7 +215,7 @@ export class MapComponent implements OnInit {
           this.currentSearchLocation.lat = place.geometry.location.lat();
           this.currentSearchLocation.lng = place.geometry.location.lng();
          
-         console.log('lat = ' + place.geometry.location.lat());
+          
           
           this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (error, data) => {
           
@@ -238,6 +244,8 @@ export class MapComponent implements OnInit {
   		
   		this.homeCoords.lat = position.coords.latitude;
   		this.homeCoords.lng = position.coords.longitude;
+  		
+  		this.userService.setUserCoords(this.homeCoords);
   
       });
     }
@@ -429,11 +437,48 @@ export class MapComponent implements OnInit {
   }
   
   navigate(path: string) : void {
+  
+  	//reset activity filter
+  	this.filter = 'all';
+  	this.mapService.filterLocations(this.filter);
+  
+  	if (path == 'map') {
+  		
+  		this.showFilters();
+  	}
+  	else {
+  		this.hideFilters();
+  	}
+  
   	this.router.navigateByUrl('/' + path);
   }
   
   addLocation() {
   	console.log('clicked');
+  }
+  
+  
+  hideFilters() {
+  	this.showFilter = false;
+  }
+  
+  showFilters() {
+  	this.showFilter = true;
+  }
+  
+  
+  filterLocations() {
+  	this.mapService.filterLocations(this.filter);
+  }
+  
+  markerClicked(id) {
+  	var clickedMarker = this.mapService.getMarkerById(id);
+  	
+  	var newOpen = !clickedMarker.isOpen;
+  	this.mapService.setMarkerOpen(id, newOpen);
+  	
+  	//navigate to location details component
+  	this.router.navigate(['map/locations',id]);
   }
 
 }
