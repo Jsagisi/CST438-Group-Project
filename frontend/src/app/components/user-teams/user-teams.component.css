@@ -5,20 +5,15 @@
 	position: absolute;
 	left: 0px;
 	top: 70px;
+	overflow-y: scroll;
 }
 
-#fieldContainer {
-	width: 70%;
-	height: 50%;
-	position: absolute;
+#listContainer {
+	position: relative;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
-}
-
-.error {
-	color: red;
-	visibility: hidden;
+	width: 50%;
 }
