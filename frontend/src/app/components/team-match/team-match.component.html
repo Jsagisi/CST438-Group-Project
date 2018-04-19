@@ -51,17 +51,14 @@
     <table>
     <tr >Current Matches</tr>
     <tr>
-      <th>Logo</th>
       <th>Match</th>
       <th>Sport</th>
-      <th>Record</th>
       <th>Record Score</th>
     </tr>
-    <tr *ngFor="let team of teamService.getTeams()">
-      <td><img src="{{team.imgUrl}}" ></td>
-      <td>{{team.name}} vs {{team.name}}</td>
+    <tr *ngFor="let team of teamService.getCurrentMatches()">
+      <td><img src="{{team.imgUrl}}"> {{team.name}} vs <img src="{{team.imgUrl}}"> {{team.name}}</td>
       <td>{{team.sport}}</td>
-      <td>{{team.wins}}W - {{team.losses}}L</td>
+
       <td>
         {{team.name}} Score: <input [(ngModel)]="recordScore" type="int" style="width:25px" />
         -
