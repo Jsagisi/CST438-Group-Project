@@ -53,7 +53,7 @@ export class TeamService {
     //iterate through teams in db to see if it exists
     ref.once('value', function(snapshot) {
 
-      //intereate through each team to get image url
+      //interate through each team to get image url
       snapshot.forEach(function(dataSnap) {
         var data = dataSnap.val();
 

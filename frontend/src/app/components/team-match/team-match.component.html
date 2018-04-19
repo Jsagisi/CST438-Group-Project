@@ -13,13 +13,14 @@
   <button (click)="filterTeams()">Go</button>
   <button (click)="resetFilter()">Reset</button>
 
-  <h1>Available Teams</h1>
+
   <div *ngIf="teamService.getTeams().length == 0">
     <span>No results</span>
   </div>
 
   <div *ngIf="teamService.getTeams().length > 0">
     <table>
+      <tr id="row">Available Teams</tr>
       <tr>
         <th>Logo</th>
         <th>Team Name</th>
@@ -44,5 +45,35 @@
         </td>
       </tr>
     </table>
+    <br><br><br>
   </div>
+  <div>
+    <table>
+    <tr >Current Matches</tr>
+    <tr>
+      <th>Logo</th>
+      <th>Team Name</th>
+      <th>Sport</th>
+      <th>Owner</th>
+      <th># Members</th>
+      <th>Record</th>
+      <th>Play</th>
+    </tr>
+    <tr *ngFor="let team of teamService.getTeams()">
+      <td><img src="{{team.imgUrl}}" ></td>
+      <td>{{team.name}}</td>
+      <td>{{team.sport}}</td>
+      <td>{{team.owner.displayName}}</td>
+      <td>{{team.members.length}}</td>
+      <td>{{team.wins}}W - {{team.losses}}L</td>
+      <td>
+        <button *ngIf="teamService.userInTeam(team.id) == false" (click)="matchmaking(team.id)">Play</button>
+        <div *ngIf="teamService.userInTeam(team.id) == true">
+
+        </div>
+      </td>
+    </tr>
+    </table>
+  </div>
+
 </div>
