@@ -52,22 +52,21 @@
     <tr >Current Matches</tr>
     <tr>
       <th>Logo</th>
-      <th>Team Name</th>
+      <th>Match</th>
       <th>Sport</th>
-      <th>Owner</th>
-      <th># Members</th>
       <th>Record</th>
-      <th>Play</th>
+      <th>Record Score</th>
     </tr>
     <tr *ngFor="let team of teamService.getTeams()">
       <td><img src="{{team.imgUrl}}" ></td>
-      <td>{{team.name}}</td>
+      <td>{{team.name}} vs {{team.name}}</td>
       <td>{{team.sport}}</td>
-      <td>{{team.owner.displayName}}</td>
-      <td>{{team.members.length}}</td>
       <td>{{team.wins}}W - {{team.losses}}L</td>
       <td>
-        <button *ngIf="teamService.userInTeam(team.id) == false" (click)="matchmaking(team.id)">Play</button>
+        {{team.name}} Score: <input [(ngModel)]="recordScore" type="int" style="width:25px" />
+        -
+        {{team.name}} Score: <input [(ngModel)]="recordScore" type="int" style="width:25px" />
+        <button *ngIf="teamService.userInTeam(team.id) == false" (click)="recordResults(team.id)">Submit</button>
         <div *ngIf="teamService.userInTeam(team.id) == true">
 
         </div>
