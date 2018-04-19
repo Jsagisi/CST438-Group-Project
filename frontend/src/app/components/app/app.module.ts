@@ -21,7 +21,7 @@ import { CreateTeamComponent } from '../teams-create/create-team.component';
 import { TeamListComponent } from '../team-list/team-list.component';
 import { UserTeamsComponent } from '../user-teams/user-teams.component';
 import { JoinTeamComponent } from '../teams-join/join-team.component';
-
+import { TeamMatchComponent} from "../team-match/team-match.component";
 //routes
 const appRoutes: Routes = [
 	{ path: '', component: MapComponent },
@@ -33,11 +33,12 @@ const appRoutes: Routes = [
 	},
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	
+
 	{ path: 'teams', component: TeamsHomeComponent, children: [
 		{ path: 'create', component: CreateTeamComponent },
 		{ path: 'your-teams', component: UserTeamsComponent },
-		{ path: 'join', component: JoinTeamComponent }
+		{ path: 'join', component: JoinTeamComponent },
+    {path: 'match', component: TeamMatchComponent}
 	] }
 ];
 
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     CreateTeamComponent,
     TeamListComponent,
     UserTeamsComponent,
-    JoinTeamComponent
+    JoinTeamComponent,
+    TeamMatchComponent
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),

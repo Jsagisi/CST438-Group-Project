@@ -6,17 +6,17 @@
 			  	<option value="soccer">Soccer</option>
 			  	<option value="football">Football</option>
 			  	<option value="baseball">Baseball</option>
-			  	
-	
+
+
 			  </select>
 	Within: <input [(ngModel)]="distance" id="distanceInput" type="number" /> miles
 	<button (click)="filterTeams()">Go</button>
 	<button (click)="resetFilter()">Reset</button>
-	
+
 	<div *ngIf="teamService.getTeams().length == 0">
 		<span>No results</span>
 	</div>
-	
+
 	<div *ngIf="teamService.getTeams().length > 0">
 		<table>
 			<tr>
@@ -38,7 +38,7 @@
 				<td>
 				<button *ngIf="teamService.userInTeam(team.id) == false" (click)="addUserToTeam(team.id)">Join</button>
 				<div *ngIf="teamService.userInTeam(team.id) == true">
-					
+
 				</div>
 				</td>
 			</tr>
