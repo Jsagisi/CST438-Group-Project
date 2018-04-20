@@ -1,3 +1,26 @@
+
+<div id="container">
+  <div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input required matInput [formControl]="email">
+      <mat-error *ngIf="email.invalid">{{getEmailError()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input required matInput [formControl]="password" type="password">
+      <mat-error *ngIf="password.invalid">{{getPasswordError()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input required matInput [formControl]="username" >
+      <mat-error *ngIf="username.invalid">{{getUsernameError()}}</mat-error>
+    </mat-form-field>
+    <button (click)="submit()" mat-button *ngIf="formIsValid()">Submit</button>
+    <div *ngIf="submissionError!=null">{{submissionError}}</div>
+  </div>
+</div>
+<!--
 <div id="container">
 	<h1> Register </h1>
 
@@ -19,9 +42,11 @@
 		<span  id="registerErr" class="error">{{errorMessage}}</span>
 		<br />
 		<button (click)="submit()">Submit</button>
-		
+
 		<br/><br/>
-		
+
 	</div>
-	
+
 </div>
+-->
+

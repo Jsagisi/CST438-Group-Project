@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, Validators} from '@angular/forms';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 
@@ -22,6 +22,9 @@ import { TeamListComponent } from '../team-list/team-list.component';
 import { UserTeamsComponent } from '../user-teams/user-teams.component';
 import { JoinTeamComponent } from '../teams-join/join-team.component';
 import { TeamMatchComponent} from "../team-match/team-match.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 //routes
 const appRoutes: Routes = [
 	{ path: '', component: MapComponent },
@@ -68,7 +71,14 @@ const appRoutes: Routes = [
     	libraries: ["places"]
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatButtonModule
+
   ],
   providers: [UserService, MapService, TeamService],
   bootstrap: [AppComponent]

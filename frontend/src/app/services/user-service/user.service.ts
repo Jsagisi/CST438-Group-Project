@@ -128,6 +128,8 @@ export class UserService {
         }
       })
       .catch((error) => {
+
+        console.log("Hit an error")
         console.log('error registering user');
         callback(error, null);
 
