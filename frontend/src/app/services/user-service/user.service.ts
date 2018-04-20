@@ -2,17 +2,12 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
+import {User} from "../../models/User";
 
 @Injectable()
 export class UserService {
 
-  user : {
-  		displayName: string,
-  		email: string,
-  		phoneNumber: string,
-   		photoURL: string,
-  		uid: string
-  };
+  user : User
   config = {
     apiKey: "AIzaSyD6QcSARwORPKz_E8ys-yyWtCkyeZCYdsA",
     authDomain: "cst438-project-80304.firebaseapp.com",
@@ -24,13 +19,13 @@ export class UserService {
    app;
    database;
    userCoords;
-   
-   
+
+
   constructor() {
   	//initialize firebase reference
   	this.app = firebase.initializeApp(this.config);
   	this.database = firebase.database();
-  	
+
   	this.user = {
 
   		displayName: " ",
@@ -39,44 +34,44 @@ export class UserService {
   		photoURL: " ",
   		uid: " "
   	};
-  	
+
   	this.downloadUser();
-  	
+
   	this.userCoords = {
   		lat: 0,
   		lng: 0
   	};
-  	
-  	
+
+
   }
-  
-  
+
+
   insertLocation(data) {
   	var newLocationRef = this.database.ref('/locations').push();
   	var id = newLocationRef.key;
   	data.id = id;
   	newLocationRef.set(data);
   };
-  
-  
- 
+
+
+
   setUserCoords(coords) {
   	this.userCoords = coords;
   }
-  
-  
+
+
   getUser() {
-  
+
   	if (firebase.auth().currentUser != null) {
   		return this.user;
   	}
   }
-  
+
   public setUser(user) {
   	this.user = user;
   }
-  
-  
+
+
   downloadUser() {
   	firebase.auth().onAuthStateChanged((user) => {
   		if (user != null) {
@@ -89,15 +84,15 @@ export class UserService {
   			};
   		}
   		else {
-  			
+
   		}
   	});
   }
-  
-  
+
+
   public isLoggedIn() : boolean {
   	var user = firebase.auth().currentUser;
-  	
+
   	if (user != null) {
   		return true;
   	}
@@ -105,11 +100,11 @@ export class UserService {
   		return false;
   	}
   }
-  
+
   signInUser(email, password, callback) {
   	firebase.auth().signInWithEmailAndPassword(email, password)
   	.then((user) => {
-  		
+
   		this.user = {
   			displayName: user.displayName,
   			email: user.email,
@@ -121,34 +116,34 @@ export class UserService {
   	})
   	.catch((error) => {
   		return callback(error,null);
-  
+
 	});
   }
-  
-  
+
+
   registerUser(email, password, username, callback) {
-  	
+
   	firebase.auth().createUserWithEmailAndPassword(email, password)
   	.then((user) => {
   		var currUser = firebase.auth().currentUser;
-  		
+
   		if (currUser != null) {
-  		    
+
 			this.user = {
   				displayName: user.displayName,
   				email: user.email,
   				phoneNumber: user.phoneNumber,
   				photoURL: user.photoURL,
   				uid: user.uid
-  			};  		
-  		
+  			};
+
   			currUser.updateProfile({
   				displayName: username,
   				photoURL: ""
   			}).then( () => {
   			    console.log('updated user profile');
-  				callback(null, this.user); 
-  			
+  				callback(null, this.user);
+
   			}).catch((error) => {
   			    console.log('error updating profile');
   				callback(error, null);
@@ -158,11 +153,11 @@ export class UserService {
   	.catch((error) => {
   	    console.log('error registering user');
   		callback(error,null);
- 
+
 	});
   }
-  
-  
+
+
   logoutUser(callback) {
  	firebase.auth().signOut()
  	.then( () => {
@@ -174,14 +169,14 @@ export class UserService {
   		photoURL: " ",
   		uid: " "
   	};
- 		callback(null, true); 
+ 		callback(null, true);
  	})
  	.catch((error) => {
  		callback(error, null);
  	});
-  } 
-  
-  
+  }
+
+
 
 
 }
