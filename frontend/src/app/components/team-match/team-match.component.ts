@@ -17,7 +17,14 @@ export class TeamMatchComponent implements OnInit {
     storage; //storage ref
     response: string;
 
-  constructor(private teamService: TeamService) {
+    //just to get the complier off my back
+    searchText:string="";
+    sportText:string="";
+    distance:number=0;
+
+    filterTeams:any={};
+    resetFilter:any={};
+  constructor(public teamService: TeamService) {
     this.url = "";
     this.teamLogo = null;
     this.teamName = "";

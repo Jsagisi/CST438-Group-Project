@@ -55,6 +55,8 @@ export class UserService {
 
   getUser() {
 
+    //this is a strange dependency...
+
     if (firebase.auth().currentUser != null) {
       return this.user;
     }
