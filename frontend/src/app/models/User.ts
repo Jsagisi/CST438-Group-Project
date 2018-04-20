@@ -13,7 +13,7 @@ export class UserModel implements User{
     public displayName:string,
     public email:string,
     public phoneNumber:string,
-    public photoUrl:string){
+    public photoURL:string){
 
   }
 

@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import {User} from "../../models/User";
 
+
 @Injectable()
 export class UserService {
 
-  user : User
+  user : User;
   config = {
     apiKey: "AIzaSyD6QcSARwORPKz_E8ys-yyWtCkyeZCYdsA",
     authDomain: "cst438-project-80304.firebaseapp.com",
