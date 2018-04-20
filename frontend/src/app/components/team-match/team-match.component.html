@@ -55,7 +55,7 @@
       <th>Sport</th>
       <th>Record Score</th>
     </tr>
-    <tr *ngFor="let team of teamService.getCurrentMatches()">
+    <tr *ngFor="let team of teamService.getTeams()">
       <td><img src="{{team.imgUrl}}"> {{team.name}} vs <img src="{{team.imgUrl}}"> {{team.name}}</td>
       <td>{{team.sport}}</td>
 
