@@ -23,7 +23,7 @@ import { UserTeamsComponent } from '../user-teams/user-teams.component';
 import { JoinTeamComponent } from '../teams-join/join-team.component';
 import { TeamMatchComponent} from "../team-match/team-match.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatToolbarModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 //routes
 const appRoutes: Routes = [
@@ -77,7 +77,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
 
   ],
   providers: [UserService, MapService, TeamService],
