@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./create-team.component.css']
 })
 export class CreateTeamComponent implements OnInit {
-  
+
   teamLogo: File;
   url: string;
   teamName: string;
@@ -16,15 +16,15 @@ export class CreateTeamComponent implements OnInit {
   database; //database ref
   storage; //storage ref
   response: string;
-  
+  activity: string; //not sure if this is supposed to be sport.
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService) {
     this.url = "";
     this.teamLogo = null;
     this.teamName = "";
     this.sport = "";
     this.response = "";
-    
+
     //instantiate database object
     this.database = firebase.database();
     this.storage = firebase.storage();
@@ -33,7 +33,7 @@ export class CreateTeamComponent implements OnInit {
   ngOnInit() {
     console.log(this.userService.userCoords);
   }
-  
+
   /* Gets image from HTML file input */
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -45,26 +45,26 @@ export class CreateTeamComponent implements OnInit {
       }
     }
   }
-  
+
   /* Check that all fields in the form are not empty befoe submittinf data */
   formIsValid(callback){
     var self = this;
     var ref = this.database.ref('/teams');
     var found = false;
-    
+
     //iterate through teams in db to see if it exists
     ref.once('value', function(snapshot) {
-      
+
       snapshot.forEach(function(dataSnap) {
         var data = dataSnap.val();
-        
+
         //team name found
         if (data.name == self.teamName) {
           found = true;
-          
+
         }
       });
-      
+
       //missing fields return invalid
       if (!self.teamName || !self.url || !self.teamLogo ||
           !self.sport) {
@@ -78,29 +78,29 @@ export class CreateTeamComponent implements OnInit {
       }
         //return valid
       else {
-        
+
         callback(true);
       }
     });
   }
-  
- 
+
+
   submit() {
-   
+
    //reset response messege
     this.response = "";
     var responseSpan = document.getElementById('response');
     responseSpan.classList.remove('error');
     responseSpan.classList.add('success');
-    
+
     //check validity before adding
     this.formIsValid((res) => {
-      
+
       //form valid so add team to db
       if (res == true) {
         //get currently logged in to to make them the team leader
         var user = this.userService.getUser();
-      
+
         //create team object to insert into database
         var team = {
           name: this.teamName,
@@ -113,20 +113,20 @@ export class CreateTeamComponent implements OnInit {
           losses: 0,
           imgUrl: 'teamLogos/' + this.teamName + '/' + this.teamLogo.name
         };
-      
+
         //insert team logo into storage
         var storageRef = this.storage.ref();
         var imgRef = storageRef.child('teamLogos/' + this.teamName + '/' + this.teamLogo.name);
         imgRef.put(this.teamLogo).then((snapshot) => {
-        
+
         });
-      
+
         //insert new team into database
         var newTeamRef = this.database.ref('/teams').push();
         var id = newTeamRef.key;
         team.id = id;
         newTeamRef.set(team);
-        
+
         //display successfull response
         this.response = "Team Created Successfully";
         var responseSpan = document.getElementById('response');
@@ -140,10 +140,8 @@ export class CreateTeamComponent implements OnInit {
         responseSpan.classList.add('error');
       }
     });
-    
-    
   }
-  
+
 
 
 }
