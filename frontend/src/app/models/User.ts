@@ -1,10 +1,11 @@
+import UserInfo = firebase.UserInfo
 
 export interface User {
   uid:string;
   displayName:string;
   email:string;
   phoneNumber:string;
-  photoUrl:string;
+  photoURL:string;
 }
 export class UserModel implements User{
 
@@ -15,6 +16,14 @@ export class UserModel implements User{
     public phoneNumber:string,
     public photoURL:string){
 
+  }
+
+  static nullUser(){
+    //We should be able to optimize this, but it's not super important right now
+    return new this(" "," "," "," "," ")
+  }
+  static fromFirebaseUser(userInfo:UserInfo) {
+    return new this(userInfo.uid,userInfo.displayName,userInfo.displayName,userInfo.phoneNumber,userInfo.photoURL)
   }
 
 
