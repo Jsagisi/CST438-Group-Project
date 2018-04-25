@@ -1,12 +1,14 @@
-<div id="chat">
-	<div *ngFor = "let message of this.messages">
-    <div id="message">
-      [{{message.time}}] {{message.username}}:{{message.message}}
+<div class="chat-container card-3" fxFlex="1 1 auto" fxLayout="row" style="margin: 8px; padding:8px" >
+  <div id="chat">
+    <div *ngFor = "let message of this.messages">
+      <div id="message">
+        [{{message.time}}] {{message.username}}:{{message.message}}
+      </div>
     </div>
-  </div>
 
-  <div id="newMessage">
-    <input  [(ngModel)]="newMessage" id="msgInput" type="text" />
-    <button (click)="submitMessage()" id="submitButton">Enter</button>
+    <div id="newMessage">
+      <input  [(ngModel)]="newMessage" id="msgInput" type="text" />
+      <button (click)="submitMessage()" id="submitButton">Enter</button>
+    </div>
   </div>
 </div>

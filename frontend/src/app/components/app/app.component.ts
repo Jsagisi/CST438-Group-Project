@@ -9,16 +9,11 @@ import { ChatService } from '../../services/chat/chat.service';
 })
 export class AppComponent {
   title = 'app';
-
-
   constructor(private userService: UserService,
               private chatService: ChatService) {
 
-
-
   }
 
-  /*changes*/
   ngOnInit() {
   	this.userService.downloadUser();
   }

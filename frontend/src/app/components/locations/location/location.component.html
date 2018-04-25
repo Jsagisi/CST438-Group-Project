@@ -1,6 +1,29 @@
-<div id="container">
+<div fxFlex fxLayout="column">
+  <mat-form-field>
+    <mat-label>Location Name</mat-label>
+    <input required matInput [formControl]="locationNameElem">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Activity</mat-label>
+    <mat-select [required]="true" [formControl]="activityElem">
+      <mat-option value="basketball">Basketball</mat-option>
+      <mat-option value="soccer">Soccer</mat-option>
+      <mat-option value="football">Football</mat-option>
+      <mat-option value="baseball">Baseball</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="startDatePicker" [formControl]="startDateElem">
+    <mat-label>Start Date</mat-label>
+    <mat-datetimepicker-toggle matSuffix [for]="startDatePicker"></mat-datetimepicker-toggle>
+    <mat-datetimepicker #startDatePicker type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+  </mat-form-field>
+
+  <button mat-button (click)=addEvent()>Add</button>
+</div>
+<!--<div id="container">
 	<h1>Create a PUG</h1>
-	
+
 	<div id="form">
 	<span> To get started search for a location or drag marker</span>
 	<br />
@@ -11,15 +34,15 @@
 	<br />
 	<br />
 	Activity: <select id="activity" [(ngModel)]="activity">
-	
+
 			  	<option value="basketball">Basketball</option>
 			  	<option value="soccer">Soccer</option>
 			  	<option value="football">Football</option>
 			  	<option value="baseball">Baseball</option>
-			  	
-	
+
+
 			  </select>
-	
+
 	<br />
 	<br />
 	Start Date: <input id="date" [(ngModel)]="date" type="datetime-local" />
@@ -30,3 +53,4 @@
 	<input id="lat" [(ngModel)]="locationCoords.lat" type="number" style="display: none"/>
 	<input id="lng" [(ngModel)]="locationCoords.lng" type="number" style="display: none"/>
 </div>
+-->

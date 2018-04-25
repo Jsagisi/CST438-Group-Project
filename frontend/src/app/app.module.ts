@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserService } from './services/user-service/user.service';
 import { LocationComponent } from './components/locations/location/location.component';
+import { SandboxComponent} from "./components/sandbox/sandbox.component";
 import { MapService } from './services/map/map.service';
 import { TeamService } from './services/team-service/team.service';
 import { ChatService } from './services/chat/chat.service';
@@ -24,10 +25,18 @@ import { UserTeamsComponent } from './components/user-teams/user-teams.component
 import { JoinTeamComponent } from './components/teams-join/join-team.component';
 import { TeamMatchComponent} from "./components/team-match/team-match.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatToolbarModule} from "@angular/material";
+import {MatDatetimepickerModule,MatNativeDatetimeModule} from "@mat-datetimepicker/core"
+import {
+  MatButtonModule, MatDatepickerModule,
+  MatFormFieldModule,
+  MatInputModule, MatNativeDateModule, MatOptionModule,
+  MatSelectModule,
+  MatToolbarModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 //routes
 const appRoutes: Routes = [
+
 	{ path: '', component: MapComponent },
 	{ path: 'map', component: MapComponent, children: [
 		{ path: 'search', component: LoginComponent},
@@ -35,6 +44,8 @@ const appRoutes: Routes = [
 		{ path: 'locations/:id', component: LocationDetailsComponent }
 		]
 	},
+
+  { path: 'sandbox', component: SandboxComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 
@@ -62,7 +73,9 @@ const appRoutes: Routes = [
     TeamListComponent,
     UserTeamsComponent,
     JoinTeamComponent,
-    TeamMatchComponent
+    TeamMatchComponent,
+    SandboxComponent,
+
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
@@ -79,7 +92,13 @@ const appRoutes: Routes = [
     MatInputModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDatetimepickerModule,
+    MatNativeDatetimeModule,
 
   ],
   providers: [UserService, MapService, TeamService, ChatService],
