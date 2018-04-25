@@ -18,6 +18,7 @@ export class AppComponent {
 
   }
 
+  /*changes*/
   ngOnInit() {
   	this.userService.downloadUser();
   }
