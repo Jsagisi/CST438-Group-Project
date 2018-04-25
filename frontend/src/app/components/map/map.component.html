@@ -1,18 +1,10 @@
 
 	<div id="menu" fxFlex="30%" fxFlexFill fxLayout="column" style="min-height: 100%">
-
-		<ul fxFlex>
-			<li>
-				<a (click)="navigate('map')" >Search</a>
-			</li>
-			<li>
-				<a (click)="navigate('map/locations')"> +</a>
-			</li>
-			<li>
-				<a (click)="navigate('teams')">Teams</a>
-			</li>
-		</ul>
-
+    <mat-toolbar>
+      <button mat-button (click)="navigate('map')" >Search</button>
+      <button mat-button (click)="navigate('map/locations')">Locations</button>
+      <button mat-button (click)="navigate('teams')">Teams</button>
+    </mat-toolbar>
 		<div id="searchContainer" fxFlex>
 		Search: <input id="locationInput"
 			   placeholder="Enter location"
