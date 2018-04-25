@@ -114,16 +114,13 @@ export class MapService {
   			data[key].isOpen = false;
 
   			//event already over so dont add it
-  			/*if (eventDate < date) {
+  			if (eventDate < date) {
   				continue;
-  			}*/
+  			}
   			//event not started so add
   			else {
   				results.push(data[key]);
   			}
-
-
-
   		}
   		this.eventMarkers = results;
   		cb(results);
