@@ -2,13 +2,12 @@
   <div id="chat">
     <div *ngFor = "let message of this.messages">
       <div id="message">
-        [{{message.time}}] {{message.username}}:{{message.message}}
+        [{{message.time}}] {{message.username}}: {{message.message}}
       </div>
     </div>
-
-    <div id="newMessage">
-      <input  [(ngModel)]="newMessage" id="msgInput" type="text" />
+  </div>
+  <div id="newMessage">
+      <input  [(ngModel)]="newMessage" placeholder="Enter message" id="msgInput" type="text" />
       <button (click)="submitMessage()" id="submitButton">Enter</button>
     </div>
-  </div>
 </div>

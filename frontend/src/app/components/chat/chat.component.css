@@ -15,7 +15,7 @@
 }
 
 #message {
-
+  height: 10%;
   text-align: left;
   width: 100%;
 }
@@ -23,7 +23,7 @@
 #msgInput {
   float: left;
   height: 50px;
-  width: 85%;
+  width: 89%;
 }
 
 :host{
@@ -33,8 +33,16 @@
   height: 100%
 }
 .chat-container{
-  background-color: orange;
+  position: relative;
+  height: 200px;
+  background-color: #e3e4e5;
 }
 .card-3 {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#chat {
+	height: 130px;
+	width: 100%;
+	overflow-y: auto;
 }

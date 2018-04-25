@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
     this.messages = new Array();
 
   }
+  
 
   ngOnInit() {
 
@@ -26,10 +27,33 @@ export class ChatComponent implements OnInit {
   })
 
   }
+  
+  
+  //scrolls chat to bottom of div
+  scrollToBottom() {
+  	var chatDiv = document.getElementById('chat');
+  	chatDiv.scrollTop = chatDiv.scrollHeight + 20;
+  }
+  
+  
+  //decides if enough messages are in char to need to scroll
+  chatShouldScroll() {
+  	var chatDiv = document.getElementById('chat');
+  	return chatDiv.scrollTop + chatDiv.clientHeight === chatDiv.scrollHeight;
+  }			
 
   submitMessage() {
-
+	
+	//send message to server
     this.chatService.sendMessage(this.newMessage);
+    
+    //scroll chat down
+    if (this.chatShouldScroll) {
+    	this.scrollToBottom();
+    }
+    
+    //clear message input
+    this.newMessage = "";
   }
 
 }
