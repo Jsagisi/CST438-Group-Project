@@ -9,16 +9,12 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class AppComponent {
   title = 'app';
-  
- 
   constructor(private userService: UserService) {
-  
-  
-  
+
   }
-  
+
   ngOnInit() {
   	this.userService.downloadUser();
   }
-  
+
 }

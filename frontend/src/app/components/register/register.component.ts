@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user-service/user.service';
+import {FormControl,Validators} from "@angular/forms";
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
@@ -11,80 +12,71 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  email: string;
-  username: string;
-  password: string;
-  errorMessage: string;
 
+  email: FormControl;
+  username: FormControl;
+  password: FormControl;
+  submissionError:String=null;
+
+  getEmailError() {
+    //Gross way to do this.
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('email') ? 'Not a valid email' :
+        '';
+  }
+  getPasswordError() {
+    //Gross way to do this.
+    return this.password.hasError('required') ? 'You must enter a value' :
+      this.password.hasError("minlength")?'Password must be at least 6 characters':
+        '';
+  }
+  getUsernameError(){
+
+
+    //     //Gross way to do this.
+    return this.username.hasError('required') ? 'You must enter a value' :
+      this.password.hasError("minlength")?'Username must be at least 1 characters':
+        '';
+  }
   constructor(private userService: UserService,
-  			  private router: Router) { 
-  	this.email = "";
-  	this.username = "";
-  	this.password = "";
-  	this.errorMessage = "";
+  			  private router: Router) {
+  	this.email=new FormControl('',[Validators.email,Validators.required])
+  	this.username = new FormControl('',[Validators.required,Validators.minLength(1)]);
+  	this.password = new FormControl('',[Validators.required,Validators.minLength(6)]);
+
   }
 
   ngOnInit() {
   }
-  
-  
+
+
   formIsValid() : boolean {
-  	
-  	var passwordErr = document.getElementById('passwordErr');
-  	var usernameErr = document.getElementById('usernameErr');
-  	var emailErr = document.getElementById('emailErr');
-  	
-  	
-  	if (this.username.length < 1 || this.password.length < 1 || this.email.length < 1) {
-  		if (this.username.length < 1) {
-  			usernameErr.style.visibility='visible';
-  			usernameErr.innerHTML='Field Missing';
-  		} else {
-  			usernameErr.style.visibility='hidden';
-  		}
-  		if (this.password.length < 1) {
-  			passwordErr.style.visibility='visible';
-  			passwordErr.innerHTML='Field Missing';
-  		} else {
-  			passwordErr.style.visibility='hidden';
-  		}
-  		if (this.email.length < 1) {
-  			emailErr.style.visibility='visible';
-  			emailErr.innerHTML='Field Missing';
-  		}else {
-  			emailErr.style.visibility='hidden';
-  		}
-  		return false;
-  	} 
-  	else {
-  		usernameErr.style.visibility='hidden';
-  		passwordErr.style.visibility='hidden';
-  		emailErr.style.visibility='hidden';
-  		return true;
-  	}
-  	
+
+    return this.email.valid&&this.password.valid&&this.username.valid;
+
+
   }
-  
-  
+
+
   submit() {
+    this.submissionError=null
   	if (this.formIsValid() == true) {
-  		var registerErr = document.getElementById('registerErr');
-  		this.userService.registerUser(this.email, this.password, this.username, (err, res) => {
+
+  		this.userService.registerUser(this.email.value, this.password.value, this.username.value, (err, res) => {
   			if (err != null) {
   				console.log(err);
-  				this.errorMessage = err.message;
-  				registerErr.style.visibility='visible';
+  				console.log("Hit an error")
+  				this.submissionError = err.message;
   			}
   			else {
   			console.log('success');
   				console.log(res);
-  				registerErr.style.visibility='hidden';
   				this.router.navigateByUrl('/');
   			}
   		});
   	}
   	else {
-  	
+
   	}
   }
 

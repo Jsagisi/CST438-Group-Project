@@ -13,26 +13,26 @@ export class AppBarComponent implements OnInit {
   isLoggedIn: string;
 
   constructor(private router: Router,
-  			  private userService: UserService) { 
-  	
+  			  public userService: UserService) {
+
   	this.isLoggedIn = 'Login';
   }
 
   ngOnInit() {
-  
+
   	if (this.userService.isLoggedIn() == true) {
   		this.isLoggedIn = 'Logout';
   	}
   	else {
   		this.isLoggedIn = 'Login';
-  	}	
-  
+  	}
+
   }
-  
+
   navigateTo(path: string) : void {
   	this.router.navigateByUrl('/' + path);
   }
-  
+
   logout() {
   	this.userService.logoutUser((err, res) => {
   		if (err != null ) {

@@ -1,19 +1,35 @@
+<mat-toolbar style="background-color: orange">
+  <span>
+    Park Pickup Group Finder
+  </span>
+  <span class="space"></span>
+  <span *ngIf="userService.isLoggedIn()==false">
+    <button id="login" mat-button (click)="navigateTo('login')">Login</button>
+    <button id="register" mat-button (click)="navigateTo('register')">Register</button>
+  </span>
+  <span *ngIf="userService.isLoggedIn()==true">
+    <button id="logout" mat-button (click)="logout()">Logout</button>
+    <span fxFlex="1 1 auto">{{userService.getUser().displayName}}</span>
+  </span>
+</mat-toolbar>
+<!--
 <div id="appBar">
 	<span (click)="navigateTo('')" id="title">PUG Finder</span>
-	
+
 	<div id="loginButtons" *ngIf="userService.isLoggedIn() == false">
-		<button class="lbuttons" 
+		<button class="lbuttons"
 				id="login"
 				(click)="navigateTo('login')">Login</button>
-		<button class="lbuttons" 
+		<button class="lbuttons"
 				id="register"
 				(click)="navigateTo('register')">Register</button>
 	</div>
 	<div id="loginButtons" *ngIf="userService.isLoggedIn() == true">
-		<button class="lbuttons" 
+		<button class="lbuttons"
 				id="logout"
 				(click)="logout()">Logout</button>
 		<span>{{userService.getUser().displayName}}</span>
-		
+
 	</div>
 </div>
+-->

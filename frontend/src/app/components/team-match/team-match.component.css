@@ -1,0 +1,21 @@
+#container {
+  width: 100%;
+  height:75%;
+  background-color: #f4f5f7;
+  position: absolute;
+  left: 0px;
+  top: 70px;
+  margin: 0 auto;
+}
+#row {
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+#distanceInput {
+  width: 35px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
