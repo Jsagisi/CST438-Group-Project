@@ -24,7 +24,14 @@ import { UserTeamsComponent } from './components/user-teams/user-teams.component
 import { JoinTeamComponent } from './components/teams-join/join-team.component';
 import { TeamMatchComponent} from "./components/team-match/team-match.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatToolbarModule} from "@angular/material";
+import {MatDatetimepickerModule,MatNativeDatetimeModule} from "@mat-datetimepicker/core"
+import {
+  MatButtonModule, MatDatepickerModule,
+  MatFormFieldModule,
+  MatInputModule, MatNativeDateModule, MatOptionModule,
+  MatSelectModule,
+  MatToolbarModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 //routes
 const appRoutes: Routes = [
@@ -66,7 +73,8 @@ const appRoutes: Routes = [
     UserTeamsComponent,
     JoinTeamComponent,
     TeamMatchComponent,
-    SandboxComponent
+    SandboxComponent,
+
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
@@ -83,7 +91,13 @@ const appRoutes: Routes = [
     MatInputModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDatetimepickerModule,
+    MatNativeDatetimeModule,
 
   ],
   providers: [UserService, MapService, TeamService],
