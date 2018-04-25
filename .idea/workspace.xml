@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3fc6ae5-00b9-4b60-80e2-6bb2fad2ac30" name="Default" comment="Removed Backend Project">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/map/map.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/map/map.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/map/map.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/map/map.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/backend/target/" />
@@ -50,11 +52,8 @@
       <file leaf-file-name="map.component.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -80,8 +79,8 @@
       <file leaf-file-name="map.component.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="81" column="2" selection-start-line="81" selection-start-column="2" selection-end-line="81" selection-end-column="2" />
+            <state relative-caret-position="255">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -177,9 +176,9 @@
         <option value="$PROJECT_DIR$/frontend/src/app/components/sandbox/sandbox.component.css" />
         <option value="$PROJECT_DIR$/frontend/src/styles.css" />
         <option value="$PROJECT_DIR$/frontend/src/app/components/app/app.component.css" />
-        <option value="$PROJECT_DIR$/frontend/src/app/components/map/map.component.css" />
         <option value="$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts" />
         <option value="$PROJECT_DIR$/frontend/src/app/components/app/app.component.html" />
+        <option value="$PROJECT_DIR$/frontend/src/app/components/map/map.component.css" />
         <option value="$PROJECT_DIR$/frontend/src/app/components/map/map.component.html" />
       </list>
     </option>
@@ -480,7 +479,7 @@
       <workItem from="1523582987584" duration="258000" />
       <workItem from="1524253141921" duration="375000" />
       <workItem from="1524258226191" duration="6921000" />
-      <workItem from="1524616762439" duration="3352000" />
+      <workItem from="1524616762439" duration="4109000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Backend Project">
       <created>1524251388535</created>
@@ -525,7 +524,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44820000" />
+    <option name="totallyTimeSpent" value="45577000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -854,13 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/components/chat/chat.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -877,20 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="81" column="2" selection-start-line="81" selection-start-column="2" selection-end-line="81" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/sandbox/sandbox.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/components/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -901,13 +879,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/sandbox/sandbox.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/components/map/map.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
         </state>
       </provider>
     </entry>
