@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
 
 
 
+
   title: string = 'My first AGM project';
   lat: number;
   lng: number;

@@ -1,0 +1,8 @@
+.content-container{
+  flex: 1;
+  flex-direction: column;
+}
+:host{
+  flex:1;
+  display: flex;
+}

@@ -1,7 +1,12 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <app-app-bar></app-app-bar>
-  <router-outlet></router-outlet>
-  <app-chat></app-chat>
+<div fxLayout="column" fxFlex>
+  <div fxFlex="0 1 auto">
+    <app-app-bar></app-app-bar>
+  </div>
+  <div fxFlex="1 1 auto" fxLayout="row">
+    <router-outlet style="height: 0px"></router-outlet>
+  </div>
+  <div fxFlex="1 1 25%">
+    <app-chat></app-chat>
+  </div>
 </div>
 

@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserService } from './services/user-service/user.service';
 import { LocationComponent } from './components/locations/location/location.component';
+import { SandboxComponent} from "./components/sandbox/sandbox.component";
 import { MapService } from './services/map/map.service';
 import { TeamService } from './services/team-service/team.service';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
@@ -27,6 +28,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule, MatToolbarModule} f
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 //routes
 const appRoutes: Routes = [
+
 	{ path: '', component: MapComponent },
 	{ path: 'map', component: MapComponent, children: [
 		{ path: 'search', component: LoginComponent},
@@ -34,6 +36,8 @@ const appRoutes: Routes = [
 		{ path: 'locations/:id', component: LocationDetailsComponent }
 		]
 	},
+
+  { path: 'sandbox', component: SandboxComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 
@@ -61,7 +65,8 @@ const appRoutes: Routes = [
     TeamListComponent,
     UserTeamsComponent,
     JoinTeamComponent,
-    TeamMatchComponent
+    TeamMatchComponent,
+    SandboxComponent
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
