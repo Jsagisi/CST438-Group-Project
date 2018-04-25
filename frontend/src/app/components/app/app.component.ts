@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user-service/user.service';
-
+import { ChatService } from '../../services/chat/chat.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +9,17 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class AppComponent {
   title = 'app';
-  
- 
-  constructor(private userService: UserService) {
-  
-  
-  
+
+
+  constructor(private userService: UserService,
+              private chatService: ChatService) {
+
+
+
   }
-  
+
   ngOnInit() {
   	this.userService.downloadUser();
   }
-  
+
 }
