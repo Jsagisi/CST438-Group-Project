@@ -16,14 +16,14 @@ export class TeamMatchComponent implements OnInit {
     database; //database ref
     storage; //storage ref
     response: string;
-
+    opponentTeam: string;
   constructor(private teamService: TeamService) {
     this.url = "";
     this.teamLogo = null;
     this.teamName = "";
     this.sport = "";
     this.response = "";
-
+    this.opponentTeam = "";
     //instantiate database object
     this.database = firebase.database();
     this.storage = firebase.storage();
@@ -34,6 +34,10 @@ export class TeamMatchComponent implements OnInit {
       .then((teams) => {
 
       })
+  }
+  matchmaking(teamId:string) {
+    console.log(teamId);
+    var team
   }
 
 }

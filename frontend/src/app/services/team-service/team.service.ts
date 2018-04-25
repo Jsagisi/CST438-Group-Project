@@ -133,6 +133,7 @@ export class TeamService {
     }
   }
 
+  
 
 
 
@@ -320,7 +321,7 @@ export class TeamService {
   }
 
   matchmaking(teamId:string) {
-
+    console.log(teamId);
   }
 
   getCurrentMatches() {
