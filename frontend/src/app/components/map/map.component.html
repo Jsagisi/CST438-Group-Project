@@ -5,7 +5,7 @@
       <button mat-button (click)="navigate('map/locations')">Locations</button>
       <button mat-button (click)="navigate('teams')">Teams</button>
     </mat-toolbar>
-		<div id="searchContainer" fxFlex>
+		<div id="searchContainer" fxFlex style="padding: 8px">
 		Search: <input id="locationInput"
 			   placeholder="Enter location"
 			   type="text"
@@ -29,8 +29,8 @@
 
 	</div>
 
-
-	<div id="map" fxFlex="1 0 auto" #mapElem>
+<div fxFlex class="card-3" fxLayout="row" style="margin: 8px">
+	<div id="map" fxFlex="1 1 auto" #mapElem>
 		<agm-map  id="mapObj"
 				  [mapTypeId]="map.mapTypeId"
 				  [latitude]="lat"
@@ -87,5 +87,5 @@
   			</agm-marker>
 		</agm-map>
 	</div>
-
+</div>
 
