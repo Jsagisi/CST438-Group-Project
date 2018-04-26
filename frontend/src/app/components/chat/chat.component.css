@@ -3,7 +3,7 @@
 #newMessage {
   background-color: grey;
   width: 100%;
-  height: 50px;
+  height: 25%;
   position: absolute;
   bottom: 0;
 }
@@ -33,8 +33,10 @@
   height: 100%
 }
 .chat-container{
-  position: relative;
-  height: 200px;
+  position: absolute;
+  bottom: 0;
+  height: 20%;
+  width: 100%;
   background-color: #e3e4e5;
 }
 .card-3 {
@@ -42,7 +44,7 @@
 }
 
 #chat {
-	height: 130px;
+	height: 75%;
 	width: 100%;
 	overflow-y: auto;
 }
