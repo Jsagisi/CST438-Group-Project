@@ -52,8 +52,7 @@ export class ChatComponent implements OnInit {
     	this.scrollToBottom();
     }
     
-    //clear message input
-    this.newMessage = "";
+    
   }
 
 }
