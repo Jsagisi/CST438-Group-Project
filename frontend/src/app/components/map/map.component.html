@@ -1,10 +1,14 @@
 
 	<div id="menu" class='search-menu card-3' fxFlex="30%"  fxLayout="column">
-    <mat-toolbar>
-      <button mat-button (click)="navigate('map')" >Search</button>
-      <button mat-button (click)="navigate('map/locations')">Locations</button>
-      <button mat-button (click)="navigate('teams')">Teams</button>
-    </mat-toolbar>
+    
+   	<div *ngIf="router.url.indexOf('teams') == -1">
+    	<mat-toolbar>
+      		<button mat-button (click)="navigate('map')" >Search</button>
+     		<button mat-button (click)="navigate('map/locations')">Locations</button>
+      		<button mat-button (click)="navigate('teams')">Teams</button>
+   		 </mat-toolbar>
+    </div>
+  	
 		<div id="searchContainer" fxFlex style="padding: 8px">
 		Search: <input id="locationInput"
 			   placeholder="Enter location"
@@ -14,7 +18,7 @@
 			   #search [formControl]="searchControl"
 			   >
 
-			 <div *ngIf="showFilter == true">
+			 <div *ngIf="showFilter == true && router.url.indexOf('teams') == -1">
 			 	Filter by sport:
 			 	<form action="" >
 			 		<input type="radio" name="activity" value="all" [(ngModel)]="filter" (change)="filterLocations()">All

@@ -1,75 +1,60 @@
 <div id ="container">
-  Search: <input [(ngModel)]="searchText" type="text" />
-  Sport: <select [(ngModel)]="sportText" id="activity" >
-  <option value="all">All</option>
-  <option value="basketball">Basketball</option>
-  <option value="soccer">Soccer</option>
-  <option value="football">Football</option>
-  <option value="baseball">Baseball</option>
-
-
-</select>
-  Within: <input [(ngModel)]="distance" id="distanceInput" type="number" /> miles
-  <button (click)="filterTeams()">Go</button>
-  <button (click)="resetFilter()">Reset</button>
-
-
-  <div *ngIf="teamService.getTeams().length == 0">
-    <span>No results</span>
-  </div>
-
-  <div *ngIf="teamService.getTeams().length > 0">
-    <table>
-      <tr id="row">Available Teams</tr>
-      <tr>
-        <th>Logo</th>
-        <th>Team Name</th>
-        <th>Sport</th>
-        <th>Owner</th>
-        <th># Members</th>
-        <th>Record</th>
-        <th>Play</th>
-      </tr>
-      <tr *ngFor="let team of teamService.getTeams()">
-        <td><img src="{{team.imgUrl}}" ></td>
-        <td>{{team.name}}</td>
-        <td>{{team.sport}}</td>
-        <td>{{team.owner.displayName}}</td>
-        <td>{{team.members.length}}</td>
-        <td>{{team.wins}}W - {{team.losses}}L</td>
-        <td>
-          <button *ngIf="teamService.userInTeam(team.id) == false" (click)="matchmaking(team.id)">Play</button>
-          <div *ngIf="teamService.userInTeam(team.id) == true">
-
-          </div>
-        </td>
-      </tr>
-    </table>
-    <br><br><br>
-  </div>
-  <div>
-    <table>
-    <tr >Current Matches</tr>
-    <tr>
-      <th>Match</th>
-      <th>Sport</th>
-      <th>Record Score</th>
-    </tr>
-    <tr *ngFor="let team of teamService.getTeams()">
-      <td><img src="{{team.imgUrl}}"> {{team.name}} vs <img src="{{team.imgUrl}}"> {{team.name}}</td>
-      <td>{{team.sport}}</td>
-
-      <td>
-        {{team.name}} Score: <input [(ngModel)]="recordScore" type="int" style="width:25px" />
-        -
-        {{team.name}} Score: <input [(ngModel)]="recordScore" type="int" style="width:25px" />
-        <button *ngIf="teamService.userInTeam(team.id) == false" (click)="recordResults(team.id)">Submit</button>
-        <div *ngIf="teamService.userInTeam(team.id) == true">
-
-        </div>
-      </td>
-    </tr>
-    </table>
-  </div>
-
+	<h1>Matchmaking</h1>
+	
+	<div>
+		<h2>Choose you team</h2>
+		<div *ngIf="usersTeams.length == 0">
+			<Span>You are not registered to any teams. Please join a team before matchmaking.</Span>
+		</div>
+		<div *ngIf="usersTeams.length > 0">
+			<select (change)="userTeamChanged($event.target.value)" *ngFor="let userTeam of usersTeams" [(ngModel)]="selectedUserTeam">
+				<option value={{userTeam.id}}>{{userTeam.name}}</option>
+			</select>
+		</div>
+		<br />
+		
+		
+		<div *ngIf="opponents.length == 0 && selectedUserTeam != null">
+			<span>Sorry, we couldn't find any suitable opponents for your team</span>
+		</div>
+		
+		<div *ngIf="opponents.length > 0">
+		<h2>Choose your Opponent</h2>
+		<br />
+		<span>We found these teams as fair opponents for your team</span>
+			<table>
+			<tr>
+				<th>Logo</th>
+				<th>Team Name</th>
+				<th>Sport</th>
+				<th>Owner</th>
+				<th># Members</th>
+				<th>Record</th>
+				<th>Challenge</th>
+			</tr>
+			<tr *ngFor="let team of opponents">
+				<td><img src="{{team.imgUrl}}" ></td>
+				<td>{{team.name}}</td>
+				<td>{{team.sport}}</td>
+				<td>{{team.owner.displayName}}</td>
+				<td>{{team.members.length}}</td>
+				<td>{{team.wins}}W - {{team.losses}}L</td>
+				<td>
+					<button (click)="setOpponent(team.id)">Select</button>
+				</td>
+			</tr>
+		</table>
+		</div>
+		
+		
+		<div>
+		<h3>Choose a Location</h3>
+		<span>Choose a location to host the game by searching for location by name in the search bar or dragging the marker to your location</span>
+			<div id="locMap">
+				<app-map></app-map>
+				<app-location (onLocation)="submit($event)" type="match"></app-location>
+			</div>
+		</div>
+	</div>
+	
 </div>

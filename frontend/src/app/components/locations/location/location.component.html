@@ -19,7 +19,9 @@
     <mat-datetimepicker #startDatePicker type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
   </mat-form-field>
 
-  <button mat-button (click)=addEvent()>Add</button>
+ 
+  	<button mat-button (click)=addEvent()>Submit</button>
+  
   
   <input id="lat" [(ngModel)]="locationCoords.lat" type="number" style="display: none"/>
   <input id="lng" [(ngModel)]="locationCoords.lng" type="number" style="display: none"/>
