@@ -16,6 +16,7 @@ export class TeamMatchComponent implements OnInit {
     database; //database ref
     storage; //storage ref
     response: string;
+    opponentTeam: string;
 
     //just to get the complier off my back
     searchText:string="";
@@ -30,7 +31,7 @@ export class TeamMatchComponent implements OnInit {
     this.teamName = "";
     this.sport = "";
     this.response = "";
-
+    this.opponentTeam = "";
     //instantiate database object
     this.database = firebase.database();
     this.storage = firebase.storage();
@@ -41,6 +42,10 @@ export class TeamMatchComponent implements OnInit {
       .then((teams) => {
 
       })
+  }
+  matchmaking(teamId:string) {
+    console.log(teamId);
+    var team
   }
 
 }

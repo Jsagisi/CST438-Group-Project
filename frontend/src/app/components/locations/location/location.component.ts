@@ -1,10 +1,9 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
-import {MapService} from '../../../services/map/map.service';
-import {Subscription} from 'rxjs/Subscription';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { MapService } from '../../../services/map/map.service';
+import { Subscription } from 'rxjs/Subscription';
 import * as angular from '@angular/core';
-import {UserService} from '../../../services/user-service/user.service';
+import { UserService } from '../../../services/user-service/user.service';
 import * as firebase from 'firebase';
-import {Form, FormControl, Validators} from "@angular/forms";
 
 
 @Component({
@@ -22,11 +21,13 @@ export class LocationComponent implements OnInit {
   markerSubscription: Subscription;
   clickSubscription: Subscription;
 
+
   locationName: string;
   locationAddress: string;
   locationCoords: { lat: number, lng: number };
   date: string;
   activity: string;
+
 
 
   constructor(private mapService: MapService, private userService: UserService) {
@@ -79,11 +80,12 @@ export class LocationComponent implements OnInit {
   }
 
 
+
   /*
   Checks if form to add new lcoation is missing any fields
   */
   formIsValid(): boolean {
-    
+
     return this.locationNameElem.valid && this.startDateElem.valid && this.locationCoords.lat != 0 && this.locationCoords.lng != 0;
 
   }
@@ -146,4 +148,5 @@ export class LocationComponent implements OnInit {
   handleClickEvent(message) {
     console.log(message);
   }
+
 }

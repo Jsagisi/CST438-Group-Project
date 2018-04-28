@@ -9,6 +9,10 @@
 
 
 </select>
+
+  <select [(ngModel)]="teamValue">
+    <option *ngFor="let team of teamService.getTeams()">{{team.name}} </option>
+  </select>
   Within: <input [(ngModel)]="distance" id="distanceInput" type="number" /> miles
   <button (click)="filterTeams()">Go</button>
   <button (click)="resetFilter()">Reset</button>
