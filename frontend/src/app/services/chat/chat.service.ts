@@ -7,7 +7,7 @@ import { UserService } from '../user-service/user.service';
 export class ChatService {
 
 
-  socket;
+  private socket:
 
   constructor(private userService: UserService) {
     console.log('in constructor');
