@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { MapService } from '../../../services/map/map.service';
-import { Subscription } from 'rxjs/Subscription';
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import {MapService} from '../../../services/map/map.service';
+import {Subscription} from 'rxjs/Subscription';
 import * as angular from '@angular/core';
 import { UserService } from '../../../services/user-service/user.service';
 import * as firebase from 'firebase';
+import {Form, FormControl, Validators} from "@angular/forms";
 
 
 @Component({
@@ -15,12 +16,16 @@ export class LocationComponent implements OnInit {
 
   @Output() addLocation = new EventEmitter<boolean>();
 
+  //emitter than sends a subscribable event when a new locatino
+  //object is formed. Other components can subscribe to it and
+  //get the location that was made in ths component
+  @Output() onLocation: EventEmitter<any> = new EventEmitter<any>();
+
   locationNameElem: FormControl;
   activityElem: FormControl;
   startDateElem: FormControl;
   markerSubscription: Subscription;
   clickSubscription: Subscription;
-
 
   locationName: string;
   locationAddress: string;
@@ -29,6 +34,7 @@ export class LocationComponent implements OnInit {
   activity: string;
 
 
+  @Input() type: string = 'location';
 
   constructor(private mapService: MapService, private userService: UserService) {
     this.locationNameElem = new FormControl('', [Validators.required]);
@@ -80,7 +86,6 @@ export class LocationComponent implements OnInit {
   }
 
 
-
   /*
   Checks if form to add new lcoation is missing any fields
   */
@@ -103,9 +108,12 @@ export class LocationComponent implements OnInit {
     var date = this.date;
 
 	console.log('valid = ' + this.formIsValid());
-    if (this.formIsValid() == true) {
+    if (this.formIsValid() == true ) {
 
-      //add event to database
+	  //if type is 'location' then just get data
+	  //from forms and insert new location to db
+      if (this.type == 'location') {
+      	//add event to database
       var user = this.userService.getUser();
       var lat = this.locationCoords.lat;
       var lng = this.locationCoords.lng;
@@ -130,7 +138,35 @@ export class LocationComponent implements OnInit {
       console.log(newLocation)
       this.userService.insertLocation(newLocation);
       this.mapService.addLocation(newLocation);
+      }
 
+      //if type is 'match' then do not submit new location
+      //object. The find match component wants to intercept
+      //the data in the form to use in its onw form
+	  else {
+	  		 var user = this.userService.getUser();
+      var lat = this.locationCoords.lat;
+      var lng = this.locationCoords.lng;
+      console.log(this.locationCoords);
+      //make new locations object ot insert
+      var newLocation = {
+          name: this.locationNameElem.value,
+          address: this.locationAddress,
+          activity: this.activityElem.value,
+          date: (this.startDateElem.value as Date).toISOString(),
+          coords:
+            {
+              lat: lat,
+              lng: lng
+            }
+          ,
+          players: [
+            user
+          ]
+        }
+      ;
+      this.onLocation.emit(newLocation);
+	  }
 
     }
     else {
@@ -148,5 +184,4 @@ export class LocationComponent implements OnInit {
   handleClickEvent(message) {
     console.log(message);
   }
-
 }
