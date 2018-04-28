@@ -1,7 +1,7 @@
 <div fxFlex fxLayout="column">
   <mat-form-field>
     <mat-label>Location Name</mat-label>
-    <input required matInput [formControl]="locationNameElem">
+    <input [(ngModel)]='locationName' required matInput [formControl]="locationNameElem">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Activity</mat-label>
@@ -20,6 +20,9 @@
   </mat-form-field>
 
   <button mat-button (click)=addEvent()>Add</button>
+  
+  <input id="lat" [(ngModel)]="locationCoords.lat" type="number" style="display: none"/>
+  <input id="lng" [(ngModel)]="locationCoords.lng" type="number" style="display: none"/>
 </div>
 <!--<div id="container">
 	<h1>Create a PUG</h1>

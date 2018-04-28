@@ -16,6 +16,7 @@ import { LocationComponent } from './components/locations/location/location.comp
 import { SandboxComponent} from "./components/sandbox/sandbox.component";
 import { MapService } from './services/map/map.service';
 import { TeamService } from './services/team-service/team.service';
+import { ChatService } from './services/chat/chat.service';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
 import { TeamsHomeComponent } from './components/teams-home/teams-home.component';
 import { CreateTeamComponent } from './components/teams-create/create-team.component';
@@ -100,7 +101,7 @@ const appRoutes: Routes = [
     MatNativeDatetimeModule,
 
   ],
-  providers: [UserService, MapService, TeamService],
+  providers: [UserService, MapService, TeamService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

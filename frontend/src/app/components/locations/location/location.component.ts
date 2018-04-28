@@ -83,7 +83,8 @@ export class LocationComponent implements OnInit {
   Checks if form to add new lcoation is missing any fields
   */
   formIsValid(): boolean {
-    return this.locationNameElem.valid && this.startDateElem.valid;
+    
+    return this.locationNameElem.valid && this.startDateElem.valid && this.locationCoords.lat != 0 && this.locationCoords.lng != 0;
 
   }
 
@@ -99,7 +100,7 @@ export class LocationComponent implements OnInit {
     var activity = this.activity;
     var date = this.date;
 
-
+	console.log('valid = ' + this.formIsValid());
     if (this.formIsValid() == true) {
 
       //add event to database
