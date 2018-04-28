@@ -15,31 +15,31 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   errorMessage: string;
-  
+
   constructor(private userService: UserService,
   			  private router: Router
-  ) { 
-  
+  ) {
+
   	this.username = "";
   	this.password = "";
   	this.errorMessage = "";
-  
-  
+
+
   }
 
   ngOnInit() {
-  
+
   }
-  
-  
-  
-  
+
+
+
+
   formIsValid() : boolean {
-  	
+
   	var passwordErr = document.getElementById('passwordErr');
   	var usernameErr = document.getElementById('usernameErr');
-  	
-  	
+
+
   	if (this.username.length < 1 || this.password.length < 1) {
   		if (this.username.length < 1) {
   			usernameErr.style.visibility='visible';
@@ -54,21 +54,21 @@ export class LoginComponent implements OnInit {
   			passwordErr.style.visibility='hidden';
   		}
   		return false;
-  	} 
+  	}
   	else {
   		usernameErr.style.visibility='hidden';
   		passwordErr.style.visibility='hidden';
   		return true;
   	}
-  	
+
   }
-  
-  
+
+
   submit() : void {
   	if (this.formIsValid() == true ) {
   		this.userService.signInUser(this.username, this.password, (err,res) => {
   			if (err != null) {
-  			console.log('in err');
+  			  console.log(err.code);
   				var loginErr = document.getElementById('loginErr');
   				switch (err.code) {
   					case 'auth/wrong-password' :
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
   						break;
   					default:
   						this.errorMessage = 'Error logging in';
-  						
+
   				}
   				loginErr.style.visibility='visible';
   			}
@@ -90,10 +90,10 @@ export class LoginComponent implements OnInit {
   				this.router.navigateByUrl('/');
   			}
   		});
-  		
+
   	}
   	else {
-  		
+
   	}
   }
 
