@@ -137,6 +137,7 @@ export class TeamService {
 
 
 
+
   resetFilter() {
     this.isFiltering = false;
 
@@ -319,8 +320,52 @@ export class TeamService {
     });
   }
 
-  matchmaking(teamId:string) {
 
+
+  /* Returns array of valid matchmaking opponents for a given
+  team id. Decides valid opponents by finding teams with the
+  same sport and withing a reasonable distance from the given team
+  */
+  matchmaking(teamId) {
+    var targetTeam = null;
+
+    //get team object of the igven team if
+    for (var i = 0; i < this.teams.length;i++) {
+    	if (this.teams[i].id == teamId) {
+    		targetTeam = this.teams[i];
+    	}
+    }
+
+    //if given team id not found return empty array
+    if (!targetTeam) {
+    	return [];
+    }
+
+
+
+    var validTeams = [];
+    //now search for valid opponents for given team
+    for (var i = 0; i < this.teams.length;i++) {
+
+    	//teams have same sport
+    	if (this.teams[i].sport == targetTeam.sport && this.teams[i].id != targetTeam.id) {
+
+    		//next check if teams are close to eacher
+    		// (within 50 miles?)
+    	   var distKm = this.calculateDistance(
+           targetTeam.location.lat,
+           targetTeam.location.lng,
+           this.teams[i].location.lat,
+           this.teams[i].location.lng);
+            var distMiles = this.kmToMiles(distKm);
+
+            if (distMiles <= 50) {
+            	validTeams.push(this.teams[i]);
+            }
+    	}
+    }
+
+    return validTeams;
   }
 
   getCurrentMatches() {
