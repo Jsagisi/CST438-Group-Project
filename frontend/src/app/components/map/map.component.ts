@@ -53,8 +53,8 @@ export class MapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private router: Router,
-    private mapService: MapService,
-    private userService: UserService) {
+    public mapService: MapService,
+    public userService: UserService) {
 
     this.filter = 'all';
     this.showFilter = true;

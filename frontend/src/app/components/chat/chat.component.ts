@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../services/chat/chat.service';
+import {FormControl} from "@angular/forms";
 
 
 @Component({
@@ -10,10 +11,11 @@ import {ChatService} from '../../services/chat/chat.service';
 export class ChatComponent implements OnInit {
 
   public messages: any[];
-  newMessage: "";
+  newMessage: FormControl;
 
   constructor(private chatService: ChatService) {
     this.messages = [];
+    this.newMessage=new FormControl();
 
   }
 
@@ -43,7 +45,7 @@ export class ChatComponent implements OnInit {
   submitMessage() {
 
     //send message to server
-    this.chatService.sendMessage(this.newMessage);
+    this.chatService.sendMessage(this.newMessage.value);
 
     //scroll chat down
     if (this.chatShouldScroll) {
@@ -51,7 +53,7 @@ export class ChatComponent implements OnInit {
     }
 
     //reset message input
-    this.newMessage = "";
+    this.newMessage.setValue('');
 
   }
 
