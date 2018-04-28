@@ -9,7 +9,7 @@ import {ChatService} from '../../services/chat/chat.service';
 })
 export class ChatComponent implements OnInit {
 
-  private messages: string[];
+  public messages: any[];
   newMessage: "";
 
   constructor(private chatService: ChatService) {
