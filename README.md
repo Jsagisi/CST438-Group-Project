@@ -7,7 +7,7 @@ Email: bdagg@csumb.edu
 Github: https://github.com/BenjaminDagg
 Slack: @bdagg
 
-Ben Holland, INSERT YOUR ROLE
+Ben Holland, Wizard
 Email: bholland@csumb.edu
 Github: https://github.com/BenjaminHolland
 Slack: @Ben Holland
