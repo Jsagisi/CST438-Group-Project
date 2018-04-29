@@ -89,15 +89,18 @@ export class UserService {
       return false;
     }
   }
-
+s
   signInUser(email, password, callback) {
+    console.log(`logging in ${email}...`);
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
-
+        //console.log("Logged In");
         this.user = UserModel.fromFirebaseUser(user);
         return callback(null, this.user);
       })
       .catch((error) => {
+
+       // console.log("Could Not Log In.");
         return callback(error, null);
 
       });

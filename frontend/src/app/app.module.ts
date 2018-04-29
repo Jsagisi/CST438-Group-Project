@@ -27,13 +27,14 @@ import { TeamMatchComponent} from "./components/team-match/team-match.component"
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatDatetimepickerModule,MatNativeDatetimeModule} from "@mat-datetimepicker/core"
 import {
-  MatButtonModule, MatDatepickerModule,
+  MatButtonModule, MatDatepickerModule, MatDividerModule,
   MatFormFieldModule,
-  MatInputModule, MatNativeDateModule, MatOptionModule,
+  MatInputModule, MatListModule, MatNativeDateModule, MatOptionModule,
   MatSelectModule,
   MatToolbarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MomentModule} from "ngx-moment";
 //routes
 const appRoutes: Routes = [
 
@@ -99,6 +100,9 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatDatetimepickerModule,
     MatNativeDatetimeModule,
+    MatDividerModule,
+    MomentModule,
+    MatListModule,
 
   ],
   providers: [UserService, MapService, TeamService, ChatService],

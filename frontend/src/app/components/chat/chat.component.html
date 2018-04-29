@@ -1,13 +1,16 @@
-<div class="chat-container card-3" fxFlex="1 1 auto" fxLayout="row" style="margin: 8px; padding:8px" >
-  <div id="chat">
-    <div *ngFor = "let message of this.messages">
-      <div id="message">
-        [{{message.time}}] {{message.username}}: {{message.message}}
-      </div>
-    </div>
+<div class="card-3" fxLayout="column" fxFlex [style.margin]="'8px'">
+    <mat-list id="chat"   dense>
+      <mat-list-item *ngFor="let message of this.messages">
+        <div id="message">
+          [{{message.time}}] {{message.username}}:{{message.message}}
+        </div>
+      </mat-list-item>
+    </mat-list>
+  <mat-divider ></mat-divider>
+  <div fxFlex="1 0 10%" fxLayout="row" >
+    <mat-form-field fxFlex="90%" fxLayout="column" style="padding-left: 8px">
+      <input style="width: 100%" matInput (keyup.enter)="submitMessage()" [formControl]="newMessage" type="text"/>
+    </mat-form-field>
+    <button mat-button fxFlex (click)="submitMessage()" id="submitButton">Enter</button>
   </div>
-  <div id="newMessage">
-      <input  [(ngModel)]="newMessage" placeholder="Enter message" id="msgInput" type="text" />
-      <button (click)="submitMessage()" id="submitButton">Enter</button>
-    </div>
 </div>
