@@ -163,7 +163,7 @@ export class MapComponent implements OnInit {
       this.markers = data;
 
       for (var i = 0; i < this.markers.length; i++) {
-        console.log(this.markers[i]);
+        //console.log(this.markers[i]);
         var latStr = this.markers[i].coords.lat;
         var latNum = parseFloat(latStr);
         var lngStr = this.markers[i].coords.lng;

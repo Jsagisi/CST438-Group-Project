@@ -122,6 +122,7 @@ s
             photoURL: ""
           }).then(() => {
             console.log('updated user profile');
+            this.user.displayName=username;
             callback(null, this.user);
 
           }).catch((error) => {
