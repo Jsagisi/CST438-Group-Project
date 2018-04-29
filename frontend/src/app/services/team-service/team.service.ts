@@ -39,6 +39,23 @@ export class TeamService {
 
 
 
+  //returns the team object of the given id if it exists
+  getTeamById(id) {
+  	if (!this.teams) {
+  		return null;
+  	}
+  	
+  	var team = null;
+  	for (var i = 0; i < this.teams.length;i++) {
+  		if (this.teams[i].id == id) {
+  			team = this.teams[i];
+  			return team;
+  		}
+  	}
+  	
+  	return team;
+  }
+
 
   //calls database to get all team object and their logos
   downloadTeams() {
@@ -63,6 +80,9 @@ export class TeamService {
             .then(function(url) {
               newTeam.imgUrl = url;
             })
+            
+            
+         
             teams.push(newTeam);
       });
       self.teams = teams;
@@ -337,7 +357,7 @@ export class TeamService {
     
     //if given team id not found return empty array
     if (!targetTeam) {
-    	return new Aarray();
+    	return new Array();
     }
     
     
@@ -371,6 +391,52 @@ export class TeamService {
 	
   }
 
+
+  //returns array of all matches the user is involved in
+  getUserMatches() {
+  	var self = this;
+   
+    return new Promise(function(resolve,reject) {
+
+    var ref = self.database.ref('/locations');
+
+    //search for all teams
+    var matches = new Array();
+    //iterate through teams in db to see if it exists
+    ref.once('value', function(snapshot) {
+
+      //interate through each team to get image url
+      snapshot.forEach(function(dataSnap) {
+        var data = dataSnap.val();
+
+        var newMatch = data;
+      	
+      	//check if location has teams
+      	if (data.teams) {
+      	
+      		var user = self.userService.getUser();
+      	
+      		//search teamA to see if user is in it
+      		for (var i = 0; i < data.teams.teamA.members.length;i++) {
+      			if (data.teams.teamA.members[i].uid == user.uid) {
+      				matches.push(data);
+      			}
+      		}
+      		
+      		//search teamB to see if user is in it
+      		for (var i = 0; i < data.teams.teamB.members.length;i++) {
+      			if (data.teams.teamB.members[i].uid == user.uid) {
+      				matches.push(data);
+      			}
+      		}
+      	}
+      	
+      });
+      
+      resolve(matches);
+     });
+    });
+  }
 
 
 }

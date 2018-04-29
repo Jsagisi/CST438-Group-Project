@@ -1,0 +1,28 @@
+<div id="container">
+	<div *ngIf="match != null">
+		<div id="teamA">
+			<div class="team-header">
+				<div class='team-logo-container'>
+					<img class='team-logo' src="{{match.teams.teamA.imgUrl}}" />
+				</div>
+				<div class='team-title'>
+					<span>{{match.teams.teamA.name}}</span>
+				</div>
+				
+				
+			</div>
+		</div>
+		<div id="teamB">
+			<div class="team-header">
+				<div class='team-logo-container'>
+					<img class='team-logo' src="{{match.teams.teamB.imgUrl}}" />
+				</div>
+				<div class='team-title'>
+					<span>{{match.teams.teamB.name}}</span>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>

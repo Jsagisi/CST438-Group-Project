@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -15,8 +15,15 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class MapComponent implements OnInit {
 
+//emitter than sends a subscribable event when a new locatino
+  //object is formed. Other components can subscribe to it and
+  //get the location that was made in ths component
+  @Output() onLocation = new EventEmitter<any>();
 
 
+  @Input() showLocations: boolean = true;
+  @Input() showSearchMarker: boolean = false;
+  
 
   title: string = 'My first AGM project';
   lat: number;
@@ -75,7 +82,7 @@ export class MapComponent implements OnInit {
   	this.searchMarker = {
   		lat: this.homeCoords.lat - 0.05,
   		lng: this.homeCoords.lng + 0.04,
-  		isOpen: false,
+  		isOpen: this.showSearchMarker,
   		text: "Drag Me"
   	};
 
@@ -150,7 +157,11 @@ export class MapComponent implements OnInit {
   	this.markerSubscription = this.mapService.getSearchMarkerEvent().subscribe(res => {
 
 		this.searchMarker.isOpen = res.marker.isOpen;
-
+		
+		if (this.showSearchMarker) {
+			this.searchMarker.isOpen = true;
+		}
+		
 		if (res.marker.isOpen == true) {
 			this.searchMarker.lat = this.lat;
 			this.searchMarker.lng = this.lng;
@@ -180,7 +191,7 @@ export class MapComponent implements OnInit {
   		this.dataLoaded = true;
   	});
 
-
+	this.searchMarker.isOpen = this.showSearchMarker;
 
   	this.searchControl = new FormControl();
 
@@ -389,7 +400,7 @@ export class MapComponent implements OnInit {
    		    	}
 
 
-
+				this.onLocation.emit(data);
   				this.mapService.emitClickEvent(data);
   				callback(null,data);
    		    }
@@ -480,6 +491,10 @@ export class MapComponent implements OnInit {
 
   	//navigate to location details component
   	this.router.navigate(['map/locations',id]);
+  }
+  
+  getTrophyIcon(){
+  	return require('../../../images/trophy.png');
   }
 
 }

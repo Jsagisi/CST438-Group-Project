@@ -1,3 +1,5 @@
+
+
 <div id ="container">
 	<h1>Matchmaking</h1>
 	
@@ -32,7 +34,7 @@
 				<th>Record</th>
 				<th>Challenge</th>
 			</tr>
-			<tr *ngFor="let team of opponents">
+			<tr *ngFor="let team of opponents" id="{{team.id}}">
 				<td><img src="{{team.imgUrl}}" ></td>
 				<td>{{team.name}}</td>
 				<td>{{team.sport}}</td>
@@ -40,21 +42,44 @@
 				<td>{{team.members.length}}</td>
 				<td>{{team.wins}}W - {{team.losses}}L</td>
 				<td>
-					<button (click)="setOpponent(team.id)">Select</button>
+					<button class="select-btn" (click)="setOpponent(team.id)">Select</button>
 				</td>
 			</tr>
 		</table>
 		</div>
 		
 		
-		<div>
+		<div *ngIf="selectedOpponent != null">
 		<h3>Choose a Location</h3>
 		<span>Choose a location to host the game by searching for location by name in the search bar or dragging the marker to your location</span>
-			<div id="locMap">
-				<app-map></app-map>
-				<app-location (onLocation)="submit($event)" type="match"></app-location>
+			<div *ngIf="selectedOpponent != null" id="locMap">
+				<app-map [showSearchMarker]="true" [showLocations]="false" (onLocation)="onLocationPicked($event)"></app-map>
+				
 			</div>
 		</div>
+		
+		<div id="locationDiv" *ngIf="location != null && selectedOpponent != null">
+			
+			Name: <input type="text" [(ngModel)]="location.name" />
+			<br />
+			<br />
+			Address: <input readonly type="text" [(ngModel)]="location.address" />
+			<br />
+			<br />
+			<span>Choose date to host game</span>
+			<br />
+			<br />
+			<input [(ngModel)]="date" type="datetime-local" />
+			
+			<br />
+			<br />
+			<div *ngIf="location.name != '' && location.address != ''">
+				<button (click)="submit()">Finish</button>
+			</div>
+			<label [(ngModel)]="error">{{error}}</label>
+		</div>
 	</div>
+	
+	<br />
 	
 </div>

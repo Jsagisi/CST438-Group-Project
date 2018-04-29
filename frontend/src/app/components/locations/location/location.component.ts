@@ -19,7 +19,7 @@ export class LocationComponent implements OnInit {
   //emitter than sends a subscribable event when a new locatino
   //object is formed. Other components can subscribe to it and
   //get the location that was made in ths component
-  @Output() onLocation: EventEmitter<any> = new EventEmitter<any>;
+  @Output() onLocation = new EventEmitter<any>();
 
   locationNameElem: FormControl;
   activityElem: FormControl;

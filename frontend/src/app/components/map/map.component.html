@@ -50,32 +50,87 @@
 						[markerDraggable]="false">
   				<agm-info-window [isOpen]="true">Your Location</agm-info-window>
 			</agm-marker>
-
-			<div *ngIf="dataLoaded == true">
-  			<agm-marker  *ngFor="let marker of mapService.getLocations()"
-
-  				[latitude]= "marker.coords.lat"
-  				[longitude]="marker.coords.lng"
-  				[visible]="true"
-  				[iconUrl]="marker.icon"
-  				(markerClick)="markerClicked(marker.id)"
-  				 >
-  				<agm-info-window [isOpen]="marker.isOpen"
-  			    >
-  			    	<span>Location: {{marker.name}}</span>
-  					<br />
-  					<span>Address: {{marker.address}}</span>
-  					<br />
-  					<span>Activity: {{marker.activity}}</span>
-  					<br />
-  					<span>Time: {{marker.date}}</span>
-  					<br />
-  					<div *ngIf="userService.isLoggedIn() == true">
-  						<button  (click)="mapService.addUserToEvent(marker.id)">Join</button>
+			
+			<!-- Loop over all locations and draw markers -->
+			<div *ngIf="dataLoaded == true && showLocations == true">
+				<!-- Loop over markers -->
+  				<div *ngFor="let marker of mapService.getLocations()">
+  					
+  					<!-- location is a team type and the game is 
+  					already over. Draw a tropy and the winning teams
+  					logo
+  					 -->
+  					<div *ngIf="marker.winner != null && marker.winner !='none'">
+  						<agm-marker
+  							[latitude]="marker.lat"
+  							[longitude]="marker.lng"
+  							[visible]="true"
+  							[iconUrl]="getTrophyIcon()"
+  							 >
+  						</agm-marker>
+  						<agm-marker
+  							[latitude]="marker.lat"
+  							[longitude]="marker.lng"
+  							[visible]="true"
+  							[iconUrl]="marker.winner.imgUrl"
+  							 >
+  						</agm-marker>
   					</div>
+  					
+  					<!-- locaion is not a team event that is over
+  						draw the regular location and if it has teams
+  						draw team info
+  					 -->
+  					<div *ngIf="marker.winner == null || marker.winner == 'none'">
+  						<agm-marker
 
-  			    </agm-info-window>
-  			</agm-marker>
+  							[latitude]= "marker.coords.lat"
+  							[longitude]="marker.coords.lng"
+  							[visible]="true"
+  							[iconUrl]="marker.icon"
+  							(markerClick)="markerClicked(marker.id)"
+  				 		>
+  				 		
+  				 		<!-- Location has teams fighting -->
+  				 		<div *ngIf="marker.teams != null">
+  				 			<agm-info-window [isOpen]="marker.isOpen">
+  			    				<span>Location: {{marker.name}}</span>
+  								<br />
+  								<span>Address: {{marker.address}}</span>
+  								<br />
+  								<span>Activity: {{marker.activity}}</span>
+  								<br />
+  								<span>Time: {{marker.date}}</span>
+  								<br />
+  								<h3>Teams</h3>
+  								<img src="{{marker.teams.teamA.imgUrl}}"><span>{{marker.teams.teamA.name}}   vs.  </span><img src="{{marker.teams.teamB.imgUrl}}" /><span> {{marker.teams.teamB.name}}</span>
+                        		<br />
+                        		<span>owning team: {{marker.winner}}</span>
+  			    			</agm-info-window>
+  				 		</div>
+  				 		
+  				 		<!-- no teams on location so only give info on location -->
+  				 		<div *ngIf="marker.teams == null">
+  				 			<agm-info-window [isOpen]="marker.isOpen">
+  			    				<span>Location: {{marker.name}}</span>
+  								<br />
+  								<span>Address: {{marker.address}}</span>
+  								<br />
+  								<span>Activity: {{marker.activity}}</span>
+  								<br />
+  								<span>Time: {{marker.date}}</span>
+  								<br />
+  								<div *ngIf="userService.isLoggedIn() == true">
+  									<button  (click)="mapService.addUserToEvent(marker.id)">Join</button>
+  								</div>
+
+  			    			</agm-info-window>
+  				 		</div>
+  				 		
+  				 		</agm-marker>
+  					</div>
+  					
+  				</div>
   			</div>
   			<agm-marker
   				[latitude]="searchMarker.lat"

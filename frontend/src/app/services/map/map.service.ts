@@ -13,6 +13,7 @@ export class MapService {
   private clickEvent = new Subject<any>();
   private searchMarkerChangedEvent = new Subject<any>();
   database;
+  storage;
 
   eventMarkers;
   isFiltering = false;
@@ -22,6 +23,7 @@ export class MapService {
   constructor(private userService: UserService) {
   	this.eventMarkers = new Array();
   	this.database = firebase.database()
+  	this.storage = firebase.storage();
 
   	this.isFiltering = false;
   	this.filteredEvents = new Array();
@@ -78,6 +80,7 @@ export class MapService {
 
   	var results = new Array();
   	var ref =this.database.ref('/locations');
+  	var self = this;
   	ref.on('value', (snap) => {
   		var data = snap.val();
 
@@ -110,6 +113,8 @@ export class MapService {
 
 
   			}
+  			
+  			
 
   			data[key].isOpen = false;
 
@@ -231,6 +236,17 @@ export class MapService {
   			this.eventMarkers[i].isOpen = open;
   		}
   	}
+  }
+  
+  
+  getMatchById(id) {
+  	for (var i = 0; i < this.eventMarkers.length;i++) {
+  		if (this.eventMarkers[i].id == id) {
+  			return this.eventMarkers[i];
+  		}
+  	}
+  	
+  	return null;		
   }
 
 
