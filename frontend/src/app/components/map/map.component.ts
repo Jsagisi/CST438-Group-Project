@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, NgZone, ViewChild} from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {} from 'googlemaps';
 import {MapsAPILoader} from '@agm/core';
@@ -8,6 +8,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
 import {UserService} from '../../services/user-service/user.service';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -15,6 +16,15 @@ import {UserService} from '../../services/user-service/user.service';
 })
 export class MapComponent implements OnInit {
 
+//emitter than sends a subscribable event when a new locatino
+  //object is formed. Other components can subscribe to it and
+  //get the location that was made in ths component
+  @Output() onLocation = new EventEmitter<any>();
+
+
+
+  @Input() showLocations: boolean = true;
+  @Input() showSearchMarker: boolean = false;
 
   title: string = 'My first AGM project';
   lat: number;
@@ -50,131 +60,142 @@ export class MapComponent implements OnInit {
 
 
   constructor(
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    public router: Router,
-    public mapService: MapService,
-    public userService: UserService) {
 
-    this.filter = 'all';
-    this.showFilter = true;
+  	private mapsAPILoader: MapsAPILoader,
+  	private ngZone: NgZone,
+  	private router: Router,
+  	private mapService: MapService,
+  	private userService: UserService) {
 
-    this.placeService = null;
+  	this.filter = 'all';
+  	this.showFilter = true;
 
-    this.dataLoaded = false;
+  	this.placeService = null;
 
-    this.poiList = new Array();
+  	this.dataLoaded = false;
 
-    this.homeCoords = {
-      lat: 36.63536611993544,
-      lng: -121.81724309921265
-    };
+  	this.poiList = new Array();
 
-    this.searchMarker = {
-      lat: this.homeCoords.lat - 0.05,
-      lng: this.homeCoords.lng + 0.04,
-      isOpen: false,
-      text: "Drag Me"
-    };
+  	this.homeCoords = {
+  		lat: 36.63536611993544,
+  		lng: -121.81724309921265
+  	};
 
-    this.currentSearchLocation = {
-      lat: 0.0,
-      lng: 0.0
-    };
+  	this.searchMarker = {
+  		lat: this.homeCoords.lat - 0.05,
+  		lng: this.homeCoords.lng + 0.04,
+  		isOpen: this.showSearchMarker,
+  		text: "Drag Me"
+  	};
 
-    this.markers = new Array();
+  	this.currentSearchLocation = {
+  		lat: 0.0,
+  		lng: 0.0
+  	};
 
-
-    this.zoom = 10;
-    this.lat = 36.63536611993544;
-    this.lng = -121.81724309921265;
+  	this.markers = new Array();
 
 
-    //building map objec to pass into map selector in html
-    this.map = {
-      center: {
-        lat: 0,
-        lng: 0
-      },
-      zoom: this.zoom,
-      mapTypeId: this.mapType,
-      styles: [
-
-        {
-          "featureType": "landscape",
-          "stylers": [{"visibility": "off"}]
-        },
-        {
-          "featureType": "poi.attraction",
-          "stylers": [{"visibility": "off"}]
-        },
-        {
-          "featureType": "poi.business",
-          "stylers": [{"visibility": "off"}]
-        },
-        {
-          "featureType": "poi.government",
-          "stylers": [{"visibility": "off"}]
-        },
-        {
-          "featureType": "poi.medical",
-          "stylers": [{"visibility": "off"}]
-        },
-        {
-          "featureType": "poi.park",
-          "stylers": [{"visibility": "on"}]
-        },
-        {
-          "featureType": "poi.place_of_worship",
-          "stylers": [{"visibility": "off"}]
-        },
-        {
-          "featureType": "poi.school",
-          "stylers": [{"visibility": "on"}]
-        },
-        {
-          "featureType": "poi.sports_complex",
-          "stylers": [{"visibility": "on"}]
-        },
-        {
-          "featureType": "transit",
-          "stylers": [{"visibility": "off"}]
-        }
-      ]
-    };
+  	this.zoom = 10;
+  	this.lat = 36.63536611993544;
+    this.lng =  -121.81724309921265;
 
 
-    this.markerSubscription = this.mapService.getSearchMarkerEvent().subscribe(res => {
+  	//building map objec to pass into map selector in html
+  	this.map = {
+  		center: {
+  			lat: 0,
+  			lng: 0
+  		},
+  		zoom: this.zoom,
+  		mapTypeId: this.mapType,
+  		styles: [
 
-      this.searchMarker.isOpen = res.marker.isOpen;
+			{
+				"featureType": "landscape",
+				"stylers": [{"visibility":"off"}]
+			},
+			{
+				"featureType": "poi.attraction",
+				"stylers": [{"visibility":"off"}]
+			},
+			{
+				"featureType": "poi.business",
+				"stylers": [{"visibility":"off"}]
+			},
+			{
+				"featureType": "poi.government",
+				"stylers": [{"visibility":"off"}]
+			},
+			{
+				"featureType": "poi.medical",
+				"stylers": [{"visibility":"off"}]
+			},
+			{
+				"featureType": "poi.park",
+				"stylers": [{"visibility":"on"}]
+			},
+			{
+				"featureType": "poi.place_of_worship",
+				"stylers": [{"visibility":"off"}]
+			},
+			{
+				"featureType": "poi.school",
+				"stylers": [{"visibility":"on"}]
+			},
+			{
+				"featureType": "poi.sports_complex",
+				"stylers": [{"visibility":"on"}]
+			},
+			{
+				"featureType": "transit",
+				"stylers": [{"visibility":"off"}]
+			}
+  		]
+  	};
 
-      if (res.marker.isOpen == true) {
-        this.searchMarker.lat = this.lat;
-        this.searchMarker.lng = this.lng;
-      }
-    });
 
+
+  	this.markerSubscription = this.mapService.getSearchMarkerEvent().subscribe(res => {
+
+		this.searchMarker.isOpen = res.marker.isOpen;
+
+		if (this.showSearchMarker) {
+			this.searchMarker.isOpen = true;
+		}
+
+		if (res.marker.isOpen == true) {
+			this.searchMarker.lat = this.lat;
+			this.searchMarker.lng = this.lng;
+		}
+  	});
 
   }
 
   ngOnInit() {
 
-    this.mapService.downloadLocations((data) => {
-      this.markers = data;
 
-      for (var i = 0; i < this.markers.length; i++) {
-        //console.log(this.markers[i]);
-        var latStr = this.markers[i].coords.lat;
-        var latNum = parseFloat(latStr);
-        var lngStr = this.markers[i].coords.lng;
-        var lngNum = parseFloat(lngStr);
-        this.markers[i].coords = {
-          lat: latNum,
-          lng: lngNum
-        };
-      }
-      this.dataLoaded = true;
-    });
+    this.mapService.downloadLocations( (data) => {
+    	this.markers = data;
+
+  		for (var i = 0; i < this.markers.length;i++) {
+  			console.log(this.markers[i]);
+  			var latStr = this.markers[i].coords.lat;
+  			var latNum = parseFloat(latStr);
+  			var lngStr = this.markers[i].coords.lng;
+  			var lngNum = parseFloat(lngStr);
+  			this.markers[i].coords = {
+  				lat: latNum,
+  				lng: lngNum
+  			};
+  		}
+  		this.dataLoaded = true;
+  	});
+
+	this.searchMarker.isOpen = this.showSearchMarker;
+
+  	this.searchControl = new FormControl();
+
 
 
     this.searchControl = new FormControl();
@@ -378,9 +399,10 @@ export class MapComponent implements OnInit {
           }
 
 
-          this.mapService.emitClickEvent(data);
-          callback(null, data);
-        }
+				this.onLocation.emit(data);
+  				this.mapService.emitClickEvent(data);
+  				callback(null,data);
+   		    }
 
       }
       callback('error', null);
@@ -466,6 +488,10 @@ export class MapComponent implements OnInit {
 
     //navigate to location details component
     this.router.navigate(['map/locations', id]);
+  }
+
+  getTrophyIcon(){
+  	return require('../../../images/trophy.png');
   }
 
 }

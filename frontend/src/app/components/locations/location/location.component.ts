@@ -21,6 +21,7 @@ export class LocationComponent implements OnInit {
   //get the location that was made in ths component
   @Output() onLocation: EventEmitter<any> = new EventEmitter<any>();
 
+
   locationNameElem: FormControl;
   activityElem: FormControl;
   startDateElem: FormControl;

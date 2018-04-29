@@ -34,7 +34,13 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MatchComponent } from "./components/matches/match.component";
+import { MatchesOngoingComponent } from "./components/matches-ongoing/matches-ongoing.component";
+import { MatchesCompletedComponent } from "./components/maches-completed/matches-completed.component";
+import { MatchResultsComponent } from './components/match-results/match-results.component';
+import { MatchResultsComponent } from './components/match-results/match-results.component';
 import {MomentModule} from "ngx-moment";
+
 //routes
 const appRoutes: Routes = [
 
@@ -45,6 +51,7 @@ const appRoutes: Routes = [
 		{ path: 'locations/:id', component: LocationDetailsComponent }
 		]
 	},
+	{ path: 'matches/:id', component: MatchResultsComponent },
 
   { path: 'sandbox', component: SandboxComponent },
 	{ path: 'login', component: LoginComponent },
@@ -54,6 +61,10 @@ const appRoutes: Routes = [
 		{ path: 'create', component: CreateTeamComponent },
 		{ path: 'your-teams', component: UserTeamsComponent },
 		{ path: 'join', component: JoinTeamComponent },
+		{ path: 'matches', component: MatchComponent, children: [
+			{ path: 'current', component: MatchesOngoingComponent },
+			{ path: 'completed' , component: MatchesCompletedComponent }
+		]},
     {path: 'match', component: TeamMatchComponent}
 	] }
 ];
@@ -76,6 +87,10 @@ const appRoutes: Routes = [
     JoinTeamComponent,
     TeamMatchComponent,
     SandboxComponent,
+    MatchComponent,
+    MatchesOngoingComponent,
+    MatchesCompletedComponent,
+    MatchResultsComponent,
 
   ],
   imports: [
