@@ -2,7 +2,7 @@ import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import {MapService} from '../../../services/map/map.service';
 import {Subscription} from 'rxjs/Subscription';
 import * as angular from '@angular/core';
-import {UserService} from '../../../services/user-service/user.service';
+import { UserService } from '../../../services/user-service/user.service';
 import * as firebase from 'firebase';
 import {Form, FormControl, Validators} from "@angular/forms";
 
@@ -15,11 +15,12 @@ import {Form, FormControl, Validators} from "@angular/forms";
 export class LocationComponent implements OnInit {
 
   @Output() addLocation = new EventEmitter<boolean>();
-  
+
   //emitter than sends a subscribable event when a new locatino
   //object is formed. Other components can subscribe to it and
   //get the location that was made in ths component
-  @Output() onLocation = new EventEmitter<any>();
+  @Output() onLocation: EventEmitter<any> = new EventEmitter<any>();
+
 
   locationNameElem: FormControl;
   activityElem: FormControl;
@@ -32,8 +33,8 @@ export class LocationComponent implements OnInit {
   locationCoords: { lat: number, lng: number };
   date: string;
   activity: string;
-  
-  
+
+
   @Input() type: string = 'location';
 
   constructor(private mapService: MapService, private userService: UserService) {
@@ -90,7 +91,7 @@ export class LocationComponent implements OnInit {
   Checks if form to add new lcoation is missing any fields
   */
   formIsValid(): boolean {
-    
+
     return this.locationNameElem.valid && this.startDateElem.valid && this.locationCoords.lat != 0 && this.locationCoords.lng != 0;
 
   }
@@ -109,7 +110,7 @@ export class LocationComponent implements OnInit {
 
 	console.log('valid = ' + this.formIsValid());
     if (this.formIsValid() == true ) {
-	  
+
 	  //if type is 'location' then just get data
 	  //from forms and insert new location to db
       if (this.type == 'location') {
@@ -139,7 +140,7 @@ export class LocationComponent implements OnInit {
       this.userService.insertLocation(newLocation);
       this.mapService.addLocation(newLocation);
       }
-      
+
       //if type is 'match' then do not submit new location
       //object. The find match component wants to intercept
       //the data in the form to use in its onw form

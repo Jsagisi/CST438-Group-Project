@@ -27,9 +27,9 @@ import { TeamMatchComponent} from "./components/team-match/team-match.component"
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatDatetimepickerModule,MatNativeDatetimeModule} from "@mat-datetimepicker/core"
 import {
-  MatButtonModule, MatDatepickerModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatDividerModule,
   MatFormFieldModule,
-  MatInputModule, MatNativeDateModule, MatOptionModule,
+  MatInputModule, MatListModule, MatNativeDateModule, MatOptionModule,
   MatSelectModule,
   MatToolbarModule
 } from "@angular/material";
@@ -39,6 +39,7 @@ import { MatchesOngoingComponent } from "./components/matches-ongoing/matches-on
 import { MatchesCompletedComponent } from "./components/maches-completed/matches-completed.component";
 import { MatchResultsComponent } from './components/match-results/match-results.component';
 import { MatchResultsComponent } from './components/match-results/match-results.component';
+import {MomentModule} from "ngx-moment";
 
 //routes
 const appRoutes: Routes = [
@@ -62,7 +63,7 @@ const appRoutes: Routes = [
 		{ path: 'join', component: JoinTeamComponent },
 		{ path: 'matches', component: MatchComponent, children: [
 			{ path: 'current', component: MatchesOngoingComponent },
-			{ path: 'completed' , component MatchesCompletedComponent }
+			{ path: 'completed' , component: MatchesCompletedComponent }
 		]},
     {path: 'match', component: TeamMatchComponent}
 	] }
@@ -90,7 +91,7 @@ const appRoutes: Routes = [
     MatchesOngoingComponent,
     MatchesCompletedComponent,
     MatchResultsComponent,
-    
+
   ],
   imports: [
   	 RouterModule.forRoot(appRoutes),
@@ -114,6 +115,10 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatDatetimepickerModule,
     MatNativeDatetimeModule,
+    MatDividerModule,
+    MomentModule,
+    MatListModule,
+    MatCardModule,
 
   ],
   providers: [UserService, MapService, TeamService, ChatService],

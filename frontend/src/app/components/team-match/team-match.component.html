@@ -2,7 +2,7 @@
 
 <div id ="container">
 	<h1>Matchmaking</h1>
-	
+
 	<div>
 		<h2>Choose you team</h2>
 		<div *ngIf="usersTeams.length == 0">
@@ -14,12 +14,12 @@
 			</select>
 		</div>
 		<br />
-		
-		
+
+
 		<div *ngIf="opponents.length == 0 && selectedUserTeam != null">
 			<span>Sorry, we couldn't find any suitable opponents for your team</span>
 		</div>
-		
+
 		<div *ngIf="opponents.length > 0">
 		<h2>Choose your Opponent</h2>
 		<br />
@@ -47,19 +47,20 @@
 			</tr>
 		</table>
 		</div>
-		
-		
+
+
+
 		<div *ngIf="selectedOpponent != null">
 		<h3>Choose a Location</h3>
 		<span>Choose a location to host the game by searching for location by name in the search bar or dragging the marker to your location</span>
 			<div *ngIf="selectedOpponent != null" id="locMap">
 				<app-map [showSearchMarker]="true" [showLocations]="false" (onLocation)="onLocationPicked($event)"></app-map>
-				
+
 			</div>
 		</div>
-		
+
 		<div id="locationDiv" *ngIf="location != null && selectedOpponent != null">
-			
+
 			Name: <input type="text" [(ngModel)]="location.name" />
 			<br />
 			<br />
@@ -70,7 +71,7 @@
 			<br />
 			<br />
 			<input [(ngModel)]="date" type="datetime-local" />
-			
+
 			<br />
 			<br />
 			<div *ngIf="location.name != '' && location.address != ''">
@@ -79,7 +80,8 @@
 			<label [(ngModel)]="error">{{error}}</label>
 		</div>
 	</div>
-	
+
+
 	<br />
-	
+
 </div>

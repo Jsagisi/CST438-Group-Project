@@ -1,6 +1,5 @@
+<div id="menu" class='search-menu card-3' fxFlex="30%"  fxLayout="column">
 
-	<div id="menu" class='search-menu card-3' fxFlex="30%"  fxLayout="column">
-    
    	<div *ngIf="router.url.indexOf('teams') == -1">
     	<mat-toolbar>
       		<button mat-button (click)="navigate('map')" >Search</button>
@@ -8,7 +7,7 @@
       		<button mat-button (click)="navigate('teams')">Teams</button>
    		 </mat-toolbar>
     </div>
-  	
+
 		<div id="searchContainer" fxFlex style="padding: 8px">
 		Search: <input id="locationInput"
 			   placeholder="Enter location"
@@ -50,13 +49,13 @@
 						[markerDraggable]="false">
   				<agm-info-window [isOpen]="true">Your Location</agm-info-window>
 			</agm-marker>
-			
+
 			<!-- Loop over all locations and draw markers -->
 			<div *ngIf="dataLoaded == true && showLocations == true">
 				<!-- Loop over markers -->
   				<div *ngFor="let marker of mapService.getLocations()">
-  					
-  					<!-- location is a team type and the game is 
+
+  					<!-- location is a team type and the game is
   					already over. Draw a tropy and the winning teams
   					logo
   					 -->
@@ -76,7 +75,7 @@
   							 >
   						</agm-marker>
   					</div>
-  					
+
   					<!-- locaion is not a team event that is over
   						draw the regular location and if it has teams
   						draw team info
@@ -90,7 +89,7 @@
   							[iconUrl]="marker.icon"
   							(markerClick)="markerClicked(marker.id)"
   				 		>
-  				 		
+
   				 		<!-- Location has teams fighting -->
   				 		<div *ngIf="marker.teams != null">
   				 			<agm-info-window [isOpen]="marker.isOpen">
@@ -108,7 +107,7 @@
                         		<span>owning team: {{marker.winner}}</span>
   			    			</agm-info-window>
   				 		</div>
-  				 		
+
   				 		<!-- no teams on location so only give info on location -->
   				 		<div *ngIf="marker.teams == null">
   				 			<agm-info-window [isOpen]="marker.isOpen">
@@ -126,10 +125,10 @@
 
   			    			</agm-info-window>
   				 		</div>
-  				 		
+
   				 		</agm-marker>
   					</div>
-  					
+
   				</div>
   			</div>
   			<agm-marker
@@ -147,4 +146,5 @@
 		</agm-map>
 	</div>
 </div>
+
 

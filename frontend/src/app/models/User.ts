@@ -1,6 +1,6 @@
 import UserInfo = firebase.UserInfo
 
-export interface User {
+export  interface User {
   uid:string;
   displayName:string;
   email:string;
@@ -23,6 +23,7 @@ export class UserModel implements User{
     return new this(" "," "," "," "," ")
   }
   static fromFirebaseUser(userInfo:UserInfo) {
+    console.log(userInfo);
     return new this(userInfo.uid,userInfo.displayName,userInfo.displayName,userInfo.phoneNumber,userInfo.photoURL)
   }
 

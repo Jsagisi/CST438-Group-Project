@@ -44,7 +44,7 @@ export class TeamService {
   	if (!this.teams) {
   		return null;
   	}
-  	
+
   	var team = null;
   	for (var i = 0; i < this.teams.length;i++) {
   		if (this.teams[i].id == id) {
@@ -52,7 +52,7 @@ export class TeamService {
   			return team;
   		}
   	}
-  	
+
   	return team;
   }
 
@@ -80,9 +80,9 @@ export class TeamService {
             .then(function(url) {
               newTeam.imgUrl = url;
             })
-            
-            
-         
+
+
+
             teams.push(newTeam);
       });
       self.teams = teams;
@@ -152,6 +152,7 @@ export class TeamService {
       return this.teams;
     }
   }
+
 
 
 
@@ -340,35 +341,35 @@ export class TeamService {
   }
 
 
-	
+
   /* Returns array of valid matchmaking opponents for a given
   team id. Decides valid opponents by finding teams with the
   same sport and withing a reasonable distance from the given team
   */
   matchmaking(teamId) {
     var targetTeam = null;
-    
+
     //get team object of the igven team if
     for (var i = 0; i < this.teams.length;i++) {
     	if (this.teams[i].id == teamId) {
     		targetTeam = this.teams[i];
     	}
     }
-    
+
     //if given team id not found return empty array
     if (!targetTeam) {
-    	return new Array();
+    	return [];
     }
-    
-    
-    
+
+
+
     var validTeams = [];
     //now search for valid opponents for given team
     for (var i = 0; i < this.teams.length;i++) {
-    
+
     	//teams have same sport
     	if (this.teams[i].sport == targetTeam.sport && this.teams[i].id != targetTeam.id) {
-    		
+
     		//next check if teams are close to eacher
     		// (within 50 miles?)
     	   var distKm = this.calculateDistance(
@@ -377,25 +378,25 @@ export class TeamService {
            this.teams[i].location.lat,
            this.teams[i].location.lng);
             var distMiles = this.kmToMiles(distKm);
-            
+
             if (distMiles <= 50) {
             	validTeams.push(this.teams[i]);
             }
     	}
     }
-    
+
     return validTeams;
   }
 
   getCurrentMatches() {
-	
+
   }
 
 
   //returns array of all matches the user is involved in
   getUserMatches() {
   	var self = this;
-   
+
     return new Promise(function(resolve,reject) {
 
     var ref = self.database.ref('/locations');
@@ -410,19 +411,19 @@ export class TeamService {
         var data = dataSnap.val();
 
         var newMatch = data;
-      	
+
       	//check if location has teams
       	if (data.teams) {
-      	
+
       		var user = self.userService.getUser();
-      	
+
       		//search teamA to see if user is in it
       		for (var i = 0; i < data.teams.teamA.members.length;i++) {
       			if (data.teams.teamA.members[i].uid == user.uid) {
       				matches.push(data);
       			}
       		}
-      		
+
       		//search teamB to see if user is in it
       		for (var i = 0; i < data.teams.teamB.members.length;i++) {
       			if (data.teams.teamB.members[i].uid == user.uid) {
@@ -430,9 +431,9 @@ export class TeamService {
       			}
       		}
       	}
-      	
+
       });
-      
+
       resolve(matches);
      });
     });

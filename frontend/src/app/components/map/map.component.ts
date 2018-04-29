@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Output, Input, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
-import { Router } from '@angular/router';
-import { MapService } from '../../services/map/map.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { UserService } from '../../services/user-service/user.service';
+import {FormControl} from '@angular/forms';
+import {} from 'googlemaps';
+import {MapsAPILoader} from '@agm/core';
+import {Router} from '@angular/router';
+import {MapService} from '../../services/map/map.service';
+import {Subscription} from 'rxjs/Subscription';
+import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
+import {UserService} from '../../services/user-service/user.service';
+
 
 @Component({
   selector: 'app-map',
@@ -21,29 +22,29 @@ export class MapComponent implements OnInit {
   @Output() onLocation = new EventEmitter<any>();
 
 
+
   @Input() showLocations: boolean = true;
   @Input() showSearchMarker: boolean = false;
-  
 
   title: string = 'My first AGM project';
   lat: number;
   lng: number;
   zoom: number;
   mapType: string = 'roadmap';
-  map: any={};
+  map: any = {};
   searchControl: FormControl;
   markers;
-  homeCoords: {lat: number, lng: number};
+  homeCoords: { lat: number, lng: number };
   placeService;
   searchMarker: {
-  	lat: number,
-  	lng: number,
-  	isOpen: boolean,
-  	text: string
+    lat: number,
+    lng: number,
+    isOpen: boolean,
+    text: string
   };
   currentSearchLocation: {
-  		lat: number,
-  		lng: number
+    lat: number,
+    lng: number
   };
   poiList;
   dataLoaded: boolean;
@@ -59,6 +60,7 @@ export class MapComponent implements OnInit {
 
 
   constructor(
+
   	private mapsAPILoader: MapsAPILoader,
   	private ngZone: NgZone,
   	private router: Router,
@@ -157,22 +159,21 @@ export class MapComponent implements OnInit {
   	this.markerSubscription = this.mapService.getSearchMarkerEvent().subscribe(res => {
 
 		this.searchMarker.isOpen = res.marker.isOpen;
-		
+
 		if (this.showSearchMarker) {
 			this.searchMarker.isOpen = true;
 		}
-		
+
 		if (res.marker.isOpen == true) {
 			this.searchMarker.lat = this.lat;
 			this.searchMarker.lng = this.lng;
 		}
   	});
 
-
-
   }
 
   ngOnInit() {
+
 
     this.mapService.downloadLocations( (data) => {
     	this.markers = data;
@@ -197,14 +198,15 @@ export class MapComponent implements OnInit {
 
 
 
-	this.setCurrentPosition();
+    this.searchControl = new FormControl();
 
-  	//filters search results of location search bar and moves
-  	//map to the selected area when clicked
-  	this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
 
-      });
+    this.setCurrentPosition();
+
+    //filters search results of location search bar and moves
+    //map to the selected area when clicked
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {});
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
@@ -228,15 +230,13 @@ export class MapComponent implements OnInit {
           this.currentSearchLocation.lng = place.geometry.location.lng();
 
 
-
           this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (error, data) => {
 
-          	this.searchMarker.text = place.name;
+            this.searchMarker.text = place.name;
           });
         });
       });
     });
-
 
 
   }
@@ -252,152 +252,151 @@ export class MapComponent implements OnInit {
 
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-  		this.zoom = 10;
+        this.zoom = 10;
 
-  		this.homeCoords.lat = position.coords.latitude;
-  		this.homeCoords.lng = position.coords.longitude;
+        this.homeCoords.lat = position.coords.latitude;
+        this.homeCoords.lng = position.coords.longitude;
 
-  		this.userService.setUserCoords(this.homeCoords);
+        this.userService.setUserCoords(this.homeCoords);
 
       });
     }
   }
 
 
-
   degreesToRadians(degrees) {
-  		return degrees * Math.PI / 180;
-   }
+    return degrees * Math.PI / 180;
+  }
 
   distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
-  	var earthRadiusKm = 6371;
+    var earthRadiusKm = 6371;
 
-  	var dLat = this.degreesToRadians(lat2-lat1);
-  	var dLon = this.degreesToRadians(lon2-lon1);
+    var dLat = this.degreesToRadians(lat2 - lat1);
+    var dLon = this.degreesToRadians(lon2 - lon1);
 
-  	lat1 = this.degreesToRadians(lat1);
-  	lat2 = this.degreesToRadians(lat2);
+    lat1 = this.degreesToRadians(lat1);
+    lat2 = this.degreesToRadians(lat2);
 
-  	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  	var d = earthRadiusKm * c;
-  	return earthRadiusKm * d;
-   }
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = earthRadiusKm * c;
+    return earthRadiusKm * d;
+  }
 
 
   mapReady($event) {
-  	this.placeService = new google.maps.places.PlacesService($event);
-  	this.getPoiList( (error, list) => {
+    this.placeService = new google.maps.places.PlacesService($event);
+    this.getPoiList((error, list) => {
 
-  	});
+    });
   }
 
 
   getPoiList(callback) {
-  	var request = {
-  		location: this.homeCoords,
-  		radius: '100000',
-  		type: ['park']
-  	};
-  	var list = new Array();
+    var request = {
+      location: this.homeCoords,
+      radius: '100000',
+      type: ['park']
+    };
+    var list = new Array();
 
-  	this.placeService.nearbySearch(request, (results1, status) => {
-  		if (status == google.maps.places.PlacesServiceStatus.OK) {
-  			for (var i = 0; i < results1.length;i++) {
-  				this.poiList.push(results1[i]);
-  			}
-  			request.type = ['gym'];
-  			this.placeService.nearbySearch(request, (results2, status) => {
-  				if (status == google.maps.places.PlacesServiceStatus.OK) {
-  					for (var i = 0; i < results2.length;i++) {
-  						this.poiList.push(results2[i]);
-  					}
-  					request.type = ['school'];
-  					this.placeService.nearbySearch(request, (results3, status) => {
-  						if (status == google.maps.places.PlacesServiceStatus.OK) {
-  							for (var i = 0; i < results3.length;i++) {
-  								this.poiList.push(results3[i]);
-  							}
-  							request.type = ['stadium'];
-  							this.placeService.nearbySearch(request, (results4, status) => {
-  								if (status == google.maps.places.PlacesServiceStatus.OK) {
-  									for (var i = 0; i < results4.length;i++) {
-  										this.poiList.push(results4[i]);
+    this.placeService.nearbySearch(request, (results1, status) => {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results1.length; i++) {
+          this.poiList.push(results1[i]);
+        }
+        request.type = ['gym'];
+        this.placeService.nearbySearch(request, (results2, status) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results2.length; i++) {
+              this.poiList.push(results2[i]);
+            }
+            request.type = ['school'];
+            this.placeService.nearbySearch(request, (results3, status) => {
+              if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results3.length; i++) {
+                  this.poiList.push(results3[i]);
+                }
+                request.type = ['stadium'];
+                this.placeService.nearbySearch(request, (results4, status) => {
+                  if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results4.length; i++) {
+                      this.poiList.push(results4[i]);
 
-  									}
-  									request.type = ['store'];
-  									this.placeService.nearbySearch(request, (results5, status) => {
-  										if (status == google.maps.places.PlacesServiceStatus.OK) {
-  											for (var i = 0; i < results5.length;i++) {
-  												this.poiList.push(results5[i]);
+                    }
+                    request.type = ['store'];
+                    this.placeService.nearbySearch(request, (results5, status) => {
+                      if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        for (var i = 0; i < results5.length; i++) {
+                          this.poiList.push(results5[i]);
 
-  											}
-  											callback(null, list);
+                        }
+                        callback(null, list);
 
-  										}
-  									});
+                      }
+                    });
 
-  								}
-  							});
+                  }
+                });
 
-  						}
-  					});
-  				}
-  			});
-  		}
-  	});
+              }
+            });
+          }
+        });
+      }
+    });
   }
 
 
-  getLocationInfo(lat,lng, callback) {
+  getLocationInfo(lat, lng, callback) {
 
 
-	var data = {
-		coords : {
-			lat: lat,
-			lng: lng
-		},
-		name : "",
-		address: "",
-		isOpen: true
-	};
+    var data = {
+      coords: {
+        lat: lat,
+        lng: lng
+      },
+      name: "",
+      address: "",
+      isOpen: true
+    };
 
-  	var latlng = {lat : lat, lng: lng};
-   	var geocoder = new google.maps.Geocoder();
-   	geocoder.geocode({'location' : latlng}, (results, status) => {
-   		if (status == google.maps.GeocoderStatus.OK) {
-   		    if (results[0] != null) {
+    var latlng = {lat: lat, lng: lng};
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'location': latlng}, (results, status) => {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0] != null) {
 
-				var placeId = results[0].place_id;
-				this.placeService.getDetails({placeId: placeId}, (result, status) => {
-					console.log(result);
-				});
+          var placeId = results[0].place_id;
+          this.placeService.getDetails({placeId: placeId}, (result, status) => {
+            console.log(result);
+          });
 
-   		    	var matched = false;
-   		    	for (var i = 0; i < this.poiList.length;i++) {
-
-
-  						if (this.distanceInKmBetweenEarthCoordinates(lng, lat, this.poiList[i].geometry.location.lng(),this.poiList[i].geometry.location.lat() ) <= 202) {
-							data.name = this.poiList[i].name;
-							matched = true;
-							break;
-  						}
-  				}
-
-   		    	data.address = results[0].formatted_address;
-   		    	var placeId = results[0].place_id;
+          var matched = false;
+          for (var i = 0; i < this.poiList.length; i++) {
 
 
-   		    	if (this.distanceInKmBetweenEarthCoordinates(lng, lat, this.currentSearchLocation.lng,this.currentSearchLocation.lat) <= 202 ) {
-   		    		data.name = this.searchElementRef.nativeElement.value.split(',')[0];
-   		    	}
-   		    	else if (matched) {
+            if (this.distanceInKmBetweenEarthCoordinates(lng, lat, this.poiList[i].geometry.location.lng(), this.poiList[i].geometry.location.lat()) <= 202) {
+              data.name = this.poiList[i].name;
+              matched = true;
+              break;
+            }
+          }
 
-   		    	}
-   		    	else {
-   		    		data.name = results[0].address_components[1].long_name;
-   		    	}
+          data.address = results[0].formatted_address;
+          var placeId = results[0].place_id;
+
+
+          if (this.distanceInKmBetweenEarthCoordinates(lng, lat, this.currentSearchLocation.lng, this.currentSearchLocation.lat) <= 202) {
+            data.name = this.searchElementRef.nativeElement.value.split(',')[0];
+          }
+          else if (matched) {
+
+          }
+          else {
+            data.name = results[0].address_components[1].long_name;
+          }
 
 
 				this.onLocation.emit(data);
@@ -405,94 +404,92 @@ export class MapComponent implements OnInit {
   				callback(null,data);
    		    }
 
-   		}
-   		callback('error', null);
+      }
+      callback('error', null);
 
-   	});
+    });
 
   }
-
 
 
   click($event) {
 
-  	this.searchMarker.lat = $event.coords.lat;
-  	this.searchMarker.lng = $event.coords.lng;
+    this.searchMarker.lat = $event.coords.lat;
+    this.searchMarker.lng = $event.coords.lng;
 
-  	this.getLocationInfo($event.coords.lat, $event.coords.lng, (error, data) => {
-  		if (error != null) {
+    this.getLocationInfo($event.coords.lat, $event.coords.lng, (error, data) => {
+      if (error != null) {
 
-  		}
-  		else {
-  			this.searchMarker.text = data.name;
-  		}
-  	});
+      }
+      else {
+        this.searchMarker.text = data.name;
+      }
+    });
 
   }
-
 
 
   searchWasDragged($event) {
-  	this.getLocationInfo($event.coords.lat, $event.coords.lng, (error, data) => {
-  		if (error != null) {
+    this.getLocationInfo($event.coords.lat, $event.coords.lng, (error, data) => {
+      if (error != null) {
 
-  		}
-  		else {
-  			this.searchMarker.text = data.name;
-  		}
-  	});
+      }
+      else {
+        this.searchMarker.text = data.name;
+      }
+    });
   }
 
   centerChanged($event) {
-  	this.lat = $event.lat;
-  	this.lng = $event.lng;
+    this.lat = $event.lat;
+    this.lng = $event.lng;
   }
 
-  navigate(path: string) : void {
+  navigate(path: string): void {
 
-  	//reset activity filter
-  	this.filter = 'all';
-  	this.mapService.filterLocations(this.filter);
+    //reset activity filter
+    this.filter = 'all';
+    this.mapService.filterLocations(this.filter);
 
-  	if (path == 'map') {
+    if (path == 'map') {
 
-  		this.showFilters();
-  	}
-  	else {
-  		this.hideFilters();
-  	}
+      this.showFilters();
+    }
+    else {
+      this.hideFilters();
+    }
 
-  	this.router.navigateByUrl('/' + path);
+    this.router.navigateByUrl('/' + path);
   }
 
   addLocation() {
-  	console.log('clicked');
+    console.log('clicked');
   }
 
 
   hideFilters() {
-  	this.showFilter = false;
+    this.showFilter = false;
   }
 
   showFilters() {
-  	this.showFilter = true;
+    this.showFilter = true;
   }
 
 
   filterLocations() {
-  	this.mapService.filterLocations(this.filter);
+    this.mapService.filterLocations(this.filter);
   }
 
   markerClicked(id) {
-  	var clickedMarker = this.mapService.getMarkerById(id);
+    var clickedMarker = this.mapService.getMarkerById(id);
 
-  	var newOpen = !clickedMarker.isOpen;
-  	this.mapService.setMarkerOpen(id, newOpen);
+    var newOpen = !clickedMarker.isOpen;
+    this.mapService.setMarkerOpen(id, newOpen);
 
-  	//navigate to location details component
-  	this.router.navigate(['map/locations',id]);
+    //navigate to location details component
+    this.router.navigate(['map/locations', id]);
   }
-  
+
   getTrophyIcon(){
   	return require('../../../images/trophy.png');
   }
