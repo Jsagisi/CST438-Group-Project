@@ -27,7 +27,7 @@ import { TeamMatchComponent} from "./components/team-match/team-match.component"
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatDatetimepickerModule,MatNativeDatetimeModule} from "@mat-datetimepicker/core"
 import {
-  MatButtonModule, MatDatepickerModule, MatDividerModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatDividerModule,
   MatFormFieldModule,
   MatInputModule, MatListModule, MatNativeDateModule, MatOptionModule,
   MatSelectModule,
@@ -103,6 +103,7 @@ const appRoutes: Routes = [
     MatDividerModule,
     MomentModule,
     MatListModule,
+    MatCardModule,
 
   ],
   providers: [UserService, MapService, TeamService, ChatService],
