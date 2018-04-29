@@ -52,7 +52,7 @@ export class MapComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private router: Router,
+    public router: Router,
     public mapService: MapService,
     public userService: UserService) {
 

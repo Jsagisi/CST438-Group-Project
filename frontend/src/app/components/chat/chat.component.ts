@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../services/chat/chat.service';
 import {FormControl} from "@angular/forms";
-
+import {environment} from "../../../environments/environment";
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +16,9 @@ export class ChatComponent implements OnInit {
 
   constructor(private chatService: ChatService) {
     this.messages = [];
-    this.newMessage=new FormControl();
+
+    this.newMessage = new FormControl();
+
 
   }
 
@@ -25,6 +28,16 @@ export class ChatComponent implements OnInit {
     this.chatService.onMessage().subscribe(msg => {
       this.messages.push(msg);
     });
+    if (!environment.production) {
+      for (let i = 0; i < 5; i++) {
+        this.messages.push(
+          {
+            time: moment.utc().toISOString(),
+            username: "Dummy",
+            message: `Wow what a message ${i}`
+          });
+      }
+    }
 
   }
 

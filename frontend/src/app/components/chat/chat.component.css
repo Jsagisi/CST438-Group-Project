@@ -1,7 +1,6 @@
-:host{
-  display: flex;
-  flex-direction: row;
-  flex: 1 1 100%;
-  padding: 8px;
-}
 
+mat-list {
+  flex-grow: 1;
+
+  overflow: auto;
+}
