@@ -118,14 +118,10 @@ export class MapService {
 
   			data[key].isOpen = false;
 
-  			//event already over so dont add it
-  			if (eventDate < date) {
-  				continue;
+  			if (eventDate < date || (location.finished) || location.teams) {
+  				results.push(location);
   			}
-  			//event not started so add
-  			else {
-  				results.push(data[key]);
-  			}
+  			
   		}
   		this.eventMarkers = results;
   		cb(results);
@@ -189,32 +185,7 @@ export class MapService {
 
   	for (var i = 0; i < this.eventMarkers.length;i++) {
   		if (this.eventMarkers[i].id == id) {
-  			console.log('found marker');
-  			console.log(this.eventMarkers[i]);
-  			var loc = {
-  				id: this.eventMarkers[i].id,
-  				name: this.eventMarkers[i].name,
-  				activity: this.eventMarkers[i].activity,
-  				address: this.eventMarkers[i].address,
-  				coords: {
-  					lat: this.eventMarkers[i].coords.lat,
-  					lng: this.eventMarkers[i].coords.lng
-  				},
-  				date: this.eventMarkers[i].date,
-  				players: [],
-  				isOpen: this.eventMarkers[i].isOpen,
-  				icon: this.eventMarkers[i].icon
-  			};
-  			for (var j = 0; j < this.eventMarkers[i].players.length;j++) {
-  			   console.log('in players');
-  				var player = {
-  					uid: this.eventMarkers[i].players[j].uid,
-  					displayName: this.eventMarkers[i].players[j].displayName,
-  					email: this.eventMarkers[i].players[j].email
-  				};
-  				loc.players.push(player);
-  			}
-  			return loc;
+  			return this.eventMarkers[i];
   		}
   	}
 

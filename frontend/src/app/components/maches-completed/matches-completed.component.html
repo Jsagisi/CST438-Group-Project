@@ -28,7 +28,7 @@
 							<span>{{match.address}}</span>
 						</div>
 					</div>
-					<div class='match-row' *ngIf="match.winner == 'none'">
+					<div class='match-row' *ngIf="match.winner == 'none' || match.score == null">
 						<div>
 							<button (click)="gotoMatchDetails(match.id)">Record Match Results</button>
 						</div>

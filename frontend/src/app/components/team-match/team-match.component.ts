@@ -6,6 +6,7 @@ import { UserService } from '../../services/user-service/user.service';
 import { } from 'googlemaps';
 import { LocationComponent } from '../locations/location/location.component';
 import { MapService } from '../../services/map/map.service';
+import { ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
 
@@ -27,28 +28,33 @@ export class TeamMatchComponent implements OnInit {
 
   selectedUserTeam; //the team of the user
   selectedOpponent;
+  opponentPassedIn = false;
 
    //map stuff
    lat: 0;
    lng: 0;
    zoom: 5;
    mapType: string = 'roadmap';
+   passedInLocation;
 
 
-  constructor(private mapService: MapService, public teamService: TeamService, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private mapService: MapService, public teamService: TeamService, private userService: UserService) {
     this.selectedUserTeam = null;
     this.selectedOpponent = null;
     this.location = null;
+    
 
     var userCoords = this.userService.userCoords;
-    this.lat = userCoords.lat;
-    this.lng = userCoords.lng;
+    this.lat = 0;
+    this.lng = 0;
 
     this.date = moment().utc('-8:00').toISOString().slice(0, 16);
     this.location = {
       name: "",
       address: "",
     };
+    
+    this.passedInLocatin = null;
   }
 
 
@@ -67,9 +73,35 @@ export class TeamMatchComponent implements OnInit {
               this.usersTeams.push(teams[i]);
             }
           }
-          console.log(this.usersTeams);
+          
+          this.sub = this.route.params.subscribe(params => {
+      		var locId = params['locId'];
+      		var teamId = params['teamId'];
+      		
+      		if (teamId) {
+      			for (var k = 0; k < this.allTeams.length;k++) {
+      				if (this.allTeams[k].id == teamId) {
+      					this.selectedOpponent = this.allTeams[k];
+      				}
+      			}
+      		}
+      		
+      		if (locId) {
+      			var loc = this.mapService.getMarkerById(locId);
+      			this.passedInLocation = loc;
+      			this.lat = loc.coords.lat;
+      			this.lng = loc.coords.lng;
+      			
+      			this.opponentPassedIn = true;
+      		}
+
+    	   });
+    	   
+    	   
+          
         })
 
+		
 
     }
 
@@ -145,8 +177,15 @@ export class TeamMatchComponent implements OnInit {
       if (this.formIsValid()) {
 
         var usersTeam = this.teamService.getTeamById(this.selectedUserTeam);
-
-        var oppTeam = this.teamService.getTeamById(this.selectedOpponent);
+	
+		var oppTeam;
+		if (this.opponentPassedIn == true) {
+			oppTeam = this.selectedOpponent;
+		}
+		else {
+        	oppTeam = this.teamService.getTeamById(this.selectedOpponent);
+		}
+		
 
         var sport = usersTeam.sport;
 
@@ -188,6 +227,25 @@ export class TeamMatchComponent implements OnInit {
           finished: false,
           winner: 'none'
         };
+        
+        if (this.opponentPassedIn == true) {
+        	
+        	newLocation = this.passedInLocation;
+        	newLocation.teams = {
+        		teamA: usersTeam,
+        		teamB: oppTeam
+        	};
+        	delete newLocation['score'];
+        	delete newLocation['icon'];
+        	newLocation.players =  usersTeam.members.concat(oppTeam.members);
+        	newLocation.date = date;
+        	newLocation.finished = false;
+        	
+        	this.teamService.updateMatch(newLocation);
+        	return;
+        	
+        }
+
 
         this.userService.insertMatch(newMatch, newLocation);
         this.mapService.addLocation(newLocation);
@@ -196,7 +254,7 @@ export class TeamMatchComponent implements OnInit {
     }
 
 
-  }
+  
 
 
 

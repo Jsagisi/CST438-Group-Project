@@ -7,10 +7,10 @@ import {MapService} from '../../services/map/map.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
 import {UserService} from '../../services/user-service/user.service';
-
+import {TeamService} from '../../services/team-service/team.service';
 
 @Component({
-  selector: 'app-map',
+  selector: 'app-map'
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
@@ -25,6 +25,8 @@ export class MapComponent implements OnInit {
 
   @Input() showLocations: boolean = true;
   @Input() showSearchMarker: boolean = false;
+  @Input() inputLat:number = null;
+  @Input() inputLng:number = null;
 
   title: string = 'My first AGM project';
   lat: number;
@@ -65,7 +67,9 @@ export class MapComponent implements OnInit {
   	private ngZone: NgZone,
   	private router: Router,
   	private mapService: MapService,
-  	private userService: UserService) {
+  	private userService: UserService
+  	private teamService: TeamService
+  	) {
 
   	this.filter = 'all';
   	this.showFilter = true;
@@ -87,6 +91,9 @@ export class MapComponent implements OnInit {
   		isOpen: this.showSearchMarker,
   		text: "Drag Me"
   	};
+  	
+  	
+  	
 
   	this.currentSearchLocation = {
   		lat: 0.0,
@@ -99,6 +106,17 @@ export class MapComponent implements OnInit {
   	this.zoom = 10;
   	this.lat = 36.63536611993544;
     this.lng =  -121.81724309921265;
+    
+    if (this.inputLat && this.inputLng) {
+  		this.lat = this.inputLat;
+  		this.lng = this.inputLng;
+  		
+  		this.searchMarker.lat = this.inputLat;
+  		this.searchMarker.lng = this.inputLng;
+  		this.getLocationInfo(this.inputLat, this.inputLng, (error,data) => {
+  			this.searchMarker.text = data.name;
+  		});
+  	}
 
 
   	//building map objec to pass into map selector in html
@@ -233,10 +251,34 @@ export class MapComponent implements OnInit {
           this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (error, data) => {
 
             this.searchMarker.text = place.name;
+            
+            if (this.inputLat && this.inputLng) {
+  		this.lat = this.inputLat;
+  		this.lng = this.inputLng;
+  		
+  		this.searchMarker.lat = this.inputLat;
+  		this.searchMarker.lng = this.inputLng;
+  		this.getLocationInfo(this.inputLat, this.inputLng, (error,data) => {
+  			
+  		});
+  	}
           });
         });
       });
     });
+    
+    if (this.inputLat && this.inputLng) {
+  		this.lat = this.inputLat;
+  		this.lng = this.inputLng;
+  		
+  		this.searchMarker.lat = this.inputLat;
+  		this.searchMarker.lng = this.inputLng;
+  		this.getLocationInfo(this.inputLat, this.inputLng, (error,data) => {
+  			if (data && data.name) {
+  				this.searchMarker.text = data.name;
+  			}
+  		});
+  	}
 
 
   }
@@ -492,6 +534,10 @@ export class MapComponent implements OnInit {
 
   getTrophyIcon(){
   	return require('../../../images/trophy.png');
+  }
+  
+  challengeBtnPressed(locId, teamId) {
+  	this.router.navigate(['/teams/match', {locId: locId, teamId:teamId}]);
   }
 
 }

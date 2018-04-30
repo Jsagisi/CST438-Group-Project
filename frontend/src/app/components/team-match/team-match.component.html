@@ -9,8 +9,8 @@
 			<Span>You are not registered to any teams. Please join a team before matchmaking.</Span>
 		</div>
 		<div *ngIf="usersTeams.length > 0">
-			<select (change)="userTeamChanged($event.target.value)" *ngFor="let userTeam of usersTeams" [(ngModel)]="selectedUserTeam">
-				<option value={{userTeam.id}}>{{userTeam.name}}</option>
+			<select (change)="userTeamChanged($event.target.value)"  [(ngModel)]="selectedUserTeam">
+				<option *ngFor="let userTeam of usersTeams" value={{userTeam.id}}>{{userTeam.name}}</option>
 			</select>
 		</div>
 		<br />
@@ -20,7 +20,7 @@
 			<span>Sorry, we couldn't find any suitable opponents for your team</span>
 		</div>
 
-		<div *ngIf="opponents.length > 0">
+		<div *ngIf="opponents.length > 0 && opponentPassedIn == false">
 		<h2>Choose your Opponent</h2>
 		<br />
 		<span>We found these teams as fair opponents for your team</span>
@@ -54,7 +54,13 @@
 		<h3>Choose a Location</h3>
 		<span>Choose a location to host the game by searching for location by name in the search bar or dragging the marker to your location</span>
 			<div *ngIf="selectedOpponent != null" id="locMap">
-				<app-map [showSearchMarker]="true" [showLocations]="false" (onLocation)="onLocationPicked($event)"></app-map>
+				
+				<div *ngIf="lat == 0 && lng == 0">
+					<app-map [showSearchMarker]="true" [showLocations]="false" (onLocation)="onLocationPicked($event)"></app-map>
+				</div>
+				<div *ngIf="lat != 0 || lng != 0">
+					<app-map [inputLat]="lat" [inputLng]="lng" [showSearchMarker]="true" [showLocations]="false" (onLocation)="onLocationPicked($event)"></app-map>
+				</div>
 
 			</div>
 		</div>

@@ -38,7 +38,6 @@ import { MatchComponent } from "./components/matches/match.component";
 import { MatchesOngoingComponent } from "./components/matches-ongoing/matches-ongoing.component";
 import { MatchesCompletedComponent } from "./components/maches-completed/matches-completed.component";
 import { MatchResultsComponent } from './components/match-results/match-results.component';
-import { MatchResultsComponent } from './components/match-results/match-results.component';
 import {MomentModule} from "ngx-moment";
 
 //routes
@@ -65,7 +64,8 @@ const appRoutes: Routes = [
 			{ path: 'current', component: MatchesOngoingComponent },
 			{ path: 'completed' , component: MatchesCompletedComponent }
 		]},
-    {path: 'match', component: TeamMatchComponent}
+    {path: 'match', component: TeamMatchComponent},
+    {path: 'match/:locId/:teamId', component: TeamMatchComponent}
 	] }
 ];
 

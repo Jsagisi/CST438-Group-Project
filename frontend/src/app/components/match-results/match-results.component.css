@@ -1,6 +1,6 @@
 #container {
 	width: 100%;
-	height:50%;
+	height:30%;
 	background-color: #f4f5f7;
 	position: absolute;
 	left: 0px;
@@ -9,7 +9,7 @@
 
 #teamA {
 	width: 50%;
-	height: 50%;
+	height: 100%;
 	float: left;
 	background-color: #ff6368
 }
@@ -19,6 +19,27 @@
 	height: 100%;
 	float: right;
 	background-color: #7b93f2
+}
+
+#vsContainer {
+	
+	position:absolute;
+	right: 30px;
+	z-index: 100;
+	display: inline-block;
+	width: 50%;
+	margin: 0 auto;
+	font-size: 50px;
+}
+
+#head {
+	height: 100%;
+	width: 100%;
+}
+
+.score-input {
+	width: 40px;
+	margin-right: 20px;
 }
 
 .team-header {
@@ -32,7 +53,7 @@
 }
 
 .team-logo {
-	height: 100px;
-	width: 50%;
+	height: 50px;
+	width: 50px;
 	float:left;
 }

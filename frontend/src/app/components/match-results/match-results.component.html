@@ -1,5 +1,5 @@
 <div id="container">
-	<div *ngIf="match != null">
+	<div id="head" *ngIf="match != null">
 		<div id="teamA">
 			<div class="team-header">
 				<div class='team-logo-container'>
@@ -24,5 +24,24 @@
 				
 			</div>
 		</div>
+		<div id="vsContainer">
+			<span>VS</span>
+		</div>
+	</div>
+	<div *ngIf="match.winner != null && match.winner == 'none' || match.score == null">
+		<h2>Record Match Results</h2>
+		Winning team: <select [(ngModel)]="winner">
+							<option value="{{match.teams.teamA.id}}">{{match.teams.teamA.name}}</option>
+							<option value="{{match.teams.teamB.id}}">{{match.teams.teamB.name}}</option>
+					  </select>
+		<br />
+		<br />
+		Final Score:	<label>{{match.teams.teamA.name}}</label>
+						<input [(ngModel)]="teamAScore" class="score-input" type="number" />
+						<label> {{match.teams.teamB.name}}</label>
+						<input [(ngModel)]="teamBScore" class="score-input" type="number" />
+		<br />
+		<br />
+		<button (click)="submitMatchResults()">Submit</button>
 	</div>
 </div>
