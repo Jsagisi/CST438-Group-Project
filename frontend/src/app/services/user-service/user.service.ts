@@ -46,6 +46,20 @@ export class UserService {
     data.id = id;
     newLocationRef.set(data);
   };
+  
+  
+  insertMatch(match, location) {
+  	var newMatchRef = this.database.ref('/matches').push();
+  	var matchId = newMatchRef.key;
+  	match.id = matchId;
+  	newMatchRef.set(match);
+  	
+  	var newLocationRef = this.database.ref('/locations').push();
+    var locId = newLocationRef.key;
+    location.id = locId;
+    location.matchId = matchId;
+    newLocationRef.set(location);
+  };
 
 
   setUserCoords(coords) {

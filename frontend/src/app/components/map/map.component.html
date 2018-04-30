@@ -1,5 +1,4 @@
-
-	<div id="menu" class='search-menu card-3' fxFlex="30%"  fxLayout="column">
+<div id="menu" class='search-menu card-3' fxFlex="30%"  fxLayout="column">
 
    	<div *ngIf="router.url.indexOf('teams') == -1">
     	<mat-toolbar>
@@ -51,31 +50,153 @@
   				<agm-info-window [isOpen]="true">Your Location</agm-info-window>
 			</agm-marker>
 
-			<div *ngIf="dataLoaded == true">
-  			<agm-marker  *ngFor="let marker of mapService.getLocations()"
+			<!-- Loop over all locations and draw markers -->
+			<div *ngIf="dataLoaded == true && showLocations == true">
+				<!-- Loop over markers -->
+  				<div *ngFor="let marker of mapService.getLocations()">
+					
+  						
+  				 		
+  				 		
+  				 		<!-- Marker has no teams or battles 
+  				 		associated with it. Just draw marker of the given
+  				 		sport type and general info on the location
+  				 		 -->
+  				 		<div *ngIf="marker.teams == null">
+  				 			<agm-marker
+  								[latitude]= "marker.coords.lat"
+  								[longitude]="marker.coords.lng"
+  								[visible]="true"
+  								[iconUrl]="marker.icon"
+  								(markerClick)="markerClicked(marker.id)"
+  				 			>
+  				 			<agm-info-window [isOpen]="marker.isOpen">
+  			    				<span>Location: {{marker.name}}</span>
+  								<br />
+  								<span>Address: {{marker.address}}</span>
+  								<br />
+  								<span>Activity: {{marker.activity}}</span>
+  								<br />
+  								<span>Time: {{marker.date}}</span>
+  								<br />
+  								<div *ngIf="userService.isLoggedIn() == true">
+  									<button  (click)="mapService.addUserToEvent(marker.id)">Join</button>
+  								</div>
 
-  				[latitude]= "marker.coords.lat"
-  				[longitude]="marker.coords.lng"
-  				[visible]="true"
-  				[iconUrl]="marker.icon"
-  				(markerClick)="markerClicked(marker.id)"
-  				 >
-  				<agm-info-window [isOpen]="marker.isOpen"
-  			    >
-  			    	<span>Location: {{marker.name}}</span>
-  					<br />
-  					<span>Address: {{marker.address}}</span>
-  					<br />
-  					<span>Activity: {{marker.activity}}</span>
-  					<br />
-  					<span>Time: {{marker.date}}</span>
-  					<br />
-  					<div *ngIf="userService.isLoggedIn() == true">
-  						<button  (click)="mapService.addUserToEvent(marker.id)">Join</button>
-  					</div>
-
-  			    </agm-info-window>
-  			</agm-marker>
+  			    			</agm-info-window>
+  				 			</agm-marker>
+  				 		</div>
+  				 		
+  				 		<!-- Marker has teams of battles associated with it
+  				 		make info window with team and battle info
+  				 		 -->
+  				 		<div *ngIf="marker.teams != null">
+  				 		
+  				 			<!-- THe location has a finished battle -->
+  				 			<div *ngIf="marker.finished != null && marker.finished == true">
+  				 				<!-- Marker of  owning teams logo-->
+  				 				<agm-marker 
+  				 					[latitude]="marker.coords.lat"
+  									[longitude]="marker.coords.lng"
+  									[visible]="true"
+  									[iconUrl]="marker.winner.imgUrl" >
+  				 						
+  				 				</agm-marker>
+  				 				<!-- trophy marker and info window showing battle info -->
+  				 				<agm-marker 
+  				 					[latitude]="marker.coords.lat"
+  									[longitude]="marker.coords.lng"
+  									[visible]="true"
+  									[iconUrl]="getTrophyIcon()" 
+  									(markerClick)="markerClicked(marker.id)"
+  									>
+  				 					
+  				 					
+  				 					<agm-info-window [isOpen]="marker.isOpen">
+  			    						<span>Location: {{marker.name}}</span>
+  										<br />
+  										<span>Address: {{marker.address}}</span>
+  										<br />
+  										<span>Activity: {{marker.activity}}</span>
+  										<br />
+  										<span>Time: {{marker.date}}</span>
+  										<br />
+  										<span>Winner: {{marker.winner.name}}</span>
+										<img src="{{marker.winner.imgUrl}}">
+										<br />
+										
+										<button (click)="challengeBtnPressed(marker.id, marker.winner.id)">Battle for this location</button>
+									
+  			    					</agm-info-window>
+  				 				</agm-marker>
+  				 			</div>
+  				 			
+  				 			<!--  onoging match between 2 teams
+  				 				(match hasnt happened yet or the tams
+  				 				havent recorded score yet)
+  				 			 -->
+  				 			 <div *ngIf="marker.finished != null && marker.finished == false || marker.winner == 'none'">
+  				 			 	
+  				 			 	<div *ngIf="marker.winner != null && marker.winner == 'none'">
+  				 			 	<agm-marker
+  									[latitude]= "marker.coords.lat"
+  									[longitude]="marker.coords.lng"
+  									[visible]="true"
+  									[iconUrl]="marker.icon"
+  									(markerClick)="markerClicked(marker.id)"
+  				 				>
+  				 				
+  				 				
+  				 				<agm-info-window [isOpen]="marker.isOpen">
+  			    					<span>Location: {{marker.name}}</span>
+  									<br />
+  									<span>Address: {{marker.address}}</span>
+  									<br />
+  									<span>Activity: {{marker.activity}}</span>
+  									<br />
+  									<span>Time: {{marker.date}}</span>
+  									<br />
+  									<h3>Teams</h3>
+  									<img src="{{marker.teams.teamA.imgUrl}}"><span>{{marker.teams.teamA.name}}   vs.  </span><img src="{{marker.teams.teamB.imgUrl}}" /><span> {{marker.teams.teamB.name}}</span>
+                        			<br />
+                        			<span>owning team: {{marker.winner}}</span>
+  			    				</agm-info-window>
+  				 				</agm-marker>
+  				 				</div>
+  				 				<div *ngIf="marker.winner != null && marker.winner != 'none'">
+  				 					<agm-marker 
+  				 					[latitude]="marker.coords.lat"
+  									[longitude]="marker.coords.lng"
+  									[visible]="true"
+  									[iconUrl]="getTrophyIcon()" 
+  									(markerClick)="markerClicked(marker.id)"
+  									>
+  				 					
+  				 					
+  				 					<agm-info-window [isOpen]="marker.isOpen">
+  			    						<span>Location: {{marker.name}}</span>
+  										<br />
+  										<span>Address: {{marker.address}}</span>
+  										<br />
+  										<span>Activity: {{marker.activity}}</span>
+  										<br />
+  										<span>Time: {{marker.date}}</span>
+  										<br />
+  										<span>Winner: {{marker.winner.name}}</span>
+										<img src="{{marker.winner.imgUrl}}">
+										<br />
+										<h3>Teams</h3>
+  											<img src="{{marker.teams.teamA.imgUrl}}"><span>{{marker.teams.teamA.name}}   vs.  </span><img src="{{marker.teams.teamB.imgUrl}}" /><span> {{marker.teams.teamB.name}}</span>
+                        				<br />
+										
+									
+  			    					</agm-info-window>
+  				 				</agm-marker>
+  				 				</div>
+  				 			 </div>
+  				 		</div>
+ 	
+  				</div>
   			</div>
   			<agm-marker
   				[latitude]="searchMarker.lat"
@@ -92,4 +213,5 @@
 		</agm-map>
 	</div>
 </div>
+
 

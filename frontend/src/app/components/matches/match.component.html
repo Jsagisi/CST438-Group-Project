@@ -1,0 +1,11 @@
+<div id="container">
+	
+	<div id='btn-container'>
+		<button (click)="navigate('teams/matches/current')" class='nav-btn'>Ongoing Matches</button>
+		<button (click)="navigate('teams/matches/completed')" class='nav-btn'>Finished Matches</button>
+	</div>
+	
+	<div id="child">
+		<router-outlet></router-outlet>
+	</div>
+</div>

@@ -6,7 +6,7 @@
   left: 0px;
   top: 70px;
   margin: 0 auto;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 #row {
@@ -23,19 +23,27 @@ table, th, td {
 }
 
 app-map {
-	height: 500px;
+	height: 300px;
 	width: 70%;
 	float: left;
 }
 
-app-location {
-	height: 500px;
+#locationDiv {
 	width: 30%;
 	float: right;
+	height: 300px;
 }
+
+
+.select-btn {
+	display: inline-block;
+	height: 50px;;
+	width: 100%;
+}
+
 
 agm-map {
 	height: 300px;
-	width: 50%;
+	width: 75%;
 	
 }

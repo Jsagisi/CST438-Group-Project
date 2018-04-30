@@ -1,0 +1,43 @@
+<div>
+	<div id='ongoing-container'>
+		<h2>Finished Matches</h2>
+		
+		<div class='match-list'>
+			<div  *ngFor="let match of matches">
+			<div class="match">
+				<div class='match-header'>
+					<div class='match-row'>
+						<span>{{match.date}}</span>
+					</div>
+					<div class='match-row'>
+						<div class="logo-left">
+							<img src="{{match.teams.teamA.imgUrl}}" />
+						</div>
+						<span> {{match.teams.teamA.name}}	Vs	{{match.teams.teamB.name}}</span>
+						<div class="logo-right">
+							<img src="{{match.teams.teamB.imgUrl}}" />
+						</div>
+					</div>
+					<div class='match-row'>
+						<div>
+							<span>{{match.name}}</span>
+						</div>
+					</div>
+				    <div class='match-row'>
+						<div>
+							<span>{{match.address}}</span>
+						</div>
+					</div>
+					<div class='match-row' *ngIf="match.winner == 'none' || match.score == null">
+						<div>
+							<button (click)="gotoMatchDetails(match.id)">Record Match Results</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+	
+</div>

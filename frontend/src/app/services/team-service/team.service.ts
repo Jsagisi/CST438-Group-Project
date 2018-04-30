@@ -39,6 +39,23 @@ export class TeamService {
 
 
 
+  //returns the team object of the given id if it exists
+  getTeamById(id) {
+  	if (!this.teams) {
+  		return null;
+  	}
+
+  	var team = null;
+  	for (var i = 0; i < this.teams.length;i++) {
+  		if (this.teams[i].id == id) {
+  			team = this.teams[i];
+  			return team;
+  		}
+  	}
+
+  	return team;
+  }
+
 
   //calls database to get all team object and their logos
   downloadTeams() {
@@ -63,6 +80,9 @@ export class TeamService {
             .then(function(url) {
               newTeam.imgUrl = url;
             })
+
+
+
             teams.push(newTeam);
       });
       self.teams = teams;
@@ -372,6 +392,94 @@ export class TeamService {
 
   }
 
+
+  //returns array of all matches the user is involved in
+  getUserMatches() {
+  	var self = this;
+
+    return new Promise(function(resolve,reject) {
+
+    var ref = self.database.ref('/locations');
+
+    //search for all teams
+    var matches = new Array();
+    //iterate through teams in db to see if it exists
+    ref.once('value', function(snapshot) {
+
+      //interate through each team to get image url
+      snapshot.forEach(function(dataSnap) {
+        var data = dataSnap.val();
+
+        var newMatch = data;
+
+      	//check if location has teams
+      	if (data.teams) {
+
+      		var user = self.userService.getUser();
+
+      		//search teamA to see if user is in it
+      		for (var i = 0; i < data.teams.teamA.members.length;i++) {
+      			if (data.teams.teamA.members[i].uid == user.uid) {
+      				matches.push(data);
+      			}
+      		}
+
+      		//search teamB to see if user is in it
+      		for (var i = 0; i < data.teams.teamB.members.length;i++) {
+      			if (data.teams.teamB.members[i].uid == user.uid) {
+      				matches.push(data);
+      			}
+      		}
+      	}
+
+      });
+
+      resolve(matches);
+     });
+    });
+  }
+  
+  
+  
+  // updaes existing match
+  updateMatch(newMatch) {
+  	var id = newMatch.id;
+  	
+  	var updates = {};
+  	updates['locations/' + id] = newMatch;
+  	
+  	this.database.ref().update(updates);
+  }
+  
+  
+  //decides if the logged in user is enrolled in any teams
+  userHasTeam() {
+  	var user = this.userService.getUser();
+  	
+  	
+  	
+  	for (var i = 0; i < this.teams.length;i++) {
+  		for (var j = 0; j < this.teams[i].members.length;j++) {
+  			if (this.teams[i].members[j].displayName == user.displayName) {
+  				return true;
+  			}
+  		}
+  	}
+  	
+  	return false;
+  }
+  
+  
+  updateTeam(newTeam) {
+ 
+  	
+  	var id = newTeam.id;
+  	var updates = {};
+  	updates['teams/' + id + '/wins'] = newTeam.wins;
+  	updates['teams/' + id + '/losses'] = newTeam.losses;
+  	this.database.ref().update(updates);
+  	
+  }
 
 
 }
