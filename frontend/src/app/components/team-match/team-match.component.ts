@@ -42,7 +42,7 @@ export class TeamMatchComponent implements OnInit {
     this.selectedUserTeam = null;
     this.selectedOpponent = null;
     this.location = null;
-    
+
 
     var userCoords = this.userService.userCoords;
     this.lat = 0;
@@ -53,8 +53,8 @@ export class TeamMatchComponent implements OnInit {
       name: "",
       address: "",
     };
-    
-    this.passedInLocatin = null;
+
+    this.passedInLocation = null;
   }
 
 
@@ -73,11 +73,11 @@ export class TeamMatchComponent implements OnInit {
               this.usersTeams.push(teams[i]);
             }
           }
-          
+
           this.sub = this.route.params.subscribe(params => {
       		var locId = params['locId'];
       		var teamId = params['teamId'];
-      		
+
       		if (teamId) {
       			for (var k = 0; k < this.allTeams.length;k++) {
       				if (this.allTeams[k].id == teamId) {
@@ -85,23 +85,23 @@ export class TeamMatchComponent implements OnInit {
       				}
       			}
       		}
-      		
+
       		if (locId) {
       			var loc = this.mapService.getMarkerById(locId);
       			this.passedInLocation = loc;
       			this.lat = loc.coords.lat;
       			this.lng = loc.coords.lng;
-      			
+
       			this.opponentPassedIn = true;
       		}
 
     	   });
-    	   
-    	   
-          
+
+
+
         })
 
-		
+
 
     }
 
@@ -177,7 +177,7 @@ export class TeamMatchComponent implements OnInit {
       if (this.formIsValid()) {
 
         var usersTeam = this.teamService.getTeamById(this.selectedUserTeam);
-	
+
 		var oppTeam;
 		if (this.opponentPassedIn == true) {
 			oppTeam = this.selectedOpponent;
@@ -185,7 +185,7 @@ export class TeamMatchComponent implements OnInit {
 		else {
         	oppTeam = this.teamService.getTeamById(this.selectedOpponent);
 		}
-		
+
 
         var sport = usersTeam.sport;
 
@@ -227,9 +227,9 @@ export class TeamMatchComponent implements OnInit {
           finished: false,
           winner: 'none'
         };
-        
+
         if (this.opponentPassedIn == true) {
-        	
+
         	newLocation = this.passedInLocation;
         	newLocation.teams = {
         		teamA: usersTeam,
@@ -240,10 +240,10 @@ export class TeamMatchComponent implements OnInit {
         	newLocation.players =  usersTeam.members.concat(oppTeam.members);
         	newLocation.date = date;
         	newLocation.finished = false;
-        	
+
         	this.teamService.updateMatch(newLocation);
         	return;
-        	
+
         }
 
 
@@ -254,7 +254,7 @@ export class TeamMatchComponent implements OnInit {
     }
 
 
-  
+
 
 
 

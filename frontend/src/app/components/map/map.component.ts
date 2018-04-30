@@ -10,7 +10,7 @@ import {UserService} from '../../services/user-service/user.service';
 import {TeamService} from '../../services/team-service/team.service';
 
 @Component({
-  selector: 'app-map'
+  selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
@@ -67,7 +67,7 @@ export class MapComponent implements OnInit {
   	private ngZone: NgZone,
   	private router: Router,
   	private mapService: MapService,
-  	private userService: UserService
+  	private userService: UserService,
   	private teamService: TeamService
   	) {
 
@@ -91,9 +91,9 @@ export class MapComponent implements OnInit {
   		isOpen: this.showSearchMarker,
   		text: "Drag Me"
   	};
-  	
-  	
-  	
+
+
+
 
   	this.currentSearchLocation = {
   		lat: 0.0,
@@ -106,11 +106,11 @@ export class MapComponent implements OnInit {
   	this.zoom = 10;
   	this.lat = 36.63536611993544;
     this.lng =  -121.81724309921265;
-    
+
     if (this.inputLat && this.inputLng) {
   		this.lat = this.inputLat;
   		this.lng = this.inputLng;
-  		
+
   		this.searchMarker.lat = this.inputLat;
   		this.searchMarker.lng = this.inputLng;
   		this.getLocationInfo(this.inputLat, this.inputLng, (error,data) => {
@@ -251,26 +251,26 @@ export class MapComponent implements OnInit {
           this.getLocationInfo(place.geometry.location.lat(), place.geometry.location.lng(), (error, data) => {
 
             this.searchMarker.text = place.name;
-            
+
             if (this.inputLat && this.inputLng) {
   		this.lat = this.inputLat;
   		this.lng = this.inputLng;
-  		
+
   		this.searchMarker.lat = this.inputLat;
   		this.searchMarker.lng = this.inputLng;
   		this.getLocationInfo(this.inputLat, this.inputLng, (error,data) => {
-  			
+
   		});
   	}
           });
         });
       });
     });
-    
+
     if (this.inputLat && this.inputLng) {
   		this.lat = this.inputLat;
   		this.lng = this.inputLng;
-  		
+
   		this.searchMarker.lat = this.inputLat;
   		this.searchMarker.lng = this.inputLng;
   		this.getLocationInfo(this.inputLat, this.inputLng, (error,data) => {
@@ -535,7 +535,7 @@ export class MapComponent implements OnInit {
   getTrophyIcon(){
   	return require('../../../images/trophy.png');
   }
-  
+
   challengeBtnPressed(locId, teamId) {
   	this.router.navigate(['/teams/match', {locId: locId, teamId:teamId}]);
   }
