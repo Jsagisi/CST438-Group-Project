@@ -56,13 +56,13 @@ export class MatchesCompletedComponent implements OnInit {
       var self = this;
     	//get user matches from database
     	this.teamService.getUserMatches()
-    	.then((matches) => {
+    	.then((matches:Array<any>) => {
 
-    		var today = moment().utc(self.offset).toISOString();
+    		var today = new Date().toISOString();
 
-			//only get matches where the start date has passed
+			  //only get matches where the start date has passed
     		for (var i = 0; i < matches.length;i++) {
-    			var matchDate = moment(matches[i].date).utc(self.offset).toISOString();
+    			var matchDate = new Date(matches[i].date).toISOString();
 
     			//built in momentjs function checks if date passed
     			if (moment(today).isSameOrAfter(moment(matchDate))) {
@@ -70,14 +70,7 @@ export class MatchesCompletedComponent implements OnInit {
     			}
     		}
 
-    		//sort dates ascending
 
-    		this.matches.sort(function(a,b) {
-    			var dateA = moment(a.date).utc(self.offset).toISOString();
-    			var dateB = moment(b.date).utc(self.offset).toISOString();
-
-    			return (dateA < dateB) ? -1 : ((dateA > dateB) ? 1 : 0);
-    		});
 
     		//format dates a little nices than ISO.
     		//YYYY-MM-dd HH: MM

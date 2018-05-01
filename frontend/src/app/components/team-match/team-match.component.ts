@@ -36,7 +36,7 @@ export class TeamMatchComponent implements OnInit {
    zoom: 5;
    mapType: string = 'roadmap';
    passedInLocation;
-
+   sub:any;
 
   constructor(private route: ActivatedRoute, private mapService: MapService, public teamService: TeamService, private userService: UserService) {
     this.selectedUserTeam = null;
@@ -48,13 +48,15 @@ export class TeamMatchComponent implements OnInit {
     this.lat = 0;
     this.lng = 0;
 
-    this.date = moment().utc('-8:00').toISOString().slice(0, 16);
+
+    this.date = new Date().toISOString();
     this.location = {
       name: "",
       address: "",
     };
 
     this.passedInLocation = null;
+
   }
 
 
@@ -192,7 +194,7 @@ export class TeamMatchComponent implements OnInit {
         var players = usersTeam.members.concat(oppTeam.members);
 
 
-        var date = moment(this.date).utc('-8:00').toISOString();
+        var date = moment(this.date).toISOString();
 
 
         var newMatch = {

@@ -9,11 +9,16 @@ import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/rou
 import {UserService} from '../../services/user-service/user.service';
 import {TeamService} from '../../services/team-service/team.service';
 
+declare var require: any;
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
+
+
+
 export class MapComponent implements OnInit {
 
 //emitter than sends a subscribable event when a new locatino
@@ -27,6 +32,8 @@ export class MapComponent implements OnInit {
   @Input() showSearchMarker: boolean = false;
   @Input() inputLat:number = null;
   @Input() inputLng:number = null;
+
+
 
   title: string = 'My first AGM project';
   lat: number;

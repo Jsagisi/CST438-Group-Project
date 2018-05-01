@@ -3,11 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { MapService } from '../../services/map/map.service';
 import { TeamService } from '../../services/team-service/team.service';
 
+
+
 @Component({
   selector: 'app-match-results',
   templateUrl: './match-results.component.html',
   styleUrls: ['./match-results.component.css']
 })
+
+
 export class MatchResultsComponent implements OnInit {
 
   match: any;
@@ -15,6 +19,7 @@ export class MatchResultsComponent implements OnInit {
   winner:any; //team object of winning team
   teamAScore:number;
   teamBScore:number;
+  sub: any;
 
   constructor(private teamService: TeamService,private route: ActivatedRoute, private mapService: MapService) {
 
@@ -24,6 +29,7 @@ export class MatchResultsComponent implements OnInit {
   	this.winner = null;
   	this.teamAScore = 0;
   	this.teamBScore = 0;
+
 
 
   }
@@ -36,7 +42,7 @@ export class MatchResultsComponent implements OnInit {
 
       //get user matches from database
     	this.teamService.getUserMatches()
-    	.then((matches) => {
+    	.then((matches:Array<any>) => {
 
 
     		for (var i = 0; i < matches.length;i++) {

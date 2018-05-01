@@ -56,10 +56,10 @@ export class MatchesOngoingComponent implements OnInit {
     	//get user matches from database
     	this.teamService.getUserMatches()
     	.then((matches:Array<any>) => {
-    		var today = moment().utc(self.offset)
+    		var today = new Date().toISOString()
 
     		for (var i = 0; i < matches.length;i++) {
-    			var matchDate = moment(matches[i].date).utc(self.offset).toISOString();
+    			var matchDate = new Date(matches[i].date).toISOString()
 
 
     			if (moment(today).isSameOrAfter(moment(matchDate)) == false) {
@@ -68,12 +68,7 @@ export class MatchesOngoingComponent implements OnInit {
     		}
 
 
-    		this.matches.sort(function(a,b) {
-    			var dateA = moment(a.date).utc(self.offset).toISOString();
-    			var dateB = moment(b.date).utc(self.offset).toISOString();
 
-    			return (dateA < dateB) ? -1 : ((dateA > dateB) ? 1 : 0);
-    		});
 
     		//format dates a little nices than ISO.
     		//YYYY-MM-dd HH: MM
