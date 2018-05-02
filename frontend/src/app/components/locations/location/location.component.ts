@@ -33,6 +33,7 @@ export class LocationComponent implements OnInit {
   locationCoords: { lat: number, lng: number };
   date: string;
   activity: string;
+  responseMessage:string = "";
 
 
   @Input() type: string = 'location';
@@ -102,6 +103,11 @@ export class LocationComponent implements OnInit {
 
   addEvent() {
 
+    //reset response message
+    this.responseMessage = "";
+    var label = document.getElementById('responseLabel');
+
+
     //save variables for when form refreshes
     var name = this.locationName;
     var addr = this.locationAddress;
@@ -132,13 +138,15 @@ export class LocationComponent implements OnInit {
           ]
         }
       ;
-      console.log(newLocation)
-      this.userService.insertLocation(newLocation);
-      this.mapService.addLocation(newLocation);
+
+      //this.userService.insertLocation(newLocation);
+      //this.mapService.addLocation(newLocation);
+      this.responseMessage = "Event created successfully";
+      label.style.color = 'green';
     }
     else {
-
-
+      this.responseMessage = "Required Fields Missing";
+      label.style.color = 'red';
     }
 
     //restore the text in the form

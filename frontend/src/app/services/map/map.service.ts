@@ -20,6 +20,7 @@ export class MapService {
   filter;
   filteredEvents;
 
+
   constructor(private userService: UserService) {
   	this.eventMarkers = new Array();
   	this.database = firebase.database()
