@@ -78,6 +78,8 @@ export class LocationComponent implements OnInit {
       this.locationCoords.lat = data.text.coords.lat;
       this.locationCoords.lng = data.text.coords.lng;
     });
+
+
   }
 
   ngOnDestroy() {

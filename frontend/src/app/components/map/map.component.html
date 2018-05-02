@@ -26,6 +26,13 @@
 			    	<input type="radio" name="activity" value="football"  [(ngModel)]="filter"  (change)="filterLocations()">Football
 			    	<input type="radio" name="activity" value="baseball" [(ngModel)]="filter"  (change)="filterLocations()">Baseball
 			 	</form>
+         <br />
+         Filter event type:
+         <form action="">
+           <input type="radio" name="eventType" value="all" [(ngModel)]="typeFilter" (change)="filterType()">All
+           <input type="radio" name="eventType" value="individual" [(ngModel)]="typeFilter" (change)="filterType()">Individual
+           <input type="radio" name="eventType" value="team" [(ngModel)]="typeFilter" (change)="filterType()">Team
+         </form>
 			 </div>
 		<router-outlet ></router-outlet>
 		</div>
@@ -54,11 +61,11 @@
 			<div *ngIf="dataLoaded == true && showLocations == true">
 				<!-- Loop over markers -->
   				<div *ngFor="let marker of mapService.getLocations()">
-					
-  						
-  				 		
-  				 		
-  				 		<!-- Marker has no teams or battles 
+
+
+
+
+  				 		<!-- Marker has no teams or battles
   				 		associated with it. Just draw marker of the given
   				 		sport type and general info on the location
   				 		 -->
@@ -86,32 +93,32 @@
   			    			</agm-info-window>
   				 			</agm-marker>
   				 		</div>
-  				 		
+
   				 		<!-- Marker has teams of battles associated with it
   				 		make info window with team and battle info
   				 		 -->
   				 		<div *ngIf="marker.teams != null">
-  				 		
+
   				 			<!-- THe location has a finished battle -->
   				 			<div *ngIf="marker.finished != null && marker.finished == true">
   				 				<!-- Marker of  owning teams logo-->
-  				 				<agm-marker 
+  				 				<agm-marker
   				 					[latitude]="marker.coords.lat"
   									[longitude]="marker.coords.lng"
   									[visible]="true"
   									[iconUrl]="marker.winner.imgUrl" >
-  				 						
+
   				 				</agm-marker>
   				 				<!-- trophy marker and info window showing battle info -->
-  				 				<agm-marker 
+  				 				<agm-marker
   				 					[latitude]="marker.coords.lat"
   									[longitude]="marker.coords.lng"
   									[visible]="true"
-  									[iconUrl]="getTrophyIcon()" 
+  									[iconUrl]="getTrophyIcon()"
   									(markerClick)="markerClicked(marker.id)"
   									>
-  				 					
-  				 					
+
+
   				 					<agm-info-window [isOpen]="marker.isOpen">
   			    						<span>Location: {{marker.name}}</span>
   										<br />
@@ -124,19 +131,19 @@
   										<span>Winner: {{marker.winner.name}}</span>
 										<img src="{{marker.winner.imgUrl}}">
 										<br />
-										
+
 										<button (click)="challengeBtnPressed(marker.id, marker.winner.id)">Battle for this location</button>
-									
+
   			    					</agm-info-window>
   				 				</agm-marker>
   				 			</div>
-  				 			
+
   				 			<!--  onoging match between 2 teams
   				 				(match hasnt happened yet or the tams
   				 				havent recorded score yet)
   				 			 -->
   				 			 <div *ngIf="marker.finished != null && marker.finished == false || marker.winner == 'none'">
-  				 			 	
+
   				 			 	<div *ngIf="marker.winner != null && marker.winner == 'none'">
   				 			 	<agm-marker
   									[latitude]= "marker.coords.lat"
@@ -145,8 +152,8 @@
   									[iconUrl]="marker.icon"
   									(markerClick)="markerClicked(marker.id)"
   				 				>
-  				 				
-  				 				
+
+
   				 				<agm-info-window [isOpen]="marker.isOpen">
   			    					<span>Location: {{marker.name}}</span>
   									<br />
@@ -164,15 +171,15 @@
   				 				</agm-marker>
   				 				</div>
   				 				<div *ngIf="marker.winner != null && marker.winner != 'none'">
-  				 					<agm-marker 
+  				 					<agm-marker
   				 					[latitude]="marker.coords.lat"
   									[longitude]="marker.coords.lng"
   									[visible]="true"
-  									[iconUrl]="getTrophyIcon()" 
+  									[iconUrl]="getTrophyIcon()"
   									(markerClick)="markerClicked(marker.id)"
   									>
-  				 					
-  				 					
+
+
   				 					<agm-info-window [isOpen]="marker.isOpen">
   			    						<span>Location: {{marker.name}}</span>
   										<br />
@@ -188,14 +195,14 @@
 										<h3>Teams</h3>
   											<img src="{{marker.teams.teamA.imgUrl}}"><span>{{marker.teams.teamA.name}}   vs.  </span><img src="{{marker.teams.teamB.imgUrl}}" /><span> {{marker.teams.teamB.name}}</span>
                         				<br />
-										
-									
+
+
   			    					</agm-info-window>
   				 				</agm-marker>
   				 				</div>
   				 			 </div>
   				 		</div>
- 	
+
   				</div>
   			</div>
   			<agm-marker

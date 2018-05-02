@@ -59,7 +59,7 @@ export class MapComponent implements OnInit {
   dataLoaded: boolean;
   filter: string;
   showFilter;
-
+  typeFilter:string = 'all';
 
   clickSubscription: Subscription;
   markerSubscription: Subscription;
@@ -498,7 +498,7 @@ export class MapComponent implements OnInit {
 
     //reset activity filter
     this.filter = 'all';
-    this.mapService.filterLocations(this.filter);
+    this.mapService.filterLocations(this.filter,this.typeFilter);
 
     if (path == 'map') {
 
@@ -526,7 +526,7 @@ export class MapComponent implements OnInit {
 
 
   filterLocations() {
-    this.mapService.filterLocations(this.filter);
+    this.mapService.filterLocations(this.filter,this.typeFilter);
   }
 
   markerClicked(id) {
@@ -545,6 +545,10 @@ export class MapComponent implements OnInit {
 
   challengeBtnPressed(locId, teamId) {
   	this.router.navigate(['/teams/match', {locId: locId, teamId:teamId}]);
+  }
+
+  filterType() {
+    this.mapService.filterLocations(this.filter,this.typeFilter);
   }
 
 }

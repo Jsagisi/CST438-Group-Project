@@ -90,11 +90,11 @@ export class MapService {
   		for( var key in data) {
   			var location = data[key];
 
-  			console.log("Raw Date:"+location.date)
+
 
   			//only add locations where the current date is newer than the event date
   			var eventDate = new Date(location.date);
-  			console.log("Parse Date:"+eventDate)
+
 
 
 
@@ -122,6 +122,8 @@ export class MapService {
   			if (date < eventDate || (location.finished) || location.teams) {
   				results.push(location);
   			}
+
+
 
   		}
   		this.eventMarkers = results;
@@ -161,11 +163,11 @@ export class MapService {
   }
 
 
-  filterLocations(type) {
+  filterLocations(type, teamFilter) {
 
   	this.filter = type;
 
-  	if (type == 'all') {
+  	if (type == 'all' && teamFilter == 'all') {
   		this.isFiltering = false;
   	}
   	else {
@@ -173,9 +175,43 @@ export class MapService {
   		this.filteredEvents = new Array();
 
   		for (var i = 0; i < this.eventMarkers.length;i++) {
-  			if (this.eventMarkers[i].activity == type) {
-  				this.filteredEvents.push(this.eventMarkers[i]);
-  			}
+  		  if (type == 'all') {
+          if (teamFilter == 'all') {
+            this.filteredEvents.push(this.eventMarkers[i]);
+          }
+          else {
+            if (teamFilter == 'all') {
+              this.filteredEvents.push(this.eventMarkers[i]);
+            }
+            else if (teamFilter == 'individual') {
+              if (!('teams' in this.eventMarkers[i])) {
+                this.filteredEvents.push(this.eventMarkers[i]);
+              }
+            }
+            else {
+              if ('teams' in this.eventMarkers[i]) {
+                this.filteredEvents.push(this.eventMarkers[i]);
+              }
+            }
+          }
+        }
+        else {
+          if (this.eventMarkers[i].activity == type) {
+            if (teamFilter == 'all') {
+              this.filteredEvents.push(this.eventMarkers[i]);
+            }
+            else if (teamFilter == 'individual') {
+              if (!('teams' in this.eventMarkers[i])) {
+                this.filteredEvents.push(this.eventMarkers[i]);
+              }
+            }
+            else {
+              if ('teams' in this.eventMarkers[i]) {
+                this.filteredEvents.push(this.eventMarkers[i]);
+              }
+            }
+          }
+        }
   		}
   	}
 
