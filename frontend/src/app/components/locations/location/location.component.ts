@@ -92,7 +92,7 @@ export class LocationComponent implements OnInit {
   */
   formIsValid(): boolean {
 
-    return this.locationNameElem.valid && this.startDateElem.valid && this.locationCoords.lat != 0 && this.locationCoords.lng != 0;
+    return this.locationNameElem.valid && this.startDateElem.valid && this.locationCoords.lat != 0.0 && this.locationCoords.lng != 0.0;
 
   }
 
@@ -108,13 +108,9 @@ export class LocationComponent implements OnInit {
     var activity = this.activity;
     var date = this.date;
 
-	console.log('valid = ' + this.formIsValid());
+	  console.log('valid = ' + this.formIsValid());
     if (this.formIsValid() == true ) {
-
-	  //if type is 'location' then just get data
-	  //from forms and insert new location to db
-      if (this.type == 'location') {
-      	//add event to database
+      //add event to database
       var user = this.userService.getUser();
       var lat = this.locationCoords.lat;
       var lng = this.locationCoords.lng;
@@ -139,36 +135,6 @@ export class LocationComponent implements OnInit {
       console.log(newLocation)
       this.userService.insertLocation(newLocation);
       this.mapService.addLocation(newLocation);
-      }
-
-      //if type is 'match' then do not submit new location
-      //object. The find match component wants to intercept
-      //the data in the form to use in its onw form
-	  else {
-	  		 var user = this.userService.getUser();
-      var lat = this.locationCoords.lat;
-      var lng = this.locationCoords.lng;
-      console.log(this.locationCoords);
-      //make new locations object ot insert
-      var newLocation = {
-          name: this.locationNameElem.value,
-          address: this.locationAddress,
-          activity: this.activityElem.value,
-          date: (this.startDateElem.value as Date).toISOString(),
-          coords:
-            {
-              lat: lat,
-              lng: lng
-            }
-          ,
-          players: [
-            user
-          ]
-        }
-      ;
-      this.onLocation.emit(newLocation);
-	  }
-
     }
     else {
 

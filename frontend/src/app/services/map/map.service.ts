@@ -113,15 +113,15 @@ export class MapService {
 
 
   			}
-  			
-  			
+
+
 
   			data[key].isOpen = false;
 
-  			if (eventDate < date || (location.finished) || location.teams) {
+  			if (date < eventDate || (location.finished) || location.teams) {
   				results.push(location);
   			}
-  			
+
   		}
   		this.eventMarkers = results;
   		cb(results);
@@ -208,16 +208,16 @@ export class MapService {
   		}
   	}
   }
-  
-  
+
+
   getMatchById(id) {
   	for (var i = 0; i < this.eventMarkers.length;i++) {
   		if (this.eventMarkers[i].id == id) {
   			return this.eventMarkers[i];
   		}
   	}
-  	
-  	return null;		
+
+  	return null;
   }
 
 
