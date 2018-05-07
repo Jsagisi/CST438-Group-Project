@@ -17,7 +17,7 @@ Email: jsagisi@csumb.edu
 Github: https://github.com/Jsagisi
 Slack: @JasonS
 
-Anders Kjoelberg, INSERT YOUR ROLE
+Anders Kjoelberg, Code Review
 Email: akjoelberg@csumb.edu
 Github: https://github.com/AndersKjoelberg
 Slack: @Anders Kjoelberg
